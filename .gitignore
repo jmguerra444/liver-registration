@@ -2,3 +2,6 @@
 *.log
 *.ini
 *.asv
+
+# Configuration files and folders
+*\.vscode
