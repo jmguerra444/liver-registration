@@ -1,3 +1,6 @@
+# Temporary test files
+dummy.py
+
 # Auto generated filed
 *.log
 *.ini
@@ -5,3 +8,4 @@
 
 # Configuration files and folders
 *\.vscode
+*__pycache__
