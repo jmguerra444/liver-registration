@@ -9,7 +9,7 @@ def loadSettings():
     
     return data[thisComputer]
 
-def overflowNumber(value, increment, maxValue, minValue = 0):
+def overflowNum(value, increment, maxValue, minValue = 0):
     """
         Returns the new new value after increment.
     """
@@ -19,7 +19,7 @@ def overflowNumber(value, increment, maxValue, minValue = 0):
         
     return newValue
 
-def calmpNumber(value, maxValue, minValue = 0):
+def calmpNum(value, maxValue, minValue = 0):
     
     if (maxValue > minValue):
         if (value >= maxValue):
