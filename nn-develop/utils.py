@@ -9,6 +9,28 @@ def loadSettings():
     
     return data[thisComputer]
 
+def overflowNumber(value, increment, maxValue, minValue = 0):
+    """
+        Returns the new new value after increment.
+    """
+    newValue = value + increment
+    if (newValue > maxValue):
+        newValue = minValue + newValue - maxValue
+        
+    return newValue
+
+def calmpNumber(value, maxValue, minValue = 0):
+    
+    if (maxValue > minValue):
+        if (value >= maxValue):
+            return maxValue
+        if (value <= minValue):
+            return minValue
+        return value
+    else:
+        raise NameError("minValue > maxValue")
+    return
+
 class CF:
     """
     CF (ConsoleFormat)
