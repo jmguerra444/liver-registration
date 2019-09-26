@@ -16,26 +16,26 @@ class DataLoaderJSON:
     Loads Folder data from JSON file and returns image data of X batch size uppon request.\n
     `@Param jsonFile    # Dataset configuration file` \n
     `@Param pathPRefix  # Origin of images` \n
-    `@Param batch       #  Number of images to be returned by getBatch` \n
-    `@Param validation  # ercentage of images for validation (0.1)` \n
+    `@Param batch       # Number of images to be returned by getBatch, batchSize % numTraining = 0` \n
+    `@Param validation  # Number of images for validation` \n
     """
     
     def __init__(self, 
                  jsonFile,
                  pathPrefix = "",
-                 batch = 1,
-                 validation = 0.0
+                 batchSize = 1,
+                 validation = 0
                  ):
         
         self.jsonFile = jsonFile
         self.pathPrefix = pathPrefix
-        self.batch = batch
+        self.batchSize = batchSize
         
         self.labels = {}
         self.numTest = 0
         self.numTotalTraining = 0
         self.numTrainig = 0
-        self.numValidation = 0
+        self.numValidation = validation
         
         self.testImages = []
         self.trainingImages = []
@@ -62,26 +62,35 @@ class DataLoaderJSON:
             self.trainingImages = [join(self.pathPrefix, i["image"]) for i in data["training"]]
             self.trainingLabels = [join(self.pathPrefix, i["label"]) for i in data["training"]]
             
-            self.numValidation = ceil(self.numTotalTraining * validation)
             self.numTrainig = self.numTotalTraining - self.numValidation
 
             print("Images have been found:")
             print(CF.green, "Training Images: ", self.numTrainig, CF.e)
             print(CF.green, "Validation Images: ", self.numValidation, CF.e)
             print(CF.green, "Test Images: ", self.numTest, CF.e)
-
         except:
             print("Invalid data properties")
 
         return True
         
     # TODO: Implement
-    def getBatch(self):
+    def getBatch(self, imageDeck = "Tr", increaseCounter = True):
         
-        return True
+        if (imageDeck == "Tr"):
+            requestedPaths = [i for i in self.trainigDeck[self.imageCounter: self.imageCounter + self.batchSize]]        
+        if (increaseCounter):
+            self.imageCounter = overflowNum(self.imageCounter, self.batchSize, self.numTrainig)
+
+        requestedImages = [nibabel.load(path[0]).get_fdata() for path in requestedPaths]
+        requestedLabel = [nibabel.load(path[1]).get_fdata() for path in requestedPaths]
+
+        return requestedImages, requestedLabel
     
     def splitTrainigData(self):
         
+        if (self.numTotalTraining % self.batchSize != 0):
+            raise NameError("Batch size not multiple ")
+
         trainIndex = 0
         for i in self.trainingImages[:self.numTrainig]:
             self.trainigDeck.append((self.trainingImages[trainIndex], self.trainingLabels[trainIndex]))

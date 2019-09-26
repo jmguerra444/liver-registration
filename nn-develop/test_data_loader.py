@@ -11,6 +11,4 @@ dataLoader = DataLoaderJSON(jsonFile = "01-dataset.json",
 dataLoader.shuffleImages()
 dataLoader.splitTrainigData()
 
-for i in range(20):
-    reqI = dataLoader.getBatch("Tr", True)
-    print(reqI)
+image, label = dataLoader.getBatch(imageDeck = "Tr", increaseCounter = False)
