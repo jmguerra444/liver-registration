@@ -11,8 +11,13 @@ def loadSettings():
 
 def overflowNum(value, increment, maxValue, minValue = 0):
     """
-        Returns the new new value after increment.
+        Returns the new new value after increment. \n
+        `@Param value   # Input value` \n
+        `@Param increment # Usually batch size` \n
+        `@Param maxValue # Max possible index` \n
+        `@Param minValue # Value to reset back` \n
     """
+    indexes = []
     newValue = value + increment
     if (newValue > maxValue):
         newValue = minValue + newValue - maxValue
