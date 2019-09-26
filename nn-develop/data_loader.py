@@ -1,12 +1,13 @@
 # Import modules
 from utils import *
 
+import nibabel
+import json
+import numpy as np
+
 from os.path import join
 from math import ceil
 from random import shuffle
-
-import nibabel
-import json
 
 class DataLoaderJSON:
     """
@@ -88,7 +89,7 @@ class DataLoaderJSON:
     
     def splitTrainigData(self):
         
-        if (self.numTotalTraining % self.batchSize != 0):
+        if (self.numTrainig % self.batchSize != 0):
             raise NameError("Batch size not multiple ")
 
         trainIndex = 0
