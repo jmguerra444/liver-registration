@@ -1,6 +1,8 @@
-class FontStyle:
+import logging
+
+class Console:
     """
-    FontStyle
+    Console
     ------
     Console ourput formater. Example:
         >>> print(FontStyle.w + "Warning: No active frommets remain. Continue?" + FontStyle.e)
@@ -54,3 +56,25 @@ class FontStyle:
     @staticmethod
     def printu(myText):
         print('\033[4m', myText, '\033[0m')
+
+class Logger:
+    """
+    ### Logger
+    ------
+    Reimplementation of logging library from python, with added console prints
+    """
+    
+    def __init__(self, filename):
+        logging.basicConfig(filename=filename)
+    
+    def info(self, myText):
+        print(myText)
+        logging.info(myText)
+        
+    def warning(self, myText):
+        Console.printw(myText)
+        logging.warning(myText)
+    
+    def error(self, myText):
+        Console.printf(myText)
+        logging.error(myText)
