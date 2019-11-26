@@ -65,16 +65,28 @@ class Logger:
     """
     
     def __init__(self, filename):
-        logging.basicConfig(filename=filename)
-    
-    def info(self, myText):
+        logging.basicConfig(
+            filename = filename,
+            format = '%(levelname)s - %(asctime)s - %(message)s',
+            datefmt='%H:%M:%S',
+            level = logging.DEBUG)
+                
+    def info(self, myText, w = False):
         print(myText)
-        logging.info(myText)
+        if(w):
+            logging.info(myText)
+            
+    def infoh(self, myText, w = False):
+        Console.printbl(myText)
+        if(w):
+            logging.info(myText)
         
-    def warning(self, myText):
+    def warning(self, myText, w = False):
         Console.printw(myText)
-        logging.warning(myText)
+        if(w):
+            logging.warning(myText)
     
-    def error(self, myText):
+    def error(self, myText, w = False):
         Console.printf(myText)
-        logging.error(myText)
+        if (w):
+            logging.error(myText)
