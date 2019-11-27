@@ -1,3 +1,6 @@
+# %%
+# Imports and stuff
+
 import os
 import sys
 sys.path.append(os.path.abspath("../lib"))
@@ -6,6 +9,7 @@ import csv
 import nibabel
 import numpy as np
 from os.path import join
+from scipy.misc import imsave       # TODO : Check this in master-thesis env
 
 from utils import *
 from console import Console as con
@@ -48,10 +52,12 @@ def scanTrainDataset(pathPrefix,
                     samples,
                     outputImageFile,
                     outputLabelFile,
-                    outputIndexFile):
+                    outputIndexFile,
+                    onlyWithLabel):
     """
     Creates the absolute path for every slice, stores as (num slices) niftipaths
     and another file with the slice indexes.
+    `onlyWithLabel` to save only the paths that contain a label
     """
     paths = readConfigurationFile(pathPrefix, "train", datasetSchema)
     absoluteImagePath = []
@@ -65,21 +71,24 @@ def scanTrainDataset(pathPrefix,
     for sample in paths[0: samples]:
         volume = np.array(nibabel.load(sample["image"]).get_fdata(), dtype = np.float32)
         labels = np.array(nibabel.load(sample["label"]).get_fdata(), dtype = np.float32)
-        
-        # numSlices = image.shape[2]
+                                                                     
         if (volume.shape[2] == labels.shape[2]):
             for sliceIndex in range(volume.shape[2]):
                 image = volume[:, :, sliceIndex]
                 label = labels[:, :, sliceIndex]
-                
-                ####################
-                # TODO: Check that slice has label
-                #####################
-                
-                absoluteImagePath.append(sample["image"])
-                absoluteLabelPath.append(sample["label"])
-                absoluteIndexes.append(sliceIndex)
-        
+
+                hasLabel = np.any(label != 0)
+                if (hasLabel and onlyWithLabel):
+                    absoluteImagePath.append(sample["image"])
+                    absoluteLabelPath.append(sample["label"])
+                    absoluteIndexes.append(sliceIndex)
+                    
+
+                if (not onlyWithLabel):
+                    absoluteImagePath.append(sample["image"])
+                    absoluteLabelPath.append(sample["label"])
+                    absoluteIndexes.append(sliceIndex)
+                    
         print("Unique labels", np.unique(labels))
         print("Finished :", sample["image"])
     
@@ -98,20 +107,87 @@ def scanTrainDataset(pathPrefix,
     
     return True
 
+# %% 
+def saveAsPNG(outputDirectory,
+              imagePaths, 
+              labelPaths, 
+              indexes):
+    
+    """
+    Takes all the volumes in the absolute image/label path and saves them as PNG image
+    """
+    
+    path = ""
+    volume = np.zeros((1,1))
+    labels = np.zeros((1,1))
+    imageFilenames = []
+    labelFilenames = []
+    
+    for index in range(len(imagePaths)):
+        imagePath = imagePaths[index]
+        s = int(indexes[index])                  # The slice index
+        
+        if (imagePath != path):
+            con.printbl("Doing {}".format(path))
+            path = imagePath
+            volume = np.array(nibabel.load(path).get_fdata(), dtype = np.float32)
+            labels = np.array(nibabel.load(labelPaths[index]).get_fdata(), dtype = np.float32)
+            
+        image = volume[:, :, s]
+        label = labels[:, :, s]
+        
+        imageFilename = "{}/image/image{:06d}.png".format(outputDirectory, index)
+        labelFilename = "{}/label/label{:06d}.png".format(outputDirectory, index)
+        
+        imsave(imageFilename, image)
+        imsave(labelFilename, label)
+        
+        imageFilenames.append(imageFilename)
+        labelFilenames.append(labelFilename)
+        #####################
+        # MAYBE :  Do some image operations
+        #####################
+        
+    listImagesFilename = "{}/images-list.csv".format(outputDirectory)
+    listLabelsFilename = "{}/labels-list.csv".format(outputDirectory)
+    
+    with open(listImagesFilename, "w", newline = '') as file:
+        wr = csv.writer(file, quoting = csv.QUOTE_ALL)
+        wr.writerow(imageFilenames)
+
+    with open(listLabelsFilename, "w", newline = '') as file:
+        wr = csv.writer(file, quoting = csv.QUOTE_ALL)
+        wr.writerow(labelFilenames)
+    return 0
 
 
-settings = loadSettings("configuration.json")
-
+#%%
 # Scan nifti filles and save in csv file all paths and indexes of image and label
+settings = loadSettings("configuration.json")
 scanTrainDataset(pathPrefix = settings["decathlon-dataset-path"],
                 datasetSchema = "01-dataset.json",
-                samples = 5,
+                samples = 10,
                 outputImageFile = settings["decathlon-scanned-image"],
                 outputLabelFile = settings["decathlon-scanned-label"],
-                outputIndexFile = settings["decathlon-scanned-index"])
+                outputIndexFile = settings["decathlon-scanned-index"],
+                onlyWithLabel = True)
+#%%
+imagePaths = loadFromCSV(settings["decathlon-scanned-image"])[0]
+labelPaths = loadFromCSV(settings["decathlon-scanned-label"])[0]
+indexPaths = loadFromCSV(settings["decathlon-scanned-index"])[0]
 
+saveAsPNG(settings["decathlon-output-png"],
+          imagePaths,
+          labelPaths,
+          indexPaths)
 
-ImagePaths = loadFromCSV(settings["decathlon-scanned-image"])[0]
-LabelPaths = loadFromCSV(settings["decathlon-scanned-label"])[0]
-IndexPaths = loadFromCSV(settings["decathlon-scanned-index"])[0]
 con.printgr("Done!")
+
+# %%
+
+# USE THIS
+
+# c:\Master thesis\master\simple-2d-unet\scan_decathlon.py:32: DeprecationWarning: `imsave` is deprecated!
+# `imsave` is deprecated in SciPy 1.0.0, and will be removed in 1.2.0.
+# Use ``imageio.imwrite`` instead.
+#   if (mode == "train"):
