@@ -8,7 +8,7 @@ import numpy as np
 
 from console import Console as con
 
-def loadSettings(filename):
+def loadSettings(filename = "configuration.json"):
     """
     Loads configuration settings for this session from configuration.json
     """
@@ -31,6 +31,21 @@ def loadFromCSV(filename):
         output = list(r)
     return output
 
+def exec(function, a, b):
+    """
+    Executes pair operations
+
+        def power(a):
+            return a * a
+
+        a2, b2 = exec(power, 5, 4)
+        print(a2, b2)
+        
+        >>> 25 16
+    """
+    out_a = function(a)
+    out_b = function(b)
+    return out_a, out_b
 
 def normalizeSample(sample):
     """
