@@ -5,14 +5,12 @@ import os
 import sys
 sys.path.append(os.path.abspath("../lib"))
 
-import csv
 import nibabel
 import numpy as np
 from os.path import join
 from imageio import imwrite
 
 from utils import *
-from utils import normalizeSample
 from console import Console as con
 
 #%%
@@ -38,16 +36,6 @@ def readConfigurationFile(pathPrefix, mode, datasetSchema):
         
     except:
         con.printw("Invalid data properties")
-
-def loadFromCSV(filename):
-    """
-    Loads a list from .CSV file
-    """
-    output = []
-    with open(filename, 'r') as file:
-        r = csv.reader(file)
-        output = list(r)
-    return output
 
 # %%
 def scanTrainDataset(pathPrefix,
