@@ -10,6 +10,9 @@ data
 
 # Temporary test files
 dummy.py
+test.py
+*/test.py
+*/dummy.py
 
 # Auto generated filed
 *.log
