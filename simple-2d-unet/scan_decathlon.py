@@ -9,11 +9,13 @@ import csv
 import nibabel
 import numpy as np
 from os.path import join
-from scipy.misc import imsave       # TODO : Check this in master-thesis env
+from imageio import imwrite
 
 from utils import *
+from utils import normalizeSample
 from console import Console as con
 
+#%%
 def readConfigurationFile(pathPrefix, mode, datasetSchema):
     """
     Builds absolute image paths from configuration files
@@ -47,6 +49,7 @@ def loadFromCSV(filename):
         output = list(r)
     return output
 
+# %%
 def scanTrainDataset(pathPrefix,
                     datasetSchema,
                     samples,
@@ -125,22 +128,25 @@ def saveAsPNG(outputDirectory,
     
     for index in range(len(imagePaths)):
         imagePath = imagePaths[index]
-        s = int(indexes[index])                  # The slice index
+        s = int(indexes[index])                     # The slice index
         
         if (imagePath != path):
-            con.printbl("Doing {}".format(path))
             path = imagePath
+            con.printbl("Doing {}".format(path))
+            
             volume = np.array(nibabel.load(path).get_fdata(), dtype = np.float32)
             labels = np.array(nibabel.load(labelPaths[index]).get_fdata(), dtype = np.float32)
+            volume = normalizeSample(volume)        # In range [0 1]
             
-        image = volume[:, :, s]
-        label = labels[:, :, s]
+            
+        image = np.uint8((volume[:, :, s]) * 255)   # Range [0 255]
+        label = np.uint8((labels[:, :, s]) * 50)    # Increase constrst on labels (visually), TODO : Remove
         
         imageFilename = "{}/image/image{:06d}.png".format(outputDirectory, index)
         labelFilename = "{}/label/label{:06d}.png".format(outputDirectory, index)
         
-        imsave(imageFilename, image)
-        imsave(labelFilename, label)
+        imwrite(imageFilename, image)
+        imwrite(labelFilename, label)
         
         imageFilenames.append(imageFilename)
         labelFilenames.append(labelFilename)
@@ -161,9 +167,11 @@ def saveAsPNG(outputDirectory,
     return 0
 
 
+#%% Load folder settings
+settings = loadSettings("configuration.json")
+
 #%%
 # Scan nifti filles and save in csv file all paths and indexes of image and label
-settings = loadSettings("configuration.json")
 scanTrainDataset(pathPrefix = settings["decathlon-dataset-path"],
                 datasetSchema = "01-dataset.json",
                 samples = 10,
@@ -176,6 +184,7 @@ imagePaths = loadFromCSV(settings["decathlon-scanned-image"])[0]
 labelPaths = loadFromCSV(settings["decathlon-scanned-label"])[0]
 indexPaths = loadFromCSV(settings["decathlon-scanned-index"])[0]
 
+con.printgr("Saving slices")
 saveAsPNG(settings["decathlon-output-png"],
           imagePaths,
           labelPaths,
