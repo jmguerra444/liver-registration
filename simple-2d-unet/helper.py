@@ -3,8 +3,8 @@ import os
 
 class Arguments:
     """
-    ### Arguments
-    ----------
+    ## Arguments
+    ----
     - Only hyperparameter related arguments, batch size, learning rate, epochs etc etc.
     - DataLoading parameters in DataLoaderManager class
     """
@@ -20,7 +20,7 @@ class Arguments:
                  logs = "./logs",
                  image_size = 256
                  ):
-        ### Maybe : Add data augmentation params
+        
         self.batch_size = batch_size
         self.epochs = epochs
         self.lr = lr
@@ -31,6 +31,18 @@ class Arguments:
         self.weights = weights
         self.logs = logs
         self.image_size = image_size
+
+class LoaderOptions:
+    """
+    ## LoaderOptions
+    ----
+    Preprocessing operations for `DatasetHandler` class. This class enables, rotatiosn, data augmentations etc. etc.
+    """
+    def __init__(self,
+                 imageSize = None
+                 ):
+        self.imageSize = imageSize
+
 
 def makedirs(args):
     os.makedirs(args.weights, exist_ok=True)
