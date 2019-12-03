@@ -13,10 +13,11 @@ from imageio import imread
 
 import torch
 from torch.utils.data.dataset import Dataset
+from torch.utils.data import DataLoader
 from torchvision import transforms
 import torchvision.transforms.functional as tf
 
-from utils import *
+from utils import loadSettings, loadFromCSV
 from helper import LoaderOptions
 from console import Console as con
 
@@ -68,8 +69,6 @@ class DatasetHandler(Dataset):
         image = tf.to_pil_image(image)
         label = tf.to_pil_image(label)
         
-        # Do all queued operations ...
-        
         # Resize
         if (self.options.imageSize != None):
             size = self.options.imageSize
@@ -81,6 +80,25 @@ class DatasetHandler(Dataset):
         
         return image, label
 
+def dataLoader(args, trainDataset, validDataset):
+    
+    def worker_init(worker_id):
+        np.random.seed(42 + worker_id)
+    
+    loaderTrain = DataLoader(trainDataset,
+                             batch_size = args.batch_size,
+                             shuffle = True,
+                             drop_last = True,
+                             num_workers = args.workers,
+                             worker_init_fn = worker_init)
+    
+    loaderValid = DataLoader(validDataset,
+                             batch_size = args.batch_size,
+                             drop_last = False,
+                             num_workers = args.workers,
+                             worker_init_fn = worker_init)
+    
+    return loaderTrain, loaderValid
 # %%
 def test_1():
     settings = loadSettings()
@@ -100,4 +118,4 @@ def test_1():
     
     return image, label
 
-image, label = test_1()
+# image, label = test_1()
