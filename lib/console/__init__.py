@@ -68,7 +68,7 @@ class Logger:
         logging.basicConfig(
             filename = filename,
             format = '%(levelname)s - %(asctime)s - %(message)s',
-            datefmt='%H:%M:%S',
+            datefmt='%d.%m %H:%M:%S',
             level = logging.DEBUG)
                 
     def info(self, myText, w = False):
