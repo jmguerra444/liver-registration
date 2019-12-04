@@ -9,3 +9,7 @@ dummy.py
 # Configuration files and folders
 *\.vscode
 *__pycache__
+
+# No source control folders
+data
+examples
