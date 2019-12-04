@@ -3,7 +3,8 @@ import logging
 class Console:
     """
     Console
-    ------
+    ====
+    
     Console ourput formater. Example:
         >>> print(FontStyle.w + "Warning: No active frommets remain. Continue?" + FontStyle.e)
     Or as static member funcions
@@ -59,11 +60,14 @@ class Console:
 
 class Logger:
     """
-    ### Logger
-    ------
+    Logger
+    ====
+    
     Reimplementation of logging library from python, with added console prints
     """
     
+    # TODO : Add summary function
+
     def __init__(self, filename):
         logging.basicConfig(
             filename = filename,
@@ -77,7 +81,7 @@ class Logger:
             logging.info(myText)
             
     def infoh(self, myText, w = False):
-        Console.printbl(myText)
+        Console.printgr(myText)
         if(w):
             logging.info(myText)
         
