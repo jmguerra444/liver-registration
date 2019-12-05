@@ -73,24 +73,24 @@ class Logger:
             filename = filename,
             format = '%(levelname)s - %(asctime)s - %(message)s',
             datefmt='%d.%m %H:%M:%S',
-            level = logging.DEBUG)
+            level = logging.INFO)
                 
-    def info(self, myText, w = False):
+    def info(self, myText, w = True):
         print(myText)
         if(w):
             logging.info(myText)
             
-    def infoh(self, myText, w = False):
+    def infoh(self, myText, w = True):
         Console.printgr(myText)
         if(w):
             logging.info(myText)
         
-    def warning(self, myText, w = False):
+    def warning(self, myText, w = True):
         Console.printw(myText)
         if(w):
             logging.warning(myText)
     
-    def error(self, myText, w = False):
+    def error(self, myText, w = True):
         Console.printf(myText)
         if (w):
             logging.error(myText)
