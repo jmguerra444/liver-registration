@@ -18,10 +18,19 @@ from torchvision import transforms
 import torchvision.transforms.functional as tf
 
 from utils import loadSettings, loadFromCSV
-from helper import LoaderOptions
 from console import Console as con
-
 # %%
+class DatasetOptions:
+    """
+    ## LoaderOptions
+    ----
+    Preprocessing operations for `DatasetHandler` class. This class enables, rotatiosn, data augmentations etc. etc.
+    """
+    def __init__(self,
+                 imageSize = None
+                 ):
+        self.imageSize = imageSize
+
 class DatasetHandler(Dataset):
     """
     ### DatasetHandler (from .PNG)
@@ -36,7 +45,7 @@ class DatasetHandler(Dataset):
     `labelsPath` : List of paths that refrence the labels
     """
     
-    def __init__(self, imagesPath, labelsPath, options = LoaderOptions()):
+    def __init__(self, imagesPath, labelsPath, options = DatasetOptions()):
         """
         Constructor for simple Image loader,
         """
@@ -68,6 +77,8 @@ class DatasetHandler(Dataset):
 
         image = tf.to_pil_image(image)
         label = tf.to_pil_image(label)
+
+        label = tf.adjust_contrast(image, 1 / 50)           # Compensate scaling factor
         
         # Resize
         if (self.options.imageSize != None):
@@ -80,23 +91,26 @@ class DatasetHandler(Dataset):
         
         return image, label
 
+
+
 def dataLoader(args, trainDataset, validDataset):
     
     def worker_init(worker_id):
         np.random.seed(42 + worker_id)
+
+    # Add worker init foo maybe
+    # Example https://pytorch.org/docs/stable/data.html
     
     loaderTrain = DataLoader(trainDataset,
                              batch_size = args.batch_size,
                              shuffle = True,
                              drop_last = True,
-                             num_workers = args.workers,
-                             worker_init_fn = worker_init)
+                             num_workers = args.workers)
     
     loaderValid = DataLoader(validDataset,
                              batch_size = args.batch_size,
                              drop_last = False,
-                             num_workers = args.workers,
-                             worker_init_fn = worker_init)
+                             num_workers = args.workers)
     
     return loaderTrain, loaderValid
 # %%

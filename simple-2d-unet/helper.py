@@ -32,17 +32,6 @@ class Arguments:
         self.logs = logs
         self.image_size = image_size
 
-class LoaderOptions:
-    """
-    ## LoaderOptions
-    ----
-    Preprocessing operations for `DatasetHandler` class. This class enables, rotatiosn, data augmentations etc. etc.
-    """
-    def __init__(self,
-                 imageSize = None
-                 ):
-        self.imageSize = imageSize
-
 
 def makedirs(args):
     os.makedirs(args.weights, exist_ok=True)
