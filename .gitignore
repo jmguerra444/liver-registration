@@ -1,5 +1,18 @@
+# Generated folders
+logs
+wights
+
+# Examples
+examples
+
+# Dataset folders
+data
+
 # Temporary test files
 dummy.py
+test.py
+*/test.py
+*/dummy.py
 
 # Auto generated filed
 *.log

@@ -1,0 +1,10 @@
+{
+    "JORGEGUERRA" : 
+    {
+        "decathlon-dataset-path" : "C:/Master thesis/master/data/medical-decathlon",
+        "decathlon-scanned-image" : "scan/local-decathlon-scanned-image.csv",
+        "decathlon-scanned-label" : "scan/local-decathlon-scanned-label.csv",
+        "decathlon-scanned-index" : "scan/local-decathlon-scanned-index.csv",
+        "decathlon-output-png" : "C:/Master thesis/master/data/medical-decathlon-png"
+    }
+}
