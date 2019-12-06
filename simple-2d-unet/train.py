@@ -22,6 +22,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 
 from data_loader import DatasetHandler as Dataset
+from data_loader import DatasetOptions
 from data_loader import dataLoader
 from loss import DiceLoss
 from unet import UNet
@@ -35,15 +36,15 @@ from console import Logger
 settings = loadSettings()
 
 args = Arguments(
-    batch_size = 16,
+    batch_size = 1,         #CH
     epochs = 2,
     lr = 0.001,
-    workers = 4,
+    workers = 0,            #CH
     vis_images = 200,
     vis_freq = 10,
     weights = "./weights",
     logs = "./logs",
-    image_size = 256,
+    image_size = 64,
     device = torch.device("cpu" if not torch.cuda.is_available() else "cuda:0")
     )
 
@@ -66,20 +67,14 @@ labelsPath = loadFromCSV(settings["decathlon-output-png"] + "/labels-list.csv")[
 split = 100
 trainImages = imagesPath[split:]
 trainLabels = labelsPath[split:]
-trainDataset = Dataset(trainImages, trainLabels, LoaderOptions(imageSize = 64))
+trainDataset = Dataset(trainImages, trainLabels, DatasetOptions(imageSize = args.image_size))
 
 validImages = imagesPath[:split]
 validLabels = labelsPath[:split]
-validDataset = Dataset(validImages, validLabels, LoaderOptions(imageSize = 64))
+validDataset = Dataset(validImages, validLabels, DatasetOptions(imageSize = args.image_size))
 
-logger.infoh('''Parameters  
-             >>> batch_size : {}  
-             >>> epochs : {}  
-             >>> learning_rate : {}  
-             >>> train_size : {}  
-             >>> valid_size : {}
-             '''.format(args.batch_size, args.epochs, args.lr, len(trainImages), len(validImages)),
-             w = True)
+logger.infoh("batch_size : {}, epochs : {} learning_rate : {}, train_size : {}, valid_size : {}".format(
+    args.batch_size, args.epochs, args.lr, len(trainImages), len(validImages)))
 
 # %% Define dataset andarchitecture
 loaderTrain, loaderValid = dataLoader(args, trainDataset, validDataset)
@@ -87,12 +82,16 @@ loaders = {"train" : loaderTrain,
            "valid" : loaderValid}
 # Model
 architecture = {"in_channels" : 1,
-                "out_channels" : 3,
+                "out_channels" : 1,
                 "initial_features" : 32}
 unet = UNet(architecture["in_channels"],
             architecture["out_channels"],
             architecture["initial_features"])
+unet.cuda()
 
+logger.info("in_channels : {}, out_channels : {}, initial_features : {}".format(architecture["in_channels"],
+                                                                                architecture["out_channels"],
+                                                                                architecture["initial_features"]))
 # Loss
 diceLoss = DiceLoss()
 
@@ -101,12 +100,8 @@ optimizer = optim.Adam(unet.parameters(), lr = args.lr)
 
 # %% Train
 
-###
-# VERY COMPLICATED, REIMPLEMENT
-###
-def train(loaderTrain : DataLoader, 
-          loaderValid : DataLoader, 
-          args : Arguments,
+def train(args : Arguments,
+          loaders : dict,
           optimizer : optim.Adam,
           diceLoss : DiceLoss,
           logger : Logger
@@ -134,11 +129,11 @@ def train(loaderTrain : DataLoader,
                     x, y_true = data
                     x, y_true = x.to(args.device), y_true.to(args.device)
                     
-                    optmizer.zero_grad()
+                    optimizer.zero_grad()
                     
                     with torch.set_grad_enabled(phase == "train"):
                         y_pred = unet(x)
-
+                        
                         loss = diceLoss(y_pred, y_true)
                         
                         if phase == "valid":
@@ -166,7 +161,15 @@ def train(loaderTrain : DataLoader,
                     # Do some dice score comparissons
 
 # Señor, te pido devotamente que esta función corra sin problema amén.
-train(loaderTrain, loaderValid, args, optimizer, diceLoss, logger)
-# %%
-def runSession():
-    return None
+if __name__ == '__main__':
+    train(args, loaders, optimizer, diceLoss, logger)
+
+# %% 
+
+# TODO : Refactor to train/test/validation methods to runSession()
+
+# def train():
+#     unet.train()
+#     with tqdm(total = len(loaderTrain)) as t:
+#         t.set_description("Training"):
+#             for i, 

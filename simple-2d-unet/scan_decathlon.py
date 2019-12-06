@@ -5,6 +5,8 @@ import os
 import sys
 sys.path.append(os.path.abspath("../lib"))
 
+import csv
+
 import nibabel
 import numpy as np
 from os.path import join

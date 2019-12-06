@@ -20,17 +20,17 @@ class UNet(nn.Module):
         super(UNet, self).__init__()
         features = initialFeatures
 
-        self.encoder1= UNet._block(in_channels, features, name = "encoder1")
+        self.encoder1 = UNet._block(in_channels, features, name = "encoder1")
         self.pool1 = nn.MaxPool2d(kernel_size = 2, stride = 2)
         
-        self.encoder2= UNet._block(features, features * 2, name = "encoder2")
-        self.pool1 = nn.MaxPool2d(kernel_size = 2, stride = 2)
+        self.encoder2 = UNet._block(features, features * 2, name = "encoder2")
+        self.pool2 = nn.MaxPool2d(kernel_size = 2, stride = 2)
         
-        self.encoder3= UNet._block(features * 2, features * 4, name = "encoder3")
-        self.pool1 = nn.MaxPool2d(kernel_size = 2, stride = 2)
+        self.encoder3 = UNet._block(features * 2, features * 4, name = "encoder3")
+        self.pool3 = nn.MaxPool2d(kernel_size = 2, stride = 2)
         
-        self.encoder3= UNet._block(features * 4, features * 8, name = "encoder4")
-        self.pool1 = nn.MaxPool2d(kernel_size = 2, stride = 2)
+        self.encoder4= UNet._block(features * 4, features * 8, name = "encoder4")
+        self.pool4 = nn.MaxPool2d(kernel_size = 2, stride = 2)
         
         self.bottleneck = UNet._block(features * 8, features * 16, name ="bottleneck")
         
@@ -94,7 +94,7 @@ class UNet(nn.Module):
                     ),
                     (
                         name + "conv2",
-                        nn.Conv2d(in_channels = in_channels,
+                        nn.Conv2d(in_channels = features,
                                   out_channels = features,
                                   kernel_size = 3,
                                   padding = 1,
