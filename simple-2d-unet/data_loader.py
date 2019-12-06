@@ -117,7 +117,6 @@ def dataLoader(args, trainDataset, validDataset):
 def test_1():
     settings = loadSettings()
 
-    # TODO : Check images loding as a list of lists
     imagesPath = loadFromCSV(settings["decathlon-output-png"] + "/images-list.csv")[0]
     labelsPath = loadFromCSV(settings["decathlon-output-png"] + "/labels-list.csv")[0]
 
