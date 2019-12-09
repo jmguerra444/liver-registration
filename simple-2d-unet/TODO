@@ -1,3 +1,4 @@
 TODO : Make split according to volume
 TODO : Perform full test with more epochs
 TODO : Write inference method
+TODO : Make gcloud modifications
