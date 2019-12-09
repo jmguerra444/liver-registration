@@ -21,6 +21,6 @@ block :
 # Params
 kernel_size = 3
 padding = 1
-
+loss_fnc = DiceLoss()
 ```
 
