@@ -19,6 +19,7 @@ class Arguments:
                  vis_freq = 10,
                  weights = "./weights",
                  logs = "./logs",
+                 graphs = "./graphs",
                  image_size = 256
                  ):
         
@@ -30,6 +31,7 @@ class Arguments:
             self.workers = workers
             self.weights = weights
             self.logs = logs
+            self.graphs = graphs
             self.image_size = image_size
         else:
             self.batch_size = args["batch_size"]
@@ -39,6 +41,7 @@ class Arguments:
             self.workers = args["workers"]
             self.weights = args["weights"]
             self.logs = args["logs"]
+            self.graphs = args["graphs"]
             self.image_size = args["image_size"]
 
         self.vis_images = vis_images
@@ -47,3 +50,4 @@ class Arguments:
 def makedirs(args):
     os.makedirs(args.weights, exist_ok=True)
     os.makedirs(args.logs, exist_ok=True)
+    os.makedirs(args.graphs, exist_ok=True)

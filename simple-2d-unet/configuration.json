@@ -15,6 +15,7 @@
             "workers" : 0,
             "weights" : "./weights",
             "logs" : "./logs",
+            "graphs" : "./graphs",
             "image_size" : 64,
             "device" : "cuda:0"
         }
