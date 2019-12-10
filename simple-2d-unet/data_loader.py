@@ -19,6 +19,7 @@ import torchvision.transforms.functional as tf
 
 from utils import loadSettings, loadFromCSV
 from console import Console as con
+
 # %%
 class DatasetOptions:
     """
@@ -122,7 +123,7 @@ def test_1():
 
     dh = DatasetHandler(imagesPath = imagesPath,
                         labelsPath = labelsPath,
-                        options = LoaderOptions(imageSize = 64))
+                        options = DatasetOptions(imageSize = 64))
     image, label = dh.__getitem__(10)         # Has the image as tensor
     plt.subplot(1, 2, 1)
     plt.imshow(image.numpy().squeeze())
