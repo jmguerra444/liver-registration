@@ -90,3 +90,7 @@ def unpack(paths):
             images.append(slice_)
     return images
 
+def now():
+    time_ = datetime.now()
+    time_str = time_.strftime("%d%m_%H%M")
+    return time_str
