@@ -1,6 +1,6 @@
 # Simple 2D unet example
 
-Basic liver/lesion segmentation using standard 2d unet arcgitecture
+Basic liver/lesion segmentation using standard 2d unet arcgitecture, inspired from https://github.com/mateuszbuda/brain-segmentation-pytorch
 
 ## Model
 
@@ -23,4 +23,3 @@ kernel_size = 3
 padding = 1
 loss_fnc = DiceLoss()
 ```
-
