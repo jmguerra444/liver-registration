@@ -63,19 +63,6 @@ print("Loading path list")
 imagesPath = loadFromCSV(settings["decathlon-output-png"] + "/images-list.csv")[0]
 labelsPath = loadFromCSV(settings["decathlon-output-png"] + "/labels-list.csv")[0]
 
-# %%
-
-def unpack(paths):
-    """
-    Takes the split of the list that contains the lists os volume slices
-    """
-    images = []
-    for volume in paths: 
-        volumeList = ast.literal_eval(volume)
-        for slice_ in volumeList: 
-            images.append(slice_)
-    return images
-
 split = 2           # AKA num validations
 # TODO : Make random split
 

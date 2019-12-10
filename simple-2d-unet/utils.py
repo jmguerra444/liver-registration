@@ -4,7 +4,9 @@ sys.path.append(os.path.abspath("../lib"))
 
 import json
 import csv
+import ast
 import numpy as np
+from datetime import datetime
 
 from console import Console as con
 
@@ -76,3 +78,15 @@ def normalizeSample(sample):
     Normalizes a numpy array from 0 to 1
     """
     return (sample - np.min(sample))/(np.max(sample) - np.min(sample))
+
+def unpack(paths):
+    """
+    Takes the split of the list that contains the lists os volume slices
+    """
+    images = []
+    for volume in paths: 
+        volumeList = ast.literal_eval(volume)
+        for slice_ in volumeList: 
+            images.append(slice_)
+    return images
+
