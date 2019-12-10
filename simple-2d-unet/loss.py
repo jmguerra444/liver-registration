@@ -6,25 +6,6 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
-class DiceLoss(nn.Module):
-    """
-    DEPRECATED
-    """
-    def __init__(self):
-        super(DiceLoss, self).__init__()
-        self.smooth = 1.0
-
-    def forward(self, y_pred, y_true):
-        assert y_pred.size() == y_true.size()
-        y_pred = y_pred[:, 0].contiguous().view(-1)
-        y_true = y_true[:, 0].contiguous().view(-1)
-        intersection = (y_pred * y_true).sum()
-        dsc = (2. * intersection + self.smooth) / (
-            y_pred.sum() + y_true.sum() + self.smooth
-        )
-        return 1. - dsc
-
-
 def computeDiceLoss(true, logits, eps=1e-7):
     """Computes the Sørensen–Dice loss.
     Note that PyTorch optimizers minimize a loss. In this
