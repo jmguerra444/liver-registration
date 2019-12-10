@@ -9,6 +9,7 @@ class Arguments:
     - DataLoading parameters in DataLoaderManager class
     """
     def __init__(self,
+                 args = "None",
                  batch_size = 16,
                  epochs = 10,
                  lr = 0.001,
@@ -21,17 +22,27 @@ class Arguments:
                  image_size = 256
                  ):
         
-        self.batch_size = batch_size
-        self.epochs = epochs
-        self.lr = lr
-        self.device = device
-        self.workers = workers
+        if args == "None":
+            self.batch_size = batch_size
+            self.epochs = epochs
+            self.lr = lr
+            self.device = device
+            self.workers = workers
+            self.weights = weights
+            self.logs = logs
+            self.image_size = image_size
+        else:
+            self.batch_size = args["batch_size"]
+            self.epochs = args["epochs"]
+            self.lr = args["lr"]
+            self.device = args["device"]
+            self.workers = args["workers"]
+            self.weights = args["weights"]
+            self.logs = args["logs"]
+            self.image_size = args["image_size"]
+
         self.vis_images = vis_images
         self.vis_freq = vis_freq
-        self.weights = weights
-        self.logs = logs
-        self.image_size = image_size
-
 
 def makedirs(args):
     os.makedirs(args.weights, exist_ok=True)
