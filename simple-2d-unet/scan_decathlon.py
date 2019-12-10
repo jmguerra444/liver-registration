@@ -15,7 +15,7 @@ from imageio import imwrite
 from utils import *
 from console import Console as con
 
-#%%
+# %%
 def readConfigurationFile(pathPrefix, mode, datasetSchema):
     """
     Builds absolute image paths from configuration files

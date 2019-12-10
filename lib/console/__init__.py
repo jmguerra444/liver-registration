@@ -84,6 +84,11 @@ class Logger:
         Console.printgr(myText)
         if(w):
             logging.info(myText)
+    
+    def infoh2(self, myText, w = True):
+        Console.printbl(myText)
+        if(w):
+            logging.info(myText)
         
     def warning(self, myText, w = True):
         Console.printw(myText)

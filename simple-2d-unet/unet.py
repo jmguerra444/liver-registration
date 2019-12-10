@@ -19,7 +19,9 @@ class UNet(nn.Module):
     def __init__(self, in_channels = 1, out_channels = 1, initialFeatures = 32):
         super(UNet, self).__init__()
         features = initialFeatures
-
+        
+        self.in_ch, self.out_ch, self.in_feat = in_channels, out_channels, initialFeatures
+        
         self.encoder1 = UNet._block(in_channels, features, name = "encoder1")
         self.pool1 = nn.MaxPool2d(kernel_size = 2, stride = 2)
         
