@@ -68,13 +68,22 @@ class Logger:
     
     # TODO : Add summary function
 
-    def __init__(self, filename):
+    def __init__(self, 
+                 filename, 
+                 formato = '%(levelname)s - %(asctime)s - %(message)s'):
+
+        self.filename = filename
+        self.format_ = formato
+        self.datefmt = '%d/%m %H:%M:%S'
+        self.conf()
+
+    def conf(self):
         logging.basicConfig(
-            filename = filename,
-            format = '%(levelname)s - %(asctime)s - %(message)s',
-            datefmt='%d.%m %H:%M:%S',
+            filename = self.filename,
+            format = self.format_,
+            datefmt = self.datefmt,
             level = logging.INFO)
-                
+        
     def info(self, myText, w = True):
         print(myText)
         if(w):
