@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from math import ceil
 
 class SliceView(object):
     def __init__(self, ax, X):
@@ -7,7 +8,7 @@ class SliceView(object):
         ax.set_title("Use scroll wheel to navigate images")
         self.X = X  
         rows, cols, self.slices = X.shape
-        self.ind = self.slices*7//10
+        self.ind = self.slices * 7 // 10
         self.im = ax.imshow(self.X[:, :, self.ind], vmin = np.min(X), vmax = np.max(X))
         self.update()
 
@@ -47,3 +48,48 @@ def viewer(X, my_title = ''):
             break
     plt.close(fig)
 
+def collage(images, cols = 2, save = False, filename = "", show = False):
+    """
+    Saves in this order
+    \n
+     [0 1] \t
+     [2 3] \t
+     [4 5] \t
+     ...   \t
+    - images : List of images to be saved
+    - cols : Cols to save
+    - save : Saves collage into filename
+    - filename
+    - displays collage
+    
+    Example :
+    \n
+     a = [np.random.random((64,64)),
+          np.random.random((64,64)),
+          np.random.random((64,64))]
+
+     filename = "C:/Users/Jorgue Guerra/Desktop/example.png"
+
+     collage(a, cols = 2, save = True, filename = filename)
+    """
+    # TODO : Hide axis
+    
+    rows = ceil(len(images) / 2)
+    
+    fig = plt.figure()
+    for i, image in enumerate(images):
+        fig.add_subplot(rows, cols, i + 1).imshow(image)
+    
+    if save:
+        fig.savefig(filename)
+    
+    if show:
+        plt.show(fig)
+
+a = [np.random.random((64,64)),
+     np.random.random((64,64)),
+     np.random.random((64,64))]
+
+filename = "C:/Users/Jorgue Guerra/Desktop/example.png"
+
+collage(a, cols = 2, save = True, filename = filename)
