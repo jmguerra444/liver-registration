@@ -84,27 +84,35 @@ class Logger:
             datefmt = self.datefmt,
             level = logging.INFO)
         
-    def info(self, myText, w = True):
-        print(myText)
-        if(w):
+    def info(self, myText, w = True, c = True):
+        if c:
+            print(myText)
+        if w:
             logging.info(myText)
             
-    def infoh(self, myText, w = True):
-        Console.printgr(myText)
-        if(w):
+    def infoh(self, myText, w = True, c = True):
+        if c:
+            Console.printgr(myText)
+        if w:
             logging.info(myText)
     
-    def infoh2(self, myText, w = True):
-        Console.printbl(myText)
-        if(w):
+    def infoh2(self, myText, w = True, c = True):
+        if c:
+            Console.printbl(myText)
+        if w:
             logging.info(myText)
         
-    def warning(self, myText, w = True):
-        Console.printw(myText)
-        if(w):
+    def warning(self, myText, w = True, c = True):
+        if c:
+            Console.printw(myText)
+        if w:
             logging.warning(myText)
     
-    def error(self, myText, w = True):
-        Console.printf(myText)
+    def error(self, myText, w = True, c = True):
+        if c:
+            Console.printf(myText)
         if (w):
             logging.error(myText)
+    
+    def blank(self):
+        logging.info("")
