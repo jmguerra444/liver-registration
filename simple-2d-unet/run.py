@@ -12,7 +12,7 @@ from torch.autograd import Variable
 from data_loader import DatasetHandler as Dataset
 from data_loader import DatasetOptions, dataLoader
 
-from loss import DiceLoss, computeDiceLoss
+from loss import computeDiceLoss
 from unet import UNet
 
 from helper import Arguments
@@ -29,37 +29,38 @@ def run(model : UNet,
         args : Arguments):
 
     best = 1
+    saves = 0
     
     with tqdm(total = args.epochs) as t:
         for epoch in range(args.epochs):
             t.set_description("Epoch {}".format(epoch))
             
-            logger.info("Epoch {}:".format(epoch))
-            trainLoss = train(model, loaderTrain, optimizer, args)
-            validLoss = validate(model, loaderValid, args)
+            logger.info("---Epoch {}---".format(epoch))
+            trainLoss = train(model, loaderTrain, optimizer, args, logger)
+            validLoss = validate(model, loaderValid, args, logger)
             
             # Add LR scheduler maybe
+            logger.info("Epoch : {}, Train Loss {:05.4f}, Validation Loss {:05.4f}".format(epoch, trainLoss, validLoss))
             
-            logger.info("Train Loss {:05.4f}, Validation Loss {:05.4f}".format(trainLoss, validLoss))
             t.update()
-            
             if best > validLoss:
-                epochSaved = epoch
+                saves += 1
                 best = validLoss
-                logger.infoh("Saving model in epoch {}".format(epoch))
+                logger.infoh2("Saving model in epoch {}".format(epoch))
                 torch.save({'epoch': epoch,
                             'model_state_dict': model.state_dict(),
                             'optimizer_state_dict': optimizer.state_dict(),
                             'valLoss': validLoss,
                             'trainLoss': trainLoss}, 
-                            args.weights,'model.pt'))
+                            args.weights + "/model{}.pt".format(saves))
 
     return validLoss
 
 def train(model : UNet, 
           dataLoader : DataLoader,
           optmizer : optim.Adam,
-          args : Arguments):
+          args : Arguments,
+          logger):
     """
     Train step for one epoch
     - A Full pass through the whole training set
@@ -87,6 +88,10 @@ def train(model : UNet,
             optmizer.step()
             
             lossValue.update(loss.item())
+            
+            if i % int(len(dataLoader) / 20) == 0:
+                logger.info(lossValue(), c = False)
+
             t.set_postfix(loss = "{:05.3f}".format(lossValue()))
             t.update()
     
@@ -94,7 +99,8 @@ def train(model : UNet,
 
 def validate(model : UNet,
              dataLoader : DataLoader,
-             args : Arguments):
+             args : Arguments,
+             logger):
     
     loaderValid = dataLoader
     model.eval()
@@ -103,9 +109,7 @@ def validate(model : UNet,
     
     with tqdm(total = len(loaderValid)) as t:
         t.set_description('Validation')
-        
         for i, data in enumerate(loaderValid):
-            
             image, label = data
             image, label = image.to(args.device), label.to(args.device)
             image, label = Variable(image), Variable(label)
@@ -113,5 +117,13 @@ def validate(model : UNet,
             loss = computeDiceLoss(label.long(), prediction)
             
             lossValue.update(loss.item())
+            
+            t.set_postfix(loss = "{:05.3f}".format(lossValue()))
+            t.update()
     
     return lossValue.avg
+
+def infere(model : UNet,
+           image,
+           args):
+    pass
