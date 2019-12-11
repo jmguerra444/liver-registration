@@ -199,15 +199,3 @@ saveAsPNG(settings["decathlon-output-png"],
           indexPaths)
 
 con.printgr("Done!")
-
-# %%
-a = loadFromCSV('C:\Master thesis\master\data\medical-decathlon-png\images-list.csv')[0]
-print("done")
-# USE THIS
-
-# c:\Master thesis\master\simple-2d-unet\scan_decathlon.py:32: DeprecationWarning: `imsave` is deprecated!
-# `imsave` is deprecated in SciPy 1.0.0, and will be removed in 1.2.0.
-# Use ``imageio.imwrite`` instead.
-#   if (mode == "train"):
-
-# %%
