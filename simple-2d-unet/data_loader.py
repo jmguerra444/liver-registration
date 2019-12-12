@@ -99,6 +99,7 @@ def dataLoader(args, trainDataset, validDataset):
     def worker_init(worker_id):
         np.random.seed(42 + worker_id)
 
+    # TODO : Fix worker init function
     # Add worker init foo maybe
     # Example https://pytorch.org/docs/stable/data.html
     
