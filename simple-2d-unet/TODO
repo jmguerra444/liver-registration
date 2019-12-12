@@ -1,4 +1,5 @@
 TODO : Perform full test with more epochs
-TODO : Write inference method
 TODO : Make gcloud modifications
 TODO : Make some data augmentation
+TODO : Make random split on valid
+TODO : Test Model load
