@@ -72,24 +72,36 @@ def collage(images, cols = 2, save = False, filename = "", show = False):
 
      collage(a, cols = 2, save = True, filename = filename)
     """
-    # TODO : Hide axis
-    
+        
     rows = ceil(len(images) / 2)
     
-    fig = plt.figure()
-    for i, image in enumerate(images):
-        fig.add_subplot(rows, cols, i + 1).imshow(image)
+    fig, ax = plt.subplots(rows, cols)
+
+    index = 0
+
+    for col in range(cols):
+        for row in range(rows):
+            
+            if index < len(images):
+                ax[row, col].imshow(images[index])
+            
+            ax[row, col].axis('off')
+            index += 1
+    plt.tight_layout()
     
     if save:
         fig.savefig(filename)
-    
+
     if show:
         plt.show(fig)
+    
+    return 0
 
-a = [np.random.random((64,64)),
-     np.random.random((64,64)),
-     np.random.random((64,64))]
+# a = [np.random.random((64,64)),
+#      np.random.random((64,64)),
+#      np.random.random((64,64)),
+#      np.random.random((64,64))]
 
-filename = "C:/Users/Jorgue Guerra/Desktop/example.png"
+# filename = "C:/Users/Jorgue Guerra/Desktop/example.png"
 
-collage(a, cols = 2, save = True, filename = filename)
+# collage(a, cols = 2, save = True, show = True, filename = filename)
