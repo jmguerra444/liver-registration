@@ -1,6 +1,8 @@
 """
 This takes args, data loader, and model
 """
+import os
+
 import numpy as np
 from tqdm import tqdm
 
@@ -20,6 +22,7 @@ from utils import RunningAverage
 
 from console import Console as con
 from console import Logger
+from visual import collage
 
 def run(model : UNet,
         loaderTrain : DataLoader,
@@ -39,6 +42,9 @@ def run(model : UNet,
             trainLoss = train(model, loaderTrain, optimizer, args, logger)
             validLoss = validate(model, loaderValid, args, logger)
             
+            # Test and save some Images
+            test(model, args, loaderValid, 3, epoch)
+            
             # Add LR scheduler maybe
             logger.info("Epoch : {}, Train Loss {:05.4f}, Validation Loss {:05.4f}".format(epoch, trainLoss, validLoss))
             
@@ -52,7 +58,7 @@ def run(model : UNet,
                             'optimizer_state_dict': optimizer.state_dict(),
                             'valLoss': validLoss,
                             'trainLoss': trainLoss}, 
-                            args.weights + "/model{}.pt".format(saves))
+                            args.weights + "/{}-{:03d}.pt".format(args.id, saves))
 
     return validLoss
 
@@ -82,7 +88,6 @@ def train(model : UNet,
             image, label = Variable(image), Variable(label)
             prediction = model(image)
             loss = computeDiceLoss(label.long(), prediction)
-            
             optmizer.zero_grad()
             loss.backward()
             optmizer.step()
@@ -101,6 +106,10 @@ def validate(model : UNet,
              dataLoader : DataLoader,
              args : Arguments,
              logger):
+    """
+    Validation
+    """
+    # TODO : Write description
     
     loaderValid = dataLoader
     model.eval()
@@ -123,7 +132,50 @@ def validate(model : UNet,
     
     return lossValue.avg
 
-def infere(model : UNet,
-           image,
-           args):
-    pass
+def test(model : UNet,
+         args : Arguments,
+         loader,
+         samples,
+         epoch):
+    
+    """
+    Just a visual check of model's output
+    """
+    
+    model.eval()
+    collection = []
+    
+    for i in range(samples):
+        # Just takes the first case of the batch
+        image, label = randomSampler(loader)
+        image, label = image.to(args.device), label.to(args.device)
+        image, label = Variable(image), Variable(label)
+        prediction = model(image)
+        
+        image = image.cpu().detach().numpy()[0, 0, :, :]
+        label = label.cpu().detach().numpy()[0, 0, :, :]
+        labelMap = np.argmax(prediction.cpu().detach().numpy())
+        
+        collection.append(image)
+        collection.append(label)
+        collection.append(labelMap)
+    
+    path = "{}/{}".format(args.graphs, args.id)
+    os.makedirs(path, exist_ok = True)
+    filename = "{}/{:03d}-{}.png".format(path, epoch, args.id)
+    
+    collage(collection, cols = 3, save = True, filename = filename)
+    
+    return labelMap
+
+def randomSampler(loader):
+    """
+    Returns random sample (batch) from loader:
+    
+    """
+    image = iter(loader).next()[0]
+    label = iter(loader).next()[1]
+    
+    return image, label
+
+# probs = torch.sigmoid(prediction)
