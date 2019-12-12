@@ -72,7 +72,7 @@ loaderTrain, loaderValid = dataLoader(args, trainDataset, validDataset)
 
 # Model
 unet = UNet(in_channels = 1,
-            out_channels = 2,
+            out_channels = 3,
             initialFeatures = 32)
 unet.cuda()
 # TODO : hacer esto
