@@ -5,6 +5,7 @@ sys.path.append(os.path.abspath("../lib"))
 import json
 import csv
 import ast
+import platform
 import numpy as np
 from datetime import datetime
 
@@ -39,7 +40,7 @@ def loadSettings(filename = "configuration.json"):
     Loads configuration settings for this session from configuration.json
     """
     try:
-        thisComputer = os.environ['COMPUTERNAME']
+        thisComputer = platform.node()
         with open(filename) as json_file:
             data = json.load(json_file)
         return data[thisComputer]

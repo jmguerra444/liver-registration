@@ -14,9 +14,11 @@ import argparse
 import json
 import logging
 import ast
+import platform
 import numpy as np
 
 from tqdm import tqdm
+from platform import node
 
 import torch
 import torch.optim as optim
@@ -41,7 +43,7 @@ args = Arguments(settings["Arguments"])
 logger = Logger(filename = args.logs + "/{}.log".format(args.id),
                 formato = '%(message)s')
 
-logger.warning("PROGRAM STARTED {}".format(args.id))
+logger.warning("PROGRAM STARTED {} at {}".format(args.id, platform.node()))
 logger.info("")
 
 if torch.cuda.is_available():
