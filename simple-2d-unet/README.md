@@ -10,8 +10,9 @@ A segmentation model implemented in this repository is U-Net as described in [As
 
 ## Start
 
-0. Create venv
-1. Install packages : `pip install -r requirements.txt`
+1. Activate some conda enviroment
+2. Install enviroment : `conda env create -f environment.yml`
+3. Activate enviroment : `conda activate master-thesis`
 
 ```python
 # Blocks
