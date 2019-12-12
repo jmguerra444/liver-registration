@@ -17,7 +17,8 @@
             "logs" : "./logs",
             "graphs" : "./graphs",
             "image_size" : 64,
-            "device" : "cuda:0"
+            "device" : "cuda:0",
+            "validation" : 0.1
         }
     }
 }
