@@ -1,5 +1,7 @@
 import os
-from utils import now
+from random import shuffle
+
+from utils import now, unpack
 
 class Arguments:
     """
@@ -20,7 +22,8 @@ class Arguments:
                  weights = "./weights",
                  logs = "./logs",
                  graphs = "./graphs",
-                 image_size = 256
+                 image_size = 256,
+                 validation = 0.1
                  ):
         
         if args == "None":
@@ -33,6 +36,8 @@ class Arguments:
             self.logs = logs
             self.graphs = graphs
             self.image_size = image_size
+            self.validation = validation
+            
         else:
             self.batch_size = args["batch_size"]
             self.epochs = args["epochs"]
@@ -43,6 +48,7 @@ class Arguments:
             self.logs = args["logs"]
             self.graphs = args["graphs"]
             self.image_size = args["image_size"]
+            self.validation = args["validation"]
 
         self.id = now()
         self.vis_images = vis_images
@@ -52,3 +58,43 @@ def makedirs(args):
     os.makedirs(args.weights, exist_ok=True)
     os.makedirs(args.logs, exist_ok=True)
     os.makedirs(args.graphs, exist_ok=True)
+
+def splitDataset(validation, imagesPath, labelsPath, batchSize):
+    
+    assert len(unpack(imagesPath)) == len(unpack(labelsPath))
+    assert batchSize > 0
+    
+    split =  int(((len(imagesPath)) * validation))
+    
+    # Shuffle
+    indexes = list(range(len(imagesPath)))
+    shuffle(indexes)
+    
+    trainImages = [imagesPath[i] for i in indexes[split:]]
+    trainLabels = [labelsPath[i] for i in indexes[split:]]
+    
+    validImages = [imagesPath[i] for i in indexes[:split]]
+    validLabels = [labelsPath[i] for i in indexes[:split]]
+    
+    
+    trainImages = unpack(trainImages)
+    trainLabels = unpack(trainLabels)
+    
+    validImages = unpack(validImages)
+    validLabels = unpack(validLabels)
+    
+    # Delete to make size % batch == 0
+    residual = len(trainImages) % batchSize
+    if residual > 0:
+        trainImages = trainImages[:-residual]
+        trainLabels = trainLabels[:-residual]
+
+    residual = len(validImages) % batchSize
+    if residual > 0:
+        validImages = validImages[:-residual]
+        validLabels = validLabels[:-residual]
+    
+    assert len(trainImages) % batchSize == 0
+    assert len(validImages) % batchSize == 0
+    
+    return trainImages, trainLabels, validImages, validLabels

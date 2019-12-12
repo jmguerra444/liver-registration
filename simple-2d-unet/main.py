@@ -29,8 +29,8 @@ from loss import computeDiceLoss
 from unet import UNet
 from run import run
 
-from helper import *
-from utils import loadSettings, loadFromCSV, unpack
+from helper import Arguments, makedirs, splitDataset
+from utils import loadSettings, loadFromCSV
 from console import Console as con
 from console import Logger
 
@@ -56,16 +56,16 @@ logger.info("Loading path list")
 imagesPath = loadFromCSV(settings["decathlon-output-png"] + "/images-list.csv")[0]
 labelsPath = loadFromCSV(settings["decathlon-output-png"] + "/labels-list.csv")[0]
 
-split = 2           # AKA num validations
-# TODO : Make random split
+# %%
 
 logger.info("Oraganizing dataset")
-trainImages = unpack(imagesPath[split:])
-trainLabels = unpack(labelsPath[split:])
-trainDataset = Dataset(trainImages, trainLabels, DatasetOptions(imageSize = args.image_size))
 
-validImages = unpack(imagesPath[:split])
-validLabels = unpack(labelsPath[:split])
+trainImages, trainLabels, validImages, validLabels = splitDataset(validation = args.validation,
+                                                                  imagesPath = imagesPath,
+                                                                  labelsPath = labelsPath,
+                                                                  batchSize = 3)
+
+trainDataset = Dataset(trainImages, trainLabels, DatasetOptions(imageSize = args.image_size))
 validDataset = Dataset(validImages, validLabels, DatasetOptions(imageSize = args.image_size))
 
 loaderTrain, loaderValid = dataLoader(args, trainDataset, validDataset)
