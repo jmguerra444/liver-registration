@@ -92,5 +92,5 @@ def unpack(paths):
 
 def now():
     time_ = datetime.now()
-    time_str = time_.strftime("%d%m%H%M")
+    time_str = time_.strftime("%m%d%H%M")
     return time_str
