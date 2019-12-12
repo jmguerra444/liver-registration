@@ -1,5 +1,5 @@
 import os
-
+from utils import now
 
 class Arguments:
     """
@@ -44,6 +44,7 @@ class Arguments:
             self.graphs = args["graphs"]
             self.image_size = args["image_size"]
 
+        self.id = now()
         self.vis_images = vis_images
         self.vis_freq = vis_freq
 

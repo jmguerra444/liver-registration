@@ -17,7 +17,6 @@ import ast
 import numpy as np
 
 from tqdm import tqdm
-from datetime import datetime
 
 import torch
 import torch.optim as optim
@@ -31,20 +30,18 @@ from unet import UNet
 from run import run
 
 from helper import *
-from utils import loadSettings, loadFromCSV, unpack, now
+from utils import loadSettings, loadFromCSV, unpack
 from console import Console as con
 from console import Logger
 
 # %% Setting up Model, Dataset and Parameters
-start = now()
-
 settings = loadSettings()
 args = Arguments(settings["Arguments"])
 
-logger = Logger(filename = args.logs + "/{}.log".format(start),
+logger = Logger(filename = args.logs + "/{}.log".format(args.id),
                 formato = '%(message)s')
 
-logger.warning("PROGRAM STARTED {}".format(start))
+logger.warning("PROGRAM STARTED {}".format(args.id))
 logger.info("")
 
 if torch.cuda.is_available():
@@ -78,7 +75,7 @@ unet = UNet(in_channels = 1,
             out_channels = 2,
             initialFeatures = 32)
 unet.cuda()
-
+# TODO : hacer esto
 # Optmizer
 optimizer = optim.Adam(unet.parameters(), lr = args.lr)
 
