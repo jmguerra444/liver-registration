@@ -73,6 +73,11 @@ def exec(function, a, b):
     out_b = function(b)
     return out_a, out_b
 
+def now():
+    time_ = datetime.now()
+    time_str = time_.strftime("%m%d%H%M")
+    return time_str
+
 def normalizeSample(sample):
     """
     Normalizes a numpy array from 0 to 1
@@ -89,8 +94,3 @@ def unpack(paths):
         for slice_ in volumeList: 
             images.append(slice_)
     return images
-
-def now():
-    time_ = datetime.now()
-    time_str = time_.strftime("%m%d%H%M")
-    return time_str

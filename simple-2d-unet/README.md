@@ -8,6 +8,11 @@ A segmentation model implemented in this repository is U-Net as described in [As
 
 ![unet](resources/unet.png)
 
+## Start
+
+0. Create venv
+1. Install packages : `pip install -r requirements.txt`
+
 ```python
 # Blocks
 block :
