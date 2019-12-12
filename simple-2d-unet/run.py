@@ -94,6 +94,8 @@ def train(model : UNet,
             
             lossValue.update(loss.item())
             
+            test(model, args, loaderTrain, 3, 0)
+            
             if i % int(len(dataLoader) / 20) == 0:
                 logger.info(lossValue(), c = False)
 
@@ -137,7 +139,6 @@ def test(model : UNet,
          loader,
          samples,
          epoch):
-    
     """
     Just a visual check of model's output
     """
@@ -154,7 +155,7 @@ def test(model : UNet,
         
         image = image.cpu().detach().numpy()[0, 0, :, :]
         label = label.cpu().detach().numpy()[0, 0, :, :]
-        labelMap = np.argmax(prediction.cpu().detach().numpy())
+        labelMap = np.squeeze(np.argmax(prediction.cpu().detach().numpy(), 1))
         
         collection.append(image)
         collection.append(label)
@@ -170,12 +171,9 @@ def test(model : UNet,
 
 def randomSampler(loader):
     """
-    Returns random sample (batch) from loader:
-    
+    Returns random sample (batch) from loaded
     """
     image = iter(loader).next()[0]
     label = iter(loader).next()[1]
     
     return image, label
-
-# probs = torch.sigmoid(prediction)
