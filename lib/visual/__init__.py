@@ -73,14 +73,14 @@ def collage(images, cols = 2, save = False, filename = "", show = False):
      collage(a, cols = 2, save = True, filename = filename)
     """
         
-    rows = ceil(len(images) / 2)
+    rows = ceil(len(images) / cols)
     
     fig, ax = plt.subplots(rows, cols)
 
     index = 0
 
-    for col in range(cols):
-        for row in range(rows):
+    for row in range(rows):
+        for col in range(cols):
             
             if index < len(images):
                 ax[row, col].imshow(images[index])
@@ -100,8 +100,11 @@ def collage(images, cols = 2, save = False, filename = "", show = False):
 # a = [np.random.random((64,64)),
 #      np.random.random((64,64)),
 #      np.random.random((64,64)),
+#      np.random.random((64,64)),
+#      np.random.random((64,64)),
+#      np.random.random((64,64)),
 #      np.random.random((64,64))]
 
 # filename = "C:/Users/Jorgue Guerra/Desktop/example.png"
 
-# collage(a, cols = 2, save = True, show = True, filename = filename)
+# collage(a, cols = 3, save = True, show = False, filename = filename)
