@@ -24,11 +24,11 @@
 
     "remote-1" : 
     {
-        "decathlon-dataset-path" : "~/decathlon-data",
-        "decathlon-scanned-image" : "~/decathlon-data/scan/local-decathlon-scanned-image.csv",
-        "decathlon-scanned-label" : "~/decathlon-data/scan/local-decathlon-scanned-label.csv",
-        "decathlon-scanned-index" : "~/decathlon-data/scan/local-decathlon-scanned-index.csv",
-        "decathlon-output-png" : "~/decathlon-data/decathlon-png",
+        "decathlon-dataset-path" : "/home/jorgemguerrag/decathlon-data",
+        "decathlon-scanned-image" : "/home/jorgemguerrag/decathlon-data/scan/local-decathlon-scanned-image.csv",
+        "decathlon-scanned-label" : "/home/jorgemguerrag/decathlon-data/scan/local-decathlon-scanned-label.csv",
+        "decathlon-scanned-index" : "/home/jorgemguerrag/decathlon-data/scan/local-decathlon-scanned-index.csv",
+        "decathlon-output-png" : "/home/jorgemguerrag/decathlon-data/decathlon-png",
         "images-to-scan" : "ALL",
         "Arguments" :
         {
