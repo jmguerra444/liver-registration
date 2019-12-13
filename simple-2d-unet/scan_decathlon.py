@@ -28,8 +28,8 @@ def readConfigurationFile(pathPrefix, mode, datasetSchema):
         test = data["test"]
         test = [join(pathPrefix, image) for image in test]
         for i in train:
-            i["image"] = join(pathPrefix, i["image"])
-            i["label"] = join(pathPrefix, i["label"])
+            i["image"] = join(pathPrefix, i["image"][2:])
+            i["label"] = join(pathPrefix, i["label"][2:])
 
         if (mode == "train"):
             return train
