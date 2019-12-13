@@ -155,7 +155,7 @@ def test(model : UNet,
         
         image = image.cpu().detach().numpy()[0, 0, :, :]
         label = label.cpu().detach().numpy()[0, 0, :, :]
-        labelMap = np.squeeze(np.argmax(prediction.cpu().detach().numpy(), 1))
+        labelMap = np.argmax(prediction.cpu().detach().numpy()[0, :, :, :], 2)
         
         collection.append(image)
         collection.append(label)

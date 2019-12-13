@@ -9,7 +9,7 @@
         "images-to-scan" : 10,
         "Arguments" :
         {
-            "batch_size" : 1,
+            "batch_size" : 4,
             "epochs" : 2,
             "lr" : 0.001,
             "workers" : 0,
