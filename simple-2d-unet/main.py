@@ -39,6 +39,7 @@ from console import Logger
 # %% Setting up Model, Dataset and Parameters
 settings = loadSettings()
 args = Arguments(settings["Arguments"])
+makedirs(args)
 
 logger = Logger(filename = args.logs + "/{}.log".format(args.id),
                 formato = '%(message)s')
@@ -51,7 +52,6 @@ if torch.cuda.is_available():
     logger.info('GPU : {}'.format(torch.cuda.get_device_name()))
 
 logger.info("Making output directories")
-makedirs(args)
 
 # Define our training set
 logger.info("Loading path list")
