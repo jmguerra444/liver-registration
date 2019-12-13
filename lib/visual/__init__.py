@@ -97,14 +97,66 @@ def collage(images, cols = 2, save = False, filename = "", show = False):
     
     return 0
 
+
+def grid(images, cols = 2, save = False, filename = "", show = False):
+    """
+    Saves in this order
+    \n
+     [0 1] \t
+     [2 3] \t
+     [4 5] \t
+     ...   \t
+    - images : List of images to be saved
+    - cols : Cols to save
+    - save : Saves collage into filename
+    - filename
+    - displays collage
+    
+    Example :
+    \n
+     a = [np.random.random((64,64)),
+          np.random.random((64,64)),
+          np.random.random((64,64))]
+
+     filename = "C:/Users/Jorgue Guerra/Desktop/example.png"
+
+     collage(a, cols = 2, save = True, filename = filename)
+    """
+        
+    rows = ceil(len(images) / cols)
+    
+    fig, ax = plt.subplots(rows, 1)
+
+    index = 0
+    element = []
+    for row in range(rows):
+        for col in range(cols):        
+            if index < len(images):
+                element.append(images[index])
+            index += 1
+            
+        stack = np.hstack(tuple(element))
+        ax[row].axis('off')
+        ax[row].imshow(stack)
+        element = []
+        
+    plt.tight_layout()
+    
+    if save:
+        fig.savefig(filename)
+
+    if show:
+        plt.show(fig)
+    
+    return 0
+
+
 # a = [np.random.random((64,64)),
-#      np.random.random((64,64)),
 #      np.random.random((64,64)),
 #      np.random.random((64,64)),
 #      np.random.random((64,64)),
 #      np.random.random((64,64)),
 #      np.random.random((64,64))]
 
-# filename = "C:/Users/Jorgue Guerra/Desktop/example.png"
-
-# collage(a, cols = 3, save = True, show = False, filename = filename)
+# grid(a, cols = 2, save = False, show = True)
+# collage(a, cols = 2, save = False, show = True)
