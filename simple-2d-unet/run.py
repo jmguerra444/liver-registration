@@ -22,7 +22,7 @@ from utils import RunningAverage
 
 from console import Console as con
 from console import Logger
-from visual import collage
+from visual import grid
 
 def run(model : UNet,
         loaderTrain : DataLoader,
@@ -165,7 +165,7 @@ def test(model : UNet,
     os.makedirs(path, exist_ok = True)
     filename = "{}/{:03d}-{}.png".format(path, epoch, args.id)
     
-    collage(collection, cols = 3, save = True, filename = filename)
+    grid(collection, cols = 3, save = True, filename = filename)
     
     return labelMap
 
