@@ -10,3 +10,6 @@ dependencies:
   - pytorch 
   - torchvision
   - imageio
+  - ipython
+  - matplotlib
+  - scikit-image
