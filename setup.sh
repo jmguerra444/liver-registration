@@ -9,6 +9,8 @@ sudo chown -R jorgemguerrag ~/miniconda3
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt install git-all
+git config --global credential.helper store                     # Save git credentials
+
 sudo apt-get install nano
 
 # Get our repository
@@ -33,6 +35,10 @@ tar -xvf Task03_Liver.tar Task03_Liver/imagesTr
 tar -xvf Task03_Liver.tar Task03_Liver/labelsTr
 mv Task03_Liver decathlon-data       # rename
 rm Task03_Liver.tar
+cd ~
+mkdir scan
+
+# 
 
 # Do some cleanup
 cd ..
