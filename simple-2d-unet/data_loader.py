@@ -75,11 +75,11 @@ class DatasetHandler(Dataset):
         Chain of required imaged transformations inc. `.toTensor()`, does all operations according
         to LoaderOptions
         """
-
+        
         image = tf.to_pil_image(image)
         label = tf.to_pil_image(label)
 
-        label = tf.adjust_contrast(image, 1 / 50)           # Compensate scaling factor
+        label = tf.adjust_contrast(label, 1 / 50)           # Compensate scaling factor
         
         # Resize
         if (self.options.imageSize != None):
