@@ -39,7 +39,7 @@ def run(model : UNet,
         for epoch in range(args.epochs):
             t.set_description("Epoch {}".format(epoch))
             
-            logger.info("[E]: ---Epoch {}---".format(epoch))
+            logger.info("---Epoch {}---".format(epoch), c = False)
             trainLoss = train(model, loaderTrain, optimizer, args, logger)
             validLoss = validate(model, loaderValid, args, logger)
             
@@ -47,7 +47,7 @@ def run(model : UNet,
             test(model, args, loaderValid, 3, epoch)
             plt.close("all")
             # Add LR scheduler maybe
-            logger.info("Epoch : {}, Train Loss {:05.4f}, Validation Loss {:05.4f}".format(epoch, trainLoss, validLoss))
+            logger.info("[E]: Epoch : {}, Train Loss {:05.4f}, Validation Loss {:05.4f}".format(epoch, trainLoss, validLoss))
             
             t.update()
             if best > validLoss:
