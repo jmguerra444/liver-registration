@@ -160,8 +160,8 @@ def test(model : UNet,
         labelMap = np.argmax(prediction.cpu().detach().numpy()[0, :, :, :], 0)
         
         collection.append(image)
-        collection.append(label)
-        collection.append(labelMap)
+        collection.append(label * 50)
+        collection.append(labelMap * 50)
 
     path = "{}/{}".format(args.graphs, args.id)
     os.makedirs(path, exist_ok = True)
