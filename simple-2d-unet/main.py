@@ -89,11 +89,13 @@ if __name__ == '__main__':
                   epochs : {}
                   learning_rate : {}
                   num_workers : {}
+                  image_size : {}
                   train_size : {}
                   valid_size : {}""".format(args.batch_size,
                                             args.epochs,
                                             args.lr,
                                             args.workers,
+                                            args.image_size,
                                             len(trainImages),
                                             len(validImages)))
     logger.infoh2("""
