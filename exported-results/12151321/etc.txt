@@ -1,7 +1,0 @@
-/home/jorgemguerrag/master-thesis/simple-2d-unet/logs/12151321.log
-
-/home/jorgemguerrag/master-thesis/simple-2d-unet/weights
-/home/jorgemguerrag/master-thesis/simple-2d-unet/weights/12151321-012.pt
-
-/home/jorgemguerrag/master-thesis/simple-2d-unet/graphs/12151321
-/home/jorgemguerrag/master-thesis/simple-2d-unet/graphs/12151321/000-12151321.png
