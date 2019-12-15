@@ -46,7 +46,6 @@ def run(model : UNet,
             # Test and save some Images
             test(model, args, loaderValid, 3, epoch)
             plt.close("all")
-            
             # Add LR scheduler maybe
             logger.info("Epoch : {}, Train Loss {:05.4f}, Validation Loss {:05.4f}".format(epoch, trainLoss, validLoss))
             
@@ -99,7 +98,7 @@ def train(model : UNet,
             if i % int(len(dataLoader) / 20) == 0:
                 logger.info(lossValue(), c = False)
 
-            t.set_postfix(loss = "{:05.3f}".format(lossValue()))
+            t.set_postfix(loss = "{:05.6f}".format(lossValue()))
             t.update()
     
     return lossValue.avg
@@ -129,7 +128,7 @@ def validate(model : UNet,
             
             lossValue.update(loss.item())
             
-            t.set_postfix(loss = "{:05.3f}".format(lossValue()))
+            t.set_postfix(loss = "{:05.6f}".format(lossValue()))
             t.update()
     
     return lossValue.avg
@@ -146,9 +145,12 @@ def test(model : UNet,
     model.eval()
     collection = []
     
-    for i in range(samples):
-        # Just takes the first case of the batch
-        image, label = randomSampler(loader)
+    for i, data in enumerate(loader):
+        
+        if i == samples:
+            break
+        
+        image, label = data
         image, label = image.to(args.device), label.to(args.device)
         image, label = Variable(image), Variable(label)
         prediction = model(image)
@@ -160,7 +162,7 @@ def test(model : UNet,
         collection.append(image)
         collection.append(label)
         collection.append(labelMap)
-    
+
     path = "{}/{}".format(args.graphs, args.id)
     os.makedirs(path, exist_ok = True)
     filename = "{}/{:03d}-{}.png".format(path, epoch, args.id)

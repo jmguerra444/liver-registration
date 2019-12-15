@@ -83,6 +83,9 @@ def splitDataset(args, imagesPath, labelsPath, batchSize):
     if train < 1:
         split = int(len(imagesPath) * train)
         imagesPath = imagesPath[:split]
+        labelsPath = labelsPath[:split]
+    
+    if train > 1: train = 1
     
     assert len(unpack(imagesPath)) == len(unpack(labelsPath))
     assert batchSize > 0

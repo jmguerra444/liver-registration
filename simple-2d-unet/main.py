@@ -61,7 +61,7 @@ labelsPath = loadFromCSV(settings["decathlon-output-png"] + "/labels-list.csv")[
 
 logger.info("Oraganizing dataset")
 
-trainImages, trainLabels, validImages, validLabels = splitDataset(validation = args.validation,
+trainImages, trainLabels, validImages, validLabels = splitDataset(args = args,
                                                                   imagesPath = imagesPath,
                                                                   labelsPath = labelsPath,
                                                                   batchSize = 3)
