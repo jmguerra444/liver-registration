@@ -5,6 +5,7 @@ import os
 
 import numpy as np
 from tqdm import tqdm
+import matplotlib.pyplot as plt
 
 import torch
 import torch.optim as optim
@@ -44,6 +45,7 @@ def run(model : UNet,
             
             # Test and save some Images
             test(model, args, loaderValid, 3, epoch)
+            plt.close("all")
             
             # Add LR scheduler maybe
             logger.info("Epoch : {}, Train Loss {:05.4f}, Validation Loss {:05.4f}".format(epoch, trainLoss, validLoss))
@@ -93,8 +95,6 @@ def train(model : UNet,
             optmizer.step()
             
             lossValue.update(loss.item())
-            
-            test(model, args, loaderTrain, 3, 0)
             
             if i % int(len(dataLoader) / 20) == 0:
                 logger.info(lossValue(), c = False)
