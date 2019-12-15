@@ -19,6 +19,7 @@
             "graphs" : "./graphs",
             "image_size" : 64,
             "device" : "cuda:0",
+            "train" : 1,
             "validation" : 0.15
         }
     },
@@ -34,7 +35,7 @@
         
         "Arguments" :
         {
-            "batch_size" : 1,
+            "batch_size" : 16,
             "epochs" : 20,
             "lr" : 0.001,
             "workers" : 0,
@@ -43,7 +44,8 @@
             "graphs" : "./graphs",
             "image_size" : 256,
             "device" : "cuda:0",
-            "validation" : 0.1
+            "train" : 1,
+            "validation" : 0.15
         }
     }
 }

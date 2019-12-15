@@ -25,8 +25,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 
 from data_loader import DatasetHandler as Dataset
-from data_loader import DatasetOptions
-from data_loader import dataLoader
+from data_loader import DatasetOptions, dataLoader
 from loss import computeDiceLoss
 from unet import UNet
 from run import run
@@ -89,10 +88,12 @@ if __name__ == '__main__':
                   batch_size : {}
                   epochs : {}
                   learning_rate : {}
+                  num_workers : {}
                   train_size : {}
                   valid_size : {}""".format(args.batch_size,
                                             args.epochs,
                                             args.lr,
+                                            args.workers,
                                             len(trainImages),
                                             len(validImages)))
     logger.infoh2("""
@@ -107,5 +108,3 @@ if __name__ == '__main__':
         optimizer,
         logger,
         args)
-
-# %%

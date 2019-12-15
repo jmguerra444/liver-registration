@@ -7,8 +7,21 @@ class Arguments:
     """
     ## Arguments
     ----
-    - Only hyperparameter related arguments, batch size, learning rate, epochs etc etc.
-    - DataLoading parameters in DataLoaderManager class
+    Only hyperparameter related arguments, batch size, learning rate, epochs etc etc.
+    DataLoading parameters in DataLoaderManager class
+    \n
+    Params
+    - batch_size
+    - epochs
+    - lr
+    - device
+    - workers
+    - weights
+    - logs
+    - graphs
+    - image_size
+    - train : % Images from available train set to use
+    - validation : % Of images from selected train to use for dataset split
     """
     def __init__(self,
                  args = "None",
@@ -23,6 +36,7 @@ class Arguments:
                  logs = "./logs",
                  graphs = "./graphs",
                  image_size = 256,
+                 train = 1,
                  validation = 0.1
                  ):
         
@@ -36,6 +50,7 @@ class Arguments:
             self.logs = logs
             self.graphs = graphs
             self.image_size = image_size
+            self.train = train
             self.validation = validation
             
         else:
@@ -48,6 +63,7 @@ class Arguments:
             self.logs = args["logs"]
             self.graphs = args["graphs"]
             self.image_size = args["image_size"]
+            self.train = args["train"]
             self.validation = args["validation"]
 
         self.id = now()
@@ -59,7 +75,14 @@ def makedirs(args):
     os.makedirs(args.logs, exist_ok=True)
     os.makedirs(args.graphs, exist_ok=True)
 
-def splitDataset(validation, imagesPath, labelsPath, batchSize):
+def splitDataset(args, imagesPath, labelsPath, batchSize):
+    
+    validation = args.validation
+    train = args.train
+    
+    if train < 1:
+        split = int(len(imagesPath) * train)
+        imagesPath = imagesPath[:split]
     
     assert len(unpack(imagesPath)) == len(unpack(labelsPath))
     assert batchSize > 0
