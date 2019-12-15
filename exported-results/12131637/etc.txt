@@ -1,1 +1,0 @@
-/home/jorgemguerrag/master-thesis/simple-2d-unet/logs/12131637.log
