@@ -3,8 +3,8 @@ logs
 weights
 graphs
 
-# Examples
-examples
+# Models
+*.pt
 
 # Dataset folders
 data
@@ -26,4 +26,5 @@ test.py
 
 # No source control folders
 data
+exported-results
 examples
