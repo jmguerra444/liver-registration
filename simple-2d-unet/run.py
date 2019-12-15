@@ -39,7 +39,7 @@ def run(model : UNet,
         for epoch in range(args.epochs):
             t.set_description("Epoch {}".format(epoch))
             
-            logger.info("---Epoch {}---".format(epoch))
+            logger.info("[E]: ---Epoch {}---".format(epoch))
             trainLoss = train(model, loaderTrain, optimizer, args, logger)
             validLoss = validate(model, loaderValid, args, logger)
             
@@ -96,7 +96,7 @@ def train(model : UNet,
             lossValue.update(loss.item())
             
             if i % int(len(dataLoader) / 20) == 0:
-                logger.info(lossValue(), c = False)
+                logger.info("[L]: {}".format(lossValue()), c = False)
 
             t.set_postfix(loss = "{:05.6f}".format(lossValue()))
             t.update()
