@@ -75,12 +75,12 @@ class DatasetHandler(Dataset):
         Chain of required imaged transformations inc. `.toTensor()`, does all operations according
         to LoaderOptions
         """
+        # FIXME : Contrasts very bad
+        # label = image_as_uint(label / 50)                             # Compensate scaling factor
         
         image = tf.to_pil_image(image)
         label = tf.to_pil_image(label)
 
-        label = tf.adjust_contrast(label, 1 / 50)           # Compensate scaling factor
-        
         # Resize
         if (self.options.imageSize != None):
             size = self.options.imageSize

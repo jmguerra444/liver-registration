@@ -157,7 +157,7 @@ def test(model : UNet,
         labelMap = np.argmax(prediction.cpu().detach().numpy()[0, :, :, :], 0)
         
         collection.append(image)
-        collection.append(label * 50)
+        collection.append(label)
         collection.append(labelMap * 50)
 
     path = "{}/{}".format(args.graphs, args.id)
