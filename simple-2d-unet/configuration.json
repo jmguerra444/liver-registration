@@ -8,7 +8,7 @@
         "decathlon-scanned-label" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-label.csv",
         "decathlon-scanned-index" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-index.csv",
         "decathlon-output-png" : "C:/Master thesis/master/data/medical-decathlon-png",
-        "images-to-scan" : 10,
+        "images-to-scan" : 20,
         
         "2d-unet-params" :
         {
@@ -52,7 +52,7 @@
         "Arguments" :
         {
             "batch_size" : 8,
-            "epochs" : 20,
+            "epochs" : 12,
             "lr" : 0.001,
             "workers" : 0,
             "weights" : "./weights",
