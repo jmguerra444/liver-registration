@@ -24,7 +24,7 @@ class FileEdit(QLineEdit):
         super(FileEdit, self).__init__(parent)
 
         self.setDragEnabled(True)
-        self.resize(500,500)
+        self.resize(500, 1000)
 
     def dragEnterEvent(self, event):
         data = event.mimeData()

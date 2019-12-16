@@ -6,7 +6,8 @@ from PyQt5.QtWidgets import (QApplication,
                              QPushButton,
                              QFileDialog,
                              QComboBox,
-                             QVBoxLayout)
+                             QVBoxLayout,
+                             QSizePolicy)
 
 from PyQt5.QtCore import (Qt, pyqtSignal)
 from PyQt5.QtGui import QIcon
@@ -36,16 +37,26 @@ class Window(QWidget):
         self.fileEdit.dropped.connect(self.fileDropped)
     
     def setupUI(self):
-
+        
+        window_x = 500
+        window_y = 500
+        
         self.setWindowTitle("Thesis tester")
-        self.setFixedSize(400, 400)
+        self.setFixedSize(window_x, window_y)
         self.setWindowIcon(QIcon('wizard.ico'))
+        
         # Define Widgets
         self.label1 = QLabel()
-        self.message = QLineEdit()
-        self.resultArea = QTextEdit()
-        
         self.label1.setText("<i>Drop file to load</i>")
+        
+        self.message = QLineEdit()
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        # sizePolicy.setVerticalStretch()
+        self.message.resize(200, 200)
+        self.message.setReadOnly(True)
+        self.message.setSizePolicy(sizePolicy)
+        
+        self.resultArea = QTextEdit()
         self.resultArea.setReadOnly(True)
         
         # Add Widgets to window
