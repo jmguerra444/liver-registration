@@ -24,5 +24,8 @@ class LoadingThread(QThread):
         if self.filetype == "png":
             data = np.asarray(imread(self.filename))
         
+        if self.filetype == "log":
+            data = self.filename
+        
         self.loaded.emit(data, self.filetype)
 

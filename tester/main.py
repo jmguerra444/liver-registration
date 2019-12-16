@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 
 from widgets import FileEdit, WaitDialog, getStyle
 from process import LoadingThread
+from log_reader import log_reader
 
 from viewer import viewer
 
@@ -96,6 +97,9 @@ class Window(QWidget):
         
         if datatype == "nii":
             viewer(data)
+
+        if datatype == "log":
+            log_reader(data)
 
 
 app = QApplication([])

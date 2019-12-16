@@ -55,6 +55,10 @@ class FileEdit(QLineEdit):
                 self.dropped.emit(filepath, "png")
                 return
 
+            if filepath[-4:] == ".log" or filepath[-4:] == ".LOG":
+                self.dropped.emit(filepath, "log")
+                return
+
             self.dropped.emit(filepath, "none")
 
 
