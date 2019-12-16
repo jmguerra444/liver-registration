@@ -8,6 +8,8 @@ from PyQt5.QtWidgets import (QApplication,
                              QComboBox,
                              QVBoxLayout)
 
+from PyQt5.QtCore import (Qt, pyqtSignal)
+from PyQt5.QtGui import QIcon
 
 import nibabel
 import time
@@ -35,9 +37,9 @@ class Window(QWidget):
     
     def setupUI(self):
 
-        self.setWindowTitle("IMAGE CHECKER")
+        self.setWindowTitle("Thesis tester")
         self.setFixedSize(400, 400)
-        
+        self.setWindowIcon(QIcon('wizard.ico'))
         # Define Widgets
         self.label1 = QLabel()
         self.message = QLineEdit()
@@ -89,4 +91,6 @@ app = QApplication([])
 app.setStyleSheet(getStyle())
 window = Window()
 window.show()
+window.setWindowState(window.windowState() & ~Qt.WindowMinimized | Qt.WindowActive)
+window.activateWindow()
 app.exec()
