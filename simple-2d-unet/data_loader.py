@@ -114,6 +114,7 @@ def dataLoader(args, trainDataset, validDataset):
     
     loaderValid = DataLoader(validDataset,
                              batch_size = args.batch_size,
+                             shuffle = True,
                              drop_last = False,
                              num_workers = args.workers)
     
