@@ -72,12 +72,10 @@ validDataset = Dataset(validImages, validLabels, DatasetOptions(imageSize = args
 loaderTrain, loaderValid = dataLoader(args, trainDataset, validDataset)
 
 # Model
-unet = UNet(in_channels = 1,
-            out_channels = 3,
-            initialFeatures = 32)
+unet = UNet(**settings["2d-unet-params"])
+
 unet.cuda()
-# TODO : hacer esto
-# Optmizer
+# TODO : Make some schedule
 optimizer = optim.Adam(unet.parameters(), lr = args.lr)
 
 # %%
