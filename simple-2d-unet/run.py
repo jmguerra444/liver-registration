@@ -162,7 +162,7 @@ def test(model : UNet,
 
     path = "{}/{}".format(args.graphs, args.id)
     os.makedirs(path, exist_ok = True)
-    filename = "{}/{}-{:03d}.png".format(path, epoch, args.id)
+    filename = "{}/{}-{:03d}.png".format(path, args.id, epoch)
     
     grid(collection, cols = 3, save = True, filename = filename)
     
