@@ -33,7 +33,6 @@ def run(model : UNet,
         args : Arguments):
 
     best = 1
-    saves = 0
     
     with tqdm(total = args.epochs) as t:
         for epoch in range(args.epochs):
@@ -51,15 +50,14 @@ def run(model : UNet,
             
             t.update()
             if best > validLoss:
-                saves += 1
                 best = validLoss
                 logger.infoh2("Saving model in epoch {}".format(epoch))
                 torch.save({'epoch': epoch,
                             'model_state_dict': model.state_dict(),
                             'optimizer_state_dict': optimizer.state_dict(),
-                            'valLoss': validLoss,
+                            'validLoss': validLoss,
                             'trainLoss': trainLoss}, 
-                            args.weights + "/{}-{:03d}.pt".format(args.id, saves))
+                            args.weights + "/{}-{:03d}.pt".format(args.id, epoch))
 
     return validLoss
 
@@ -110,8 +108,6 @@ def validate(model : UNet,
     """
     Validation
     """
-    # TODO : Write description
-    
     loaderValid = dataLoader
     model.eval()
     
@@ -165,13 +161,14 @@ def test(model : UNet,
 
     path = "{}/{}".format(args.graphs, args.id)
     os.makedirs(path, exist_ok = True)
-    filename = "{}/{:03d}-{}.png".format(path, epoch, args.id)
+    filename = "{}/{}-{:03d}.png".format(path, epoch, args.id)
     
     grid(collection, cols = 3, save = True, filename = filename)
     
     return labelMap
 
 def randomSampler(loader):
+    # OBSOLETE
     """
     Returns random sample (batch) from loaded
     """
