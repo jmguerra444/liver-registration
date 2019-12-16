@@ -85,6 +85,12 @@ def normalizeSample(sample):
     """
     return (sample - np.min(sample))/(np.max(sample) - np.min(sample))
 
+def normalizeArray(sample, max_value = 255):
+    """
+    Normalizes a numpy array from 0 to some value and returns an integer
+    """
+    return np.uint8(((sample - np.min(sample))/(np.max(sample) - np.min(sample)) * max_value) // 1)
+
 def unpack(paths):
     """
     Takes the split of the list that contains the lists os volume slices

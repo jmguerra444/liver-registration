@@ -19,11 +19,11 @@ from loss import computeDiceLoss
 from unet import UNet
 
 from helper import Arguments
-from utils import RunningAverage
+from utils import RunningAverage, normalizeArray
 
 from console import Console as con
 from console import Logger
-from visual import grid
+from visual import grid, collage
 
 def run(model : UNet,
         loaderTrain : DataLoader,
@@ -125,7 +125,7 @@ def validate(model : UNet,
             
             lossValue.update(loss.item())
             
-            if i % int(len(dataLoader) / 30) == 0:
+            if i % int(len(dataLoader) / 20) == 0:
                 logger.info("[V]: {}".format(lossValue()), c = False)
                 logger.info("[D1]: {}".format(dices[0].item()), c = False)
                 logger.info("[D2]: {}".format(dices[1].item()), c = False)
@@ -162,9 +162,9 @@ def test(model : UNet,
         label = label.cpu().detach().numpy()[0, 0, :, :]
         labelMap = np.argmax(prediction.cpu().detach().numpy()[0, :, :, :], 0)
         
-        collection.append(image)
-        collection.append(label)
-        collection.append(labelMap * 50)
+        collection.append(normalizeArray(image))
+        collection.append(normalizeArray(label))
+        collection.append(normalizeArray(labelMap))
 
     path = "{}/{}".format(args.graphs, args.id)
     os.makedirs(path, exist_ok = True)
