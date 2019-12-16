@@ -125,6 +125,12 @@ def validate(model : UNet,
             
             lossValue.update(loss.item())
             
+            if i % int(len(dataLoader) / 30) == 0:
+                logger.info("[V]: {}".format(lossValue()), c = False)
+                logger.info("[D1]: {}".format(dices[0].item()), c = False)
+                logger.info("[D2]: {}".format(dices[1].item()), c = False)
+                logger.info("[D3]: {}".format(dices[2].item()), c = False)
+            
             t.set_postfix(loss = "{:05.6f}".format(lossValue()))
             t.update()
     
