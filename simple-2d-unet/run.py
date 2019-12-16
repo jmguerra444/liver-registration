@@ -33,7 +33,7 @@ def run(model : UNet,
         args : Arguments):
 
     best = 1
-    
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience = 8, verbose = True)
     with tqdm(total = args.epochs) as t:
         for epoch in range(args.epochs):
             t.set_description("Epoch {}".format(epoch))
@@ -41,6 +41,7 @@ def run(model : UNet,
             logger.info("---Epoch {}---".format(epoch), c = False)
             trainLoss = train(model, loaderTrain, optimizer, args, logger)
             validLoss = validate(model, loaderValid, args, logger)
+            scheduler.step(validLoss, epoch)
             
             # Test and save some Images
             test(model, args, loaderValid, 3, epoch)
@@ -86,7 +87,7 @@ def train(model : UNet,
             image, label = image.to(args.device), label.to(args.device)
             image, label = Variable(image), Variable(label)
             prediction = model(image)
-            loss = computeDiceLoss(label.long(), prediction)
+            loss, dices = computeDiceLoss(label.long(), prediction)
             optmizer.zero_grad()
             loss.backward()
             optmizer.step()
@@ -120,7 +121,7 @@ def validate(model : UNet,
             image, label = image.to(args.device), label.to(args.device)
             image, label = Variable(image), Variable(label)
             prediction = model(image)
-            loss = computeDiceLoss(label.long(), prediction)
+            loss, dices = computeDiceLoss(label.long(), prediction)
             
             lossValue.update(loss.item())
             
