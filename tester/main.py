@@ -26,10 +26,19 @@ class Window(QMainWindow):
         self.fileEdit = FileEdit(self.dropLabel)
         self.fileEdit.dropped.connect(self.fileDropped)
         
+        self.clsButton.clicked.connect(self.mainText.clear)
+        
+        self.model = "None"
+        
     def setupUI(self):
         self.setWindowTitle("Tester")
         self.setFixedSize(465, 651)
         self.setWindowIcon(QIcon('wizard.ico'))
+        
+        
+        self.dropLabel.setStyleSheet("""
+                                     color : #4A2B75;
+                                     """)
         pass
     
     def showWait(self):
@@ -40,8 +49,9 @@ class Window(QMainWindow):
         
     def fileDropped(self, filename, filetype):
         if filetype == "none":
-            self.mainText.append('<font color = "red">file not supported</font>')
+            self.appendText("File not supported", "red")
             return
+        
         self.mainText.append("Loading {}".format(filename))
         self.showWait()
         
@@ -54,16 +64,27 @@ class Window(QMainWindow):
         self.hideWait()
         
         if datatype == "png":
-            # plt.imshow(np.mean(data, 2))
+            message = "Loaded image, Shape : {}, Min : {}, Max : {}".format(data.shape, data.min(), data.max())
+            self.appendText(message, "blue")
             plt.imshow(data)
             plt.axis('off')
             plt.show()
         
         if datatype == "nii":
+            message = "Loaded volume, Shape : {}, Min : {}, Max : {}".format(data.shape, data.min(), data.max())
+            self.appendText(message, "blue")
             viewer(data)
-
+            
         if datatype == "log":
             log_reader(data)
+    
+    def appendText(self, text, color = "black"):
+        self.mainText.append("""
+                             <font color = "{}">
+                             {}
+                             </font>
+                             """.format(color, text))
+
     
 app = QApplication([])
 window = Window()
