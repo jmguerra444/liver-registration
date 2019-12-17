@@ -100,6 +100,10 @@ class WaitDialog(QWidget):
 def getStyle():
     
     style = '''
+            QMainWindow
+            {
+                
+            }
             QWidget 
             {
                 font-family: "Consolas";

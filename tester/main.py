@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 
 from widgets import FileEdit, WaitDialog
 from widgets import getDropStyle, getStyle
+from keydetector import KeyMonitor
 
 from process import LoadingThread
 from log_reader import log_reader
@@ -23,9 +24,11 @@ class Window(QMainWindow):
         uic.loadUi('window.ui', self)
         self.setupUI()
         self.wait = WaitDialog()
+        
+        self.detector = KeyMonitor()
+        self.detector.start_monitoring()
+        
         self.threads = []
-        
-        
         self.fileEdit = FileEdit(self.dropLabel)
         self.fileEdit.dropped.connect(self.fileDropped)
         self.clsButton.clicked.connect(self.mainText.clear)
@@ -36,8 +39,7 @@ class Window(QMainWindow):
         self.setWindowTitle("Tester")
         self.setFixedSize(472, 369)
         self.setWindowIcon(QIcon('wizard.ico'))
-        
-        
+
         self.dropLabel.setStyleSheet(getDropStyle())
     
     def showWait(self):
