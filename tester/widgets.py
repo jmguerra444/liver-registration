@@ -54,8 +54,13 @@ class FileEdit(QLineEdit):
             if filepath[-6:] == "nii.gz" or filepath[-6:] == "NII.GZ":
                 self.dropped.emit(filepath, "nii")
                 return
+            
             if filepath[-4:] == ".png" or filepath[-4:] == ".PNG":
                 self.dropped.emit(filepath, "png")
+                return
+
+            if filepath[-4:] == ".tif" or filepath[-4:] == ".TIF":
+                self.dropped.emit(filepath, "tif")
                 return
 
             if filepath[-4:] == ".log" or filepath[-4:] == ".LOG":
@@ -95,9 +100,23 @@ class WaitDialog(QWidget):
 def getStyle():
     
     style = '''
-            QWidget {
+            QWidget 
+            {
                 font-family: "Consolas";
-                }
+            }
             '''
     
+    return style
+
+def getDropStyle():
+    style = '''
+            QLabel
+            {
+                color : #4A2B75
+            }
+            QLabel:hover 
+            {
+                color : #0FA6A3;
+            }
+            '''
     return style

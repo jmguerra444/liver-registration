@@ -8,7 +8,9 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-from widgets import FileEdit, WaitDialog, getStyle
+from widgets import FileEdit, WaitDialog
+from widgets import getDropStyle, getStyle
+
 from process import LoadingThread
 from log_reader import log_reader
 
@@ -23,23 +25,20 @@ class Window(QMainWindow):
         self.wait = WaitDialog()
         self.threads = []
         
+        
         self.fileEdit = FileEdit(self.dropLabel)
         self.fileEdit.dropped.connect(self.fileDropped)
-        
         self.clsButton.clicked.connect(self.mainText.clear)
         
         self.model = "None"
         
     def setupUI(self):
         self.setWindowTitle("Tester")
-        self.setFixedSize(465, 651)
+        self.setFixedSize(472, 369)
         self.setWindowIcon(QIcon('wizard.ico'))
         
         
-        self.dropLabel.setStyleSheet("""
-                                     color : #4A2B75;
-                                     """)
-        pass
+        self.dropLabel.setStyleSheet(getDropStyle())
     
     def showWait(self):
         self.wait.show()
@@ -56,14 +55,14 @@ class Window(QMainWindow):
         self.showWait()
         
         thread = LoadingThread(filename, filetype)
-        thread.loaded.connect(self.display)
+        thread.loaded.connect(self.do)
         thread.start()
         self.threads.append(thread)
     
-    def display(self, data, datatype):
+    def do(self, data, datatype):
         self.hideWait()
         
-        if datatype == "png":
+        if datatype in ["png", "tif"]:
             message = "Loaded image, Shape : {}, Min : {}, Max : {}".format(data.shape, data.min(), data.max())
             self.appendText(message, "blue")
             plt.imshow(data)
