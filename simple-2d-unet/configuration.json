@@ -8,7 +8,9 @@
         "decathlon-scanned-label" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-label.csv",
         "decathlon-scanned-index" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-index.csv",
         "decathlon-output-png" : "C:/Master thesis/master/data/medical-decathlon-png",
-        "images-to-scan" : 20,
+        "decathlon-output-tif" : "C:/Master thesis/master/data/medical-decathlon-tif",
+        
+        "images-to-scan" : 10,
         
         "2d-unet-params" :
         {
@@ -40,6 +42,7 @@
         "decathlon-scanned-label" : "/home/jorgemguerrag/decathlon-data/scan/local-decathlon-scanned-label.csv",
         "decathlon-scanned-index" : "/home/jorgemguerrag/decathlon-data/scan/local-decathlon-scanned-index.csv",
         "decathlon-output-png" : "/home/jorgemguerrag/decathlon-data/decathlon-png",
+        "decathlon-output-tif" : "/home/jorgemguerrag/decathlon-data/decathlon-tif",
         "images-to-scan" : "ALL",
 
         "2d-unet-params" :
