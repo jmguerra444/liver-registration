@@ -25,6 +25,9 @@ class FileEdit(QLineEdit):
 
         self.setDragEnabled(True)
         self.resize(500, 1000)
+        self.setStyleSheet("""
+                            background : transparent;
+                           """)
 
     def dragEnterEvent(self, event):
         data = event.mimeData()
