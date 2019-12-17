@@ -156,7 +156,8 @@ def saveImages(outputDirectory,
         if format_ == "png":
             image = normalizeSample(image)
             image = np.uint8(image * 255)   # Range [0 255]
-            label = np.uint8(label * 50)    # Increase constrst on labels (visually), TODO : Remove
+        
+        label = np.uint8(label * 50)
         
         imwrite(imageFilename, image)
         imwrite(labelFilename, label)

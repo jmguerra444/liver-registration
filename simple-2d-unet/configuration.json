@@ -9,7 +9,7 @@
         "decathlon-scanned-index" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-index.csv",
         "decathlon-output-png" : "C:/Master thesis/master/data/medical-decathlon-png",
         "decathlon-output-tif" : "C:/Master thesis/master/data/medical-decathlon-tif",
-        
+
         "images-to-scan" : 10,
         
         "2d-unet-params" :
@@ -31,7 +31,7 @@
             "image_size" : 64,
             "device" : "cuda:0",
             "train" : 1,
-            "validation" : 0.15
+            "validation" : 0.1
         }
     },
 
@@ -64,7 +64,7 @@
             "image_size" : 256,
             "device" : "cuda:0",
             "train" : 1,
-            "validation" : 0.15
+            "validation" : 0.20
         }
     }
 }

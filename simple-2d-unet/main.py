@@ -54,8 +54,8 @@ logger.info("Making output directories")
 
 # Define our training set
 logger.info("Loading path list")
-imagesPath = loadFromCSV(settings["decathlon-output-png"] + "/images-list.csv")[0]
-labelsPath = loadFromCSV(settings["decathlon-output-png"] + "/labels-list.csv")[0]
+imagesPath = loadFromCSV(settings["decathlon-output-tif"] + "/images-list.csv")[0]
+labelsPath = loadFromCSV(settings["decathlon-output-tif"] + "/labels-list.csv")[0]
 
 # %%
 
