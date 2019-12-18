@@ -25,6 +25,8 @@ from console import Console as con
 from console import Logger
 from visual import grid, collage
 
+savesPerEpoch = 30
+
 def run(model : UNet,
         loaderTrain : DataLoader,
         loaderValid : DataLoader,
@@ -94,7 +96,7 @@ def train(model : UNet,
             
             lossValue.update(loss.item())
             
-            if i % int(len(dataLoader) / 20) == 0:
+            if i % int(len(dataLoader) / savesPerEpoch) == 0:
                 logger.info("[L]: {}".format(lossValue()), c = False)
 
             t.set_postfix(loss = "{:05.6f}".format(lossValue()))
@@ -113,6 +115,9 @@ def validate(model : UNet,
     model.eval()
     
     lossValue = RunningAverage()
+    d1_Value = RunningAverage()
+    d2_Value = RunningAverage()
+    d3_Value = RunningAverage()
     
     with tqdm(total = len(loaderValid)) as t:
         t.set_description('Validation')
@@ -124,12 +129,15 @@ def validate(model : UNet,
             loss, dices = computeDiceLoss(label.long(), prediction)
             
             lossValue.update(loss.item())
+            d1_Value.update(dices[0].item())
+            d2_Value.update(dices[1].item())
+            d3_Value.update(dices[2].item())
             
-            if i % int(len(dataLoader) / 20) == 0:
+            if i % int(len(dataLoader) / savesPerEpoch) == 0:
                 logger.info("[V]: {}".format(lossValue()), c = False)
-                logger.info("[D1]: {}".format(dices[0].item()), c = False)
-                logger.info("[D2]: {}".format(dices[1].item()), c = False)
-                logger.info("[D3]: {}".format(dices[2].item()), c = False)
+                logger.info("[D1]: {}".format(d1_Value()), c = False)
+                logger.info("[D2]: {}".format(d2_Value()), c = False)
+                logger.info("[D3]: {}".format(d3_Value()), c = False)
             
             t.set_postfix(loss = "{:05.6f}".format(lossValue()))
             t.update()

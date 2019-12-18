@@ -21,8 +21,8 @@
 
         "Arguments" :
         {
-            "batch_size" : 4,
-            "epochs" : 2,
+            "batch_size" : 1,
+            "epochs" : 1,
             "lr" : 0.001,
             "workers" : 0,
             "weights" : "./weights",
@@ -55,7 +55,7 @@
         "Arguments" :
         {
             "batch_size" : 8,
-            "epochs" : 12,
+            "epochs" : 20,
             "lr" : 0.001,
             "workers" : 0,
             "weights" : "./weights",
