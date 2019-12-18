@@ -19,11 +19,13 @@ from loss import computeDiceLoss
 from unet import UNet
 
 from helper import Arguments
-from utils import RunningAverage
+from utils import RunningAverage, normalizeArray
 
 from console import Console as con
 from console import Logger
-from visual import grid
+from visual import grid, collage
+
+savesPerEpoch = 30
 
 def run(model : UNet,
         loaderTrain : DataLoader,
@@ -33,8 +35,7 @@ def run(model : UNet,
         args : Arguments):
 
     best = 1
-    saves = 0
-    
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience = 8, verbose = True)
     with tqdm(total = args.epochs) as t:
         for epoch in range(args.epochs):
             t.set_description("Epoch {}".format(epoch))
@@ -42,6 +43,7 @@ def run(model : UNet,
             logger.info("---Epoch {}---".format(epoch), c = False)
             trainLoss = train(model, loaderTrain, optimizer, args, logger)
             validLoss = validate(model, loaderValid, args, logger)
+            scheduler.step(validLoss, epoch)
             
             # Test and save some Images
             test(model, args, loaderValid, 3, epoch)
@@ -51,15 +53,14 @@ def run(model : UNet,
             
             t.update()
             if best > validLoss:
-                saves += 1
                 best = validLoss
                 logger.infoh2("Saving model in epoch {}".format(epoch))
                 torch.save({'epoch': epoch,
                             'model_state_dict': model.state_dict(),
                             'optimizer_state_dict': optimizer.state_dict(),
-                            'valLoss': validLoss,
+                            'validLoss': validLoss,
                             'trainLoss': trainLoss}, 
-                            args.weights + "/{}-{:03d}.pt".format(args.id, saves))
+                            args.weights + "/{}-{:03d}.pt".format(args.id, epoch))
 
     return validLoss
 
@@ -88,14 +89,14 @@ def train(model : UNet,
             image, label = image.to(args.device), label.to(args.device)
             image, label = Variable(image), Variable(label)
             prediction = model(image)
-            loss = computeDiceLoss(label.long(), prediction)
+            loss, dices = computeDiceLoss(label.long(), prediction)
             optmizer.zero_grad()
             loss.backward()
             optmizer.step()
             
             lossValue.update(loss.item())
             
-            if i % int(len(dataLoader) / 20) == 0:
+            if i % int(len(dataLoader) / savesPerEpoch) == 0:
                 logger.info("[L]: {}".format(lossValue()), c = False)
 
             t.set_postfix(loss = "{:05.6f}".format(lossValue()))
@@ -110,12 +111,13 @@ def validate(model : UNet,
     """
     Validation
     """
-    # TODO : Write description
-    
     loaderValid = dataLoader
     model.eval()
     
     lossValue = RunningAverage()
+    d1_Value = RunningAverage()
+    d2_Value = RunningAverage()
+    d3_Value = RunningAverage()
     
     with tqdm(total = len(loaderValid)) as t:
         t.set_description('Validation')
@@ -124,9 +126,18 @@ def validate(model : UNet,
             image, label = image.to(args.device), label.to(args.device)
             image, label = Variable(image), Variable(label)
             prediction = model(image)
-            loss = computeDiceLoss(label.long(), prediction)
+            loss, dices = computeDiceLoss(label.long(), prediction)
             
             lossValue.update(loss.item())
+            d1_Value.update(dices[0].item())
+            d2_Value.update(dices[1].item())
+            d3_Value.update(dices[2].item())
+            
+            if i % int(len(dataLoader) / savesPerEpoch) == 0:
+                logger.info("[V]: {}".format(lossValue()), c = False)
+                logger.info("[D1]: {}".format(d1_Value()), c = False)
+                logger.info("[D2]: {}".format(d2_Value()), c = False)
+                logger.info("[D3]: {}".format(d3_Value()), c = False)
             
             t.set_postfix(loss = "{:05.6f}".format(lossValue()))
             t.update()
@@ -159,19 +170,20 @@ def test(model : UNet,
         label = label.cpu().detach().numpy()[0, 0, :, :]
         labelMap = np.argmax(prediction.cpu().detach().numpy()[0, :, :, :], 0)
         
-        collection.append(image)
-        collection.append(label * 50)
-        collection.append(labelMap * 50)
+        collection.append(normalizeArray(image))
+        collection.append(normalizeArray(label))
+        collection.append(normalizeArray(labelMap))
 
     path = "{}/{}".format(args.graphs, args.id)
     os.makedirs(path, exist_ok = True)
-    filename = "{}/{:03d}-{}.png".format(path, epoch, args.id)
+    filename = "{}/{}-{:03d}.png".format(path, args.id, epoch)
     
     grid(collection, cols = 3, save = True, filename = filename)
     
     return labelMap
 
 def randomSampler(loader):
+    # OBSOLETE
     """
     Returns random sample (batch) from loaded
     """

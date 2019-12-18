@@ -75,11 +75,13 @@ class DatasetHandler(Dataset):
         Chain of required imaged transformations inc. `.toTensor()`, does all operations according
         to LoaderOptions
         """
+        # FIXME : Contrasts very bad
+        # label = label / 50                             # Compensate scaling factor
         
         image = tf.to_pil_image(image)
         label = tf.to_pil_image(label)
 
-        label = tf.adjust_contrast(label, 1 / 50)           # Compensate scaling factor
+        label = tf.adjust_brightness(label, 1 / 50)
         
         # Resize
         if (self.options.imageSize != None):
@@ -88,7 +90,8 @@ class DatasetHandler(Dataset):
             label = tf.resize(label, size = (size, size), interpolation = 0)
         
         image = tf.to_tensor(image)
-        label = tf.to_tensor(label)
+        # label = tf.to_tensor(label)
+        label = torch.from_numpy(np.expand_dims(np.array(label), 0))
         
         return image, label
 
@@ -111,6 +114,7 @@ def dataLoader(args, trainDataset, validDataset):
     
     loaderValid = DataLoader(validDataset,
                              batch_size = args.batch_size,
+                             shuffle = True,
                              drop_last = False,
                              num_workers = args.workers)
     

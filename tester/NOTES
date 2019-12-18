@@ -1,0 +1,4 @@
+When adding a new file, dont forget to:
+- Add into main::display
+- Add into FileEdit::dropEvent
+- Add into LoadingThread::run

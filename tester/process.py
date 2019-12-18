@@ -21,8 +21,11 @@ class LoadingThread(QThread):
         if self.filetype == "nii":
             data = np.array(nibabel.load(self.filename).get_fdata())
             
-        if self.filetype == "png":
+        if self.filetype in ["png", "tif"]:
             data = np.asarray(imread(self.filename))
+        
+        if self.filetype == "log":
+            data = self.filename
         
         self.loaded.emit(data, self.filetype)
 

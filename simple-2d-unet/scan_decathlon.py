@@ -100,10 +100,11 @@ def scanTrainDataset(pathPrefix,
     return True
 
 # %% 
-def saveAsPNG(outputDirectory,
+def saveImages(outputDirectory,
               imagePaths, 
               labelPaths, 
-              indexes):
+              indexes,
+              format_):
     
     """
     Takes all the volumes in the absolute image/label path and saves them as PNG image
@@ -143,15 +144,20 @@ def saveAsPNG(outputDirectory,
             
             volume = np.array(nibabel.load(path).get_fdata(), dtype = np.float32)
             labels = np.array(nibabel.load(labelPaths[index]).get_fdata(), dtype = np.float32)
-            volume = normalizeSample(volume)        # In range [0 1]
-
-        imageFilename = "{}/image/{:02d}/image{:06d}.png".format(outputDirectory, studyId, index)
-        labelFilename = "{}/label/{:02d}/label{:06d}.png".format(outputDirectory, studyId, index)
+        
+        imageFilename = "{}/image/{:02d}/image{:06d}.{}".format(outputDirectory, studyId, index, format_)
+        labelFilename = "{}/label/{:02d}/label{:06d}.png".format(outputDirectory, studyId, index, format_)
         thisVolumePaths.append(imageFilename)
         thisLabelsPaths.append(labelFilename)
         
-        image = np.uint8((volume[:, :, s]) * 255)   # Range [0 255]
-        label = np.uint8((labels[:, :, s]) * 50)    # Increase constrst on labels (visually), TODO : Remove
+        image = volume[:, :, s]
+        label = labels[:, :, s]
+        
+        if format_ == "png":
+            image = normalizeSample(image)
+            image = np.uint8(image * 255)   # Range [0 255]
+        
+        label = np.uint8(label * 50)
         
         imwrite(imageFilename, image)
         imwrite(labelFilename, label)
@@ -178,7 +184,6 @@ def saveAsPNG(outputDirectory,
 #%% Load folder settings
 settings = loadSettings("configuration.json")
 
-# %%
 # Scan nifti filles and save in csv file all paths and indexes of image and label
 scanTrainDataset(pathPrefix = settings["decathlon-dataset-path"],
                 datasetSchema = "01-dataset.json",
@@ -187,15 +192,27 @@ scanTrainDataset(pathPrefix = settings["decathlon-dataset-path"],
                 outputLabelFile = settings["decathlon-scanned-label"],
                 outputIndexFile = settings["decathlon-scanned-index"],
                 onlyWithLabel = True)
+
 #%%
 imagePaths = loadFromCSV(settings["decathlon-scanned-image"])[0]
 labelPaths = loadFromCSV(settings["decathlon-scanned-label"])[0]
 indexPaths = loadFromCSV(settings["decathlon-scanned-index"])[0]
 
-con.printgr("Saving slices")
-saveAsPNG(settings["decathlon-output-png"],
+# con.printgr("Saving slices")
+# saveImages(settings["decathlon-output-png"],
+#           imagePaths,
+#           labelPaths,
+#           indexPaths, 
+#           format_ = "png")
+
+saveImages(settings["decathlon-output-tif"],
           imagePaths,
           labelPaths,
-          indexPaths)
+          indexPaths, 
+          format_ = "tif")
+
 
 con.printgr("Done!")
+
+
+# %%

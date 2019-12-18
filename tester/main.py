@@ -1,58 +1,46 @@
-from PyQt5.QtWidgets import (QApplication,
-                             QWidget,
-                             QLabel,
-                             QTextEdit,
-                             QLineEdit,
-                             QPushButton,
-                             QFileDialog,
-                             QComboBox,
-                             QVBoxLayout)
-
+from PyQt5 import uic
+from PyQt5.QtWidgets import (QMainWindow, QWidget, QApplication)
+from PyQt5.QtCore import (Qt, pyqtSignal)
+from PyQt5.QtGui import QIcon
 
 import nibabel
 import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-from widgets import FileEdit, WaitDialog, getStyle
+from widgets import FileEdit, WaitDialog
+from widgets import getDropStyle, getStyle
+from keydetector import KeyMonitor
+
 from process import LoadingThread
+from log_reader import log_reader
 
 from viewer import viewer
 
-class Window(QWidget):
-    """
-    Main UI thread
-    """
-
+class Window(QMainWindow):
+    
     def __init__(self):
         super(Window, self).__init__()
+        uic.loadUi('window.ui', self)
         self.setupUI()
         self.wait = WaitDialog()
+        
+        self.detector = KeyMonitor()
+        self.detector.start_monitoring()
+        
         self.threads = []
-        
-        self.fileEdit = FileEdit(self.message)
+        self.fileEdit = FileEdit(self.dropLabel)
         self.fileEdit.dropped.connect(self.fileDropped)
-    
+        self.clsButton.clicked.connect(self.mainText.clear)
+        
+        self.model = "None"
+        
     def setupUI(self):
+        self.setWindowTitle("Tester")
+        self.setFixedSize(472, 369)
+        self.setWindowIcon(QIcon('wizard.ico'))
 
-        self.setWindowTitle("IMAGE CHECKER")
-        self.setFixedSize(400, 400)
-        
-        # Define Widgets
-        self.label1 = QLabel()
-        self.message = QLineEdit()
-        self.resultArea = QTextEdit()
-        
-        self.label1.setText("<i>Drop file to load</i>")
-        self.resultArea.setReadOnly(True)
-        
-        # Add Widgets to window
-        layout = QVBoxLayout()
-        layout.addWidget(self.label1)
-        layout.addWidget(self.message)
-        layout.addWidget(self.resultArea)
-        
-        self.setLayout(layout)
+        self.dropLabel.setStyleSheet(getDropStyle())
     
     def showWait(self):
         self.wait.show()
@@ -62,31 +50,47 @@ class Window(QWidget):
         
     def fileDropped(self, filename, filetype):
         if filetype == "none":
-            self.resultArea.append('<font color = "red">file not supported</font>')
+            self.appendText("File not supported", "red")
             return
-        self.resultArea.append("Loading {}".format(filename))
+        
+        self.mainText.append("Loading {}".format(filename))
         self.showWait()
         
         thread = LoadingThread(filename, filetype)
-        thread.loaded.connect(self.display)
+        thread.loaded.connect(self.do)
         thread.start()
         self.threads.append(thread)
     
-    def display(self, data, datatype):
+    def do(self, data, datatype):
         self.hideWait()
         
-        if datatype == "png":
-            # plt.imshow(np.mean(data, 2))
+        if datatype in ["png", "tif"]:
+            message = "Loaded image, Shape : {}, Min : {}, Max : {}".format(data.shape, data.min(), data.max())
+            self.appendText(message, "blue")
             plt.imshow(data)
             plt.axis('off')
             plt.show()
         
         if datatype == "nii":
+            message = "Loaded volume, Shape : {}, Min : {}, Max : {}".format(data.shape, data.min(), data.max())
+            self.appendText(message, "blue")
             viewer(data)
+            
+        if datatype == "log":
+            log_reader(data)
+    
+    def appendText(self, text, color = "black"):
+        self.mainText.append("""
+                             <font color = "{}">
+                             {}
+                             </font>
+                             """.format(color, text))
 
-
+    
 app = QApplication([])
-app.setStyleSheet(getStyle())
 window = Window()
+window.setStyleSheet(getStyle())
 window.show()
-app.exec()
+window.setWindowState(window.windowState() & ~Qt.WindowMinimized | Qt.WindowActive)
+window.activateWindow()
+app.exec_()
