@@ -26,5 +26,5 @@ test.py
 
 # No source control folders
 data
-# exported-results
+exported-results
 examples
