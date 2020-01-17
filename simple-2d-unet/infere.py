@@ -6,6 +6,7 @@ sys.path.append(os.path.abspath("../lib"))
 
 import nibabel
 from tqdm import tqdm
+from skimage.transform import resize
 
 import torch
 import torch.optim as optim
@@ -38,9 +39,9 @@ settings = loadSettings()
 args = Arguments(settings["Arguments"])
 
 
-model_path = "C:/Master thesis/master/exported-results/12162126/12162126-011.pt"
-volume_path =  "C:/Master thesis/master/data/medical-decathlon/imagesTr/liver_40.nii.gz"
-label_path = "C:/Master thesis/master/data/medical-decathlon/labelsTr/liver_40.nii.gz"
+model_path = "C:/Master thesis/master/exported-results/12181327/12181327-004.pt"
+volume_path =  "C:/Master thesis/master/data/medical-decathlon/imagesTr/liver_85.nii.gz"
+label_path = "C:/Master thesis/master/data/medical-decathlon/labelsTr/liver_85.nii.gz"
 
 
 volume = np.array(nibabel.load(volume_path).get_fdata(), dtype = np.float32)
@@ -49,7 +50,6 @@ prediction = np.zeros_like(labels)
 
 unet = UNet(**settings["2d-unet-params"])
 optimizer = optim.Adam(unet.parameters())
-
 unet, optimizer, epoch, trainLoss, validLoss = loadState(model_path, unet, optimizer, args)
 unet.cuda()
 unet.eval()
@@ -63,28 +63,33 @@ with tqdm(total = volume.shape[2]) as t:
         t.set_description("Slice : {}".format(slice_))
         image = volume[:, :, slice_]
         label = labels[:, :, slice_]
-        # image = np.expand_dims(image, axis = 0)
         
+        image = tf.to_pil_image(image)
+        image = tf.resize(image, size = (256, 256), interpolation = 2)
         image = tf.to_tensor(image)
         image = image.unsqueeze(0)
         image = image.to(args.device)
         image = Variable(image)
         
-        # image = image.unsqueeze(0)
-        
         pred = unet(image)
         pred = np.argmax(pred.cpu().detach().numpy()[0, :, :, :], 0)
+        # pred = resize(pred, (512, 512))
+        # prediction[:, :, slice_] = pred
         
-        prediction[:, :, slice_] = pred
-        t.update()
-        
-        sl = normalizeArray(volume[:, :, slice_])
-        stack = np.hstack((sl, label * 30, pred * 30))
-        import matplotlib.pyplot as plt
-        plt.imshow(stack)
-        plt.show()
+        # sl = normalizeArray(volume[:, :, slice_])
+        # stack = np.hstack((sl, label * 30, pred * 30))
         # collection.append(stack)
+        
+        import matplotlib.pyplot as plt
+        plt.imshow(label)
+        plt.show()
+        plt.imshow(pred)
+        plt.show()
+        
+        t.update()
 
-# s = np.asarray(collection)
-# viewer(s)
+s = np.asarray(collection)
+s = np.transpose(s, (2, 1, 0))
+viewer(s)
+
 # %%
