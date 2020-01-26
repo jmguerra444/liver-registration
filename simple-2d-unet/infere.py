@@ -7,6 +7,7 @@ sys.path.append(os.path.abspath("../lib"))
 import nibabel
 from tqdm import tqdm
 from skimage.transform import resize
+import matplotlib.pyplot as plt
 
 import torch
 import torch.optim as optim
@@ -58,7 +59,7 @@ collection = []
 with tqdm(total = volume.shape[2]) as t:
     
     # for slice_ in range(50, volume.shape[2] - 90):
-    for slice_ in range(50, 60):
+    for slice_ in range(440, 445):
         
         t.set_description("Slice : {}".format(slice_))
         image = volume[:, :, slice_]
@@ -80,7 +81,6 @@ with tqdm(total = volume.shape[2]) as t:
         # stack = np.hstack((sl, label * 30, pred * 30))
         # collection.append(stack)
         
-        import matplotlib.pyplot as plt
         plt.imshow(label)
         plt.show()
         plt.imshow(pred)
