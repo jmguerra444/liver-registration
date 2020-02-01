@@ -9,8 +9,7 @@
         "decathlon-scanned-index" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-index.csv",
         "decathlon-output-png" : "C:/Master thesis/master/data/medical-decathlon-png",
         "decathlon-output-tif" : "C:/Master thesis/master/data/medical-decathlon-tif",
-
-        "images-to-scan" : 10,
+        "images-to-scan" : 3,
         
         "2d-unet-params" :
         {
