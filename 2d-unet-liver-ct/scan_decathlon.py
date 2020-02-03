@@ -77,7 +77,7 @@ def scanTrainDataset(pathPrefix,
                     absoluteIndexes.append(sliceIndex)
 
                 if (not onlyWithLabel):
-                    if (hasLabel or random.choice([True, False, False])):
+                    if (hasLabel or random.choice([True, False, False, False, False])):
                         absoluteImagePath.append(sample["image"])
                         absoluteLabelPath.append(sample["label"])
                         absoluteIndexes.append(sliceIndex)
@@ -146,7 +146,7 @@ def saveImages(outputDirectory,
             labels = np.array(nibabel.load(labelPaths[index]).get_fdata(), dtype = np.float32)
         
         imageFilename = "{}/image/{:02d}/image{:06d}.{}".format(outputDirectory, studyId, index, format_)
-        labelFilename = "{}/label/{:02d}/label{:06d}.png".format(outputDirectory, studyId, index, format_)
+        labelFilename = "{}/label/{:02d}/label{:06d}.png".format(outputDirectory, studyId, index)
         thisVolumePaths.append(imageFilename)
         thisLabelsPaths.append(labelFilename)
         
