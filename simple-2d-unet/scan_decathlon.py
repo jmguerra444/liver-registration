@@ -6,6 +6,7 @@ import sys
 sys.path.append(os.path.abspath("../lib"))
 
 import csv
+import random
 
 import nibabel
 import numpy as np
@@ -74,7 +75,6 @@ def scanTrainDataset(pathPrefix,
                     absoluteImagePath.append(sample["image"])
                     absoluteLabelPath.append(sample["label"])
                     absoluteIndexes.append(sliceIndex)
-                    
 
                 if (not onlyWithLabel):
                     if (hasLabel or random.choice([True, False, False])):
@@ -97,8 +97,6 @@ def scanTrainDataset(pathPrefix,
     with open(outputIndexFile, "w", newline = '') as file:
         wr = csv.writer(file, quoting = csv.QUOTE_ALL)
         wr.writerow(absoluteIndexes)
-    
-    return True
 
 # %% 
 def saveImages(outputDirectory,
@@ -139,6 +137,7 @@ def saveImages(outputDirectory,
             thisVolumePaths = []
             thisLabelsPaths = []
             
+            print(index)
             con.printbl("Doing {}".format(path))
             os.makedirs("{}/label/{:02d}".format(outputDirectory, studyId), exist_ok = True)
             os.makedirs("{}/image/{:02d}".format(outputDirectory, studyId), exist_ok = True)
@@ -192,7 +191,7 @@ scanTrainDataset(pathPrefix = settings["decathlon-dataset-path"],
                 outputImageFile = settings["decathlon-scanned-image"],
                 outputLabelFile = settings["decathlon-scanned-label"],
                 outputIndexFile = settings["decathlon-scanned-index"],
-                onlyWithLabel = True)
+                onlyWithLabel = False)
 
 #%%
 imagePaths = loadFromCSV(settings["decathlon-scanned-image"])[0]

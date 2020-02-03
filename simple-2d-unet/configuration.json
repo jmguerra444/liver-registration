@@ -9,7 +9,7 @@
         "decathlon-scanned-index" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-index.csv",
         "decathlon-output-png" : "C:/Master thesis/master/data/medical-decathlon-png",
         "decathlon-output-tif" : "C:/Master thesis/master/data/medical-decathlon-tif",
-        "images-to-scan" : 3,
+        "images-to-scan" : 10,
         
         "2d-unet-params" :
         {
@@ -60,7 +60,7 @@
             "weights" : "./weights",
             "logs" : "./logs",
             "graphs" : "./graphs",
-            "image_size" : 256,
+            "image_size" : 512,
             "device" : "cuda:0",
             "train" : 1,
             "validation" : 0.20

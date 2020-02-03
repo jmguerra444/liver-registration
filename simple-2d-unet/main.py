@@ -64,7 +64,7 @@ logger.info("Oraganizing dataset")
 trainImages, trainLabels, validImages, validLabels = splitDataset(args = args,
                                                                   imagesPath = imagesPath,
                                                                   labelsPath = labelsPath,
-                                                                  batchSize = 3)
+                                                                  batchSize = args.batch_size)
 
 trainDataset = Dataset(trainImages, trainLabels, DatasetOptions(imageSize = args.image_size))
 validDataset = Dataset(validImages, validLabels, DatasetOptions(imageSize = args.image_size))
