@@ -1,0 +1,14 @@
+name : thesis
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - tensorflow
+  - nibabel
+  - tqdm
+  - typed-ast
+  - imageio
+  - ipython
+  - matplotlib
+  - scikit-image
+  - pillow
