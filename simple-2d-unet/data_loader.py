@@ -4,6 +4,7 @@ import os
 sys.path.append(os.path.abspath("../lib"))
 
 import json
+import random
 import numpy as np
 
 import matplotlib.pyplot as plt
@@ -17,6 +18,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 import torchvision.transforms.functional as tf
 
+from helper import splitDataset, Arguments
 from utils import loadSettings, loadFromCSV
 from console import Console as con
 
@@ -28,9 +30,13 @@ class DatasetOptions:
     Preprocessing operations for `DatasetHandler` class. This class enables, rotatiosn, data augmentations etc. etc.
     """
     def __init__(self,
-                 imageSize = None
+                 imageSize = None,
+                 rotate = None,             # tuple with angles if you rotation desired (-20, 20)
+                 crop = False
                  ):
         self.imageSize = imageSize
+        self.rotate = rotate
+        self.crop = crop
 
 class DatasetHandler(Dataset):
     """
@@ -75,8 +81,6 @@ class DatasetHandler(Dataset):
         Chain of required imaged transformations inc. `.toTensor()`, does all operations according
         to LoaderOptions
         """
-        # FIXME : Contrasts very bad
-        # label = label / 50                             # Compensate scaling factor
         
         image = tf.to_pil_image(image)
         label = tf.to_pil_image(label)
@@ -89,6 +93,16 @@ class DatasetHandler(Dataset):
             image = tf.resize(image, size = (size, size), interpolation = 2)
             label = tf.resize(label, size = (size, size), interpolation = 0)
         
+            if (self.options.rotate != None and random.choice([True, False])):
+                angle = random.randint(*self.options.rotate)
+                image = tf.rotate(image, angle)
+                label = tf.rotate(label, angle)
+            
+            if (self.options.crop and random.choice([True, False])):
+                i, j, h, w = transforms.RandomResizedCrop.get_params(image, scale = (0.8, 1), ratio=(0.75, 1))
+                image = tf.resized_crop(image, i, j, h, w, size = (size, size), interpolation = 2)
+                label = tf.resized_crop(label, i, j, h, w, size = (size, size), interpolation = 0)
+        
         image = tf.to_tensor(image)
         # label = tf.to_tensor(label)
         label = torch.from_numpy(np.expand_dims(np.array(label), 0))
@@ -98,13 +112,6 @@ class DatasetHandler(Dataset):
 
 
 def dataLoader(args, trainDataset, validDataset):
-    
-    def worker_init(worker_id):
-        np.random.seed(42 + worker_id)
-
-    # TODO : Fix worker init function
-    # Add worker init foo maybe
-    # Example https://pytorch.org/docs/stable/data.html
     
     loaderTrain = DataLoader(trainDataset,
                              batch_size = args.batch_size,
@@ -121,20 +128,29 @@ def dataLoader(args, trainDataset, validDataset):
     return loaderTrain, loaderValid
 # %%
 def test_1():
+    
     settings = loadSettings()
 
-    imagesPath = loadFromCSV(settings["decathlon-output-png"] + "/images-list.csv")[0]
-    labelsPath = loadFromCSV(settings["decathlon-output-png"] + "/labels-list.csv")[0]
-
-    dh = DatasetHandler(imagesPath = imagesPath,
-                        labelsPath = labelsPath,
-                        options = DatasetOptions(imageSize = 64))
-    image, label = dh.__getitem__(10)         # Has the image as tensor
+    imagesPath = loadFromCSV(settings["decathlon-output-tif"] + "/images-list.csv")[0]
+    labelsPath = loadFromCSV(settings["decathlon-output-tif"] + "/labels-list.csv")[0]
+    
+    args = Arguments(settings["Arguments"])
+    trainImages, trainLabels, _, _ = splitDataset(args = args,
+                                                imagesPath = imagesPath,
+                                                labelsPath = labelsPath,
+                                                batchSize = args.batch_size)
+    dh = DatasetHandler(imagesPath = trainImages,
+                        labelsPath = trainLabels,
+                        options = DatasetOptions(imageSize = 64, rotate = (-15, 15), crop = True))
+    image, label = dh.__getitem__(6)         # Has the image as tensor
     plt.subplot(1, 2, 1)
     plt.imshow(image.numpy().squeeze())
     plt.subplot(1, 2, 2)
     plt.imshow(label.numpy().squeeze())
-    
+    print(np.unique(label))
     return image, label
 
-# image, label = test_1()
+
+image, label = test_1()
+
+# %%
