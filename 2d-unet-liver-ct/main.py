@@ -66,15 +66,17 @@ trainImages, trainLabels, validImages, validLabels = splitDataset(args = args,
                                                                   labelsPath = labelsPath,
                                                                   batchSize = args.batch_size)
 
-trainDataset = Dataset(trainImages, trainLabels, DatasetOptions(imageSize = args.image_size))
-validDataset = Dataset(validImages, validLabels, DatasetOptions(imageSize = args.image_size))
+datasetOptions = DatasetOptions(imageSize = args.image_size, rotate = (-180, 180), crop = True, merge = True)
+
+trainDataset = Dataset(trainImages, trainLabels, datasetOptions)
+validDataset = Dataset(validImages, validLabels, datasetOptions)
 
 loaderTrain, loaderValid = dataLoader(args, trainDataset, validDataset)
 
 # Model
 unet = UNet(**settings["2d-unet-params"])
-
 unet.cuda()
+
 # TODO : Make some schedule
 optimizer = optim.Adam(unet.parameters(), lr = args.lr)
 
@@ -108,3 +110,6 @@ if __name__ == '__main__':
         optimizer,
         logger,
         args)
+
+
+# %%

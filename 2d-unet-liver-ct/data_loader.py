@@ -31,12 +31,14 @@ class DatasetOptions:
     """
     def __init__(self,
                  imageSize = None,
-                 rotate = None,             # tuple with angles if you rotation desired (-20, 20)
-                 crop = False
+                 rotate = None,             # Tuple with angles if you rotation desired (-20, 20)
+                 crop = False,              # Weather it does crop
+                 merge = True,              # Merges tumor into liver class
                  ):
         self.imageSize = imageSize
         self.rotate = rotate
         self.crop = crop
+        self.merge = merge
 
 class DatasetHandler(Dataset):
     """
@@ -95,9 +97,9 @@ class DatasetHandler(Dataset):
         
             if (self.options.rotate != None and random.choice([True, False])):
                 angle = random.randint(*self.options.rotate)
-                image = tf.rotate(image, angle)
-                label = tf.rotate(label, angle)
-            
+                image = image.rotate(angle)
+                label = label.rotate(angle)
+
             if (self.options.crop and random.choice([True, False])):
                 i, j, h, w = transforms.RandomResizedCrop.get_params(image, scale = (0.8, 1), ratio=(0.75, 1))
                 image = tf.resized_crop(image, i, j, h, w, size = (size, size), interpolation = 2)
@@ -105,8 +107,11 @@ class DatasetHandler(Dataset):
         
         image = tf.to_tensor(image)
         # label = tf.to_tensor(label)
-        label = torch.from_numpy(np.expand_dims(np.array(label), 0))
-        
+        label = np.expand_dims(np.array(label), 0)
+        if self.options.merge:
+            label[label == 2] = 1
+
+        label = torch.from_numpy(label)
         return image, label
 
 
@@ -127,13 +132,12 @@ def dataLoader(args, trainDataset, validDataset):
     
     return loaderTrain, loaderValid
 # %%
-def test_1():
-    
+def test():
     settings = loadSettings()
 
     imagesPath = loadFromCSV(settings["decathlon-output-tif"] + "/images-list.csv")[0]
     labelsPath = loadFromCSV(settings["decathlon-output-tif"] + "/labels-list.csv")[0]
-    
+
     args = Arguments(settings["Arguments"])
     trainImages, trainLabels, _, _ = splitDataset(args = args,
                                                 imagesPath = imagesPath,
@@ -141,16 +145,15 @@ def test_1():
                                                 batchSize = args.batch_size)
     dh = DatasetHandler(imagesPath = trainImages,
                         labelsPath = trainLabels,
-                        options = DatasetOptions(imageSize = 64, rotate = (-15, 15), crop = True))
-    image, label = dh.__getitem__(6)         # Has the image as tensor
+                        options = DatasetOptions(imageSize = 64, rotate = (-180, 180), crop = True, merge = True))
+
+    image, label = dh.__getitem__(700)         # Has the image as tensor
     plt.subplot(1, 2, 1)
     plt.imshow(image.numpy().squeeze())
     plt.subplot(1, 2, 2)
     plt.imshow(label.numpy().squeeze())
     print(np.unique(label))
-    return image, label
 
-
-image, label = test_1()
+# test()
 
 # %%
