@@ -1,3 +1,5 @@
+conda create -n torch python=3.6
+conda install pytorch torchvision cudatoolkit=10.1 -y -c pytorch
 conda install -y pandas
 conda install -y -c anaconda numpy
 conda install -y -c conda-forge tensorflow
