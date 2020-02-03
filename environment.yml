@@ -1,4 +1,4 @@
-name : base
+name : master-thesis
 channels:
   - conda-forge
 dependencies:
