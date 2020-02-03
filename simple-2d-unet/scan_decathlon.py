@@ -77,10 +77,11 @@ def scanTrainDataset(pathPrefix,
                     
 
                 if (not onlyWithLabel):
-                    absoluteImagePath.append(sample["image"])
-                    absoluteLabelPath.append(sample["label"])
-                    absoluteIndexes.append(sliceIndex)
-                    
+                    if (hasLabel or random.choice([True, False, False])):
+                        absoluteImagePath.append(sample["image"])
+                        absoluteLabelPath.append(sample["label"])
+                        absoluteIndexes.append(sliceIndex)
+        
         print("Unique labels", np.unique(labels))
         print("Finished :", sample["image"])
     
