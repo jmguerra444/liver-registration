@@ -3,7 +3,6 @@ channels:
   - conda-forge
 dependencies:
   - numpy
-  - tensorflow
   - nibabel
   - tqdm
   - typed-ast

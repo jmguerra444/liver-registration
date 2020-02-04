@@ -10,15 +10,18 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt install git-all
 git config --global credential.helper store                     # Save git credentials
-
 sudo apt-get install nano
+
+
+# Restart SSH connection maybe+
+
 
 # Get our repository
 git clone https://gitlab.lrz.de/ga53koj/master-thesis.git
-cd master-thesis/simple-2d-unet/
+cd master-thesis
 git checkout develop
-conda env create -f environment.yml
-conda activate master-thesis
+conda env update -f environment.yml
+conda install pytorch torchvision cudatoolkit=10.1 -y -c pytorch
 
 # Install cuda
 sudo apt-get install gcc g++ libxi6 libglu1-mesa libglu1-mesa-dev libxmu6 linux-source
@@ -35,7 +38,7 @@ tar -xvf Task03_Liver.tar Task03_Liver/imagesTr
 tar -xvf Task03_Liver.tar Task03_Liver/labelsTr
 mv Task03_Liver decathlon-data       # rename
 rm Task03_Liver.tar
-cd ~
+cd ~/decathlon-data
 mkdir scan
 
 # 
