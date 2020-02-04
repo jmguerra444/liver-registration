@@ -34,7 +34,7 @@
         }
     },
 
-    "remote-1" : 
+    "remote-2" : 
     {
         "decathlon-dataset-path" : "/home/jorgemguerrag/decathlon-data",
         "decathlon-scanned-image" : "/home/jorgemguerrag/decathlon-data/scan/local-decathlon-scanned-image.csv",
