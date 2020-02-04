@@ -34,11 +34,13 @@ class DatasetOptions:
                  rotate = None,             # Tuple with angles if you rotation desired (-20, 20)
                  crop = False,              # Weather it does crop
                  merge = True,              # Merges tumor into liver class
+                 noise = False
                  ):
         self.imageSize = imageSize
         self.rotate = rotate
         self.crop = crop
         self.merge = merge
+        self.noise = noise
 
 class DatasetHandler(Dataset):
     """
@@ -95,16 +97,23 @@ class DatasetHandler(Dataset):
             image = tf.resize(image, size = (size, size), interpolation = 2)
             label = tf.resize(label, size = (size, size), interpolation = 0)
         
-            if (self.options.rotate != None and random.choice([True, False])):
+            lottery = np.random.randint(0, 10) < 5
+            if (self.options.rotate != None and lottery):
                 angle = random.randint(*self.options.rotate)
                 image = image.rotate(angle)
                 label = label.rotate(angle)
-
-            if (self.options.crop and random.choice([True, False])):
+            
+            lottery = np.random.randint(0, 10) < 5
+            if (self.options.crop and lottery):
                 i, j, h, w = transforms.RandomResizedCrop.get_params(image, scale = (0.8, 1), ratio=(0.75, 1))
                 image = tf.resized_crop(image, i, j, h, w, size = (size, size), interpolation = 2)
                 label = tf.resized_crop(label, i, j, h, w, size = (size, size), interpolation = 0)
-        
+
+            lottery = np.random.randint(0, 10) < 5
+            if (self.options.noise and lottery):
+                ### Add some noise ###
+                
+
         image = tf.to_tensor(image)
         # label = tf.to_tensor(label)
         label = np.expand_dims(np.array(label), 0)

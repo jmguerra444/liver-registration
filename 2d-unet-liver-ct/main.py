@@ -66,10 +66,20 @@ trainImages, trainLabels, validImages, validLabels = splitDataset(args = args,
                                                                   labelsPath = labelsPath,
                                                                   batchSize = args.batch_size)
 
-datasetOptions = DatasetOptions(imageSize = args.image_size, rotate = (-180, 180), crop = True, merge = True)
+trainOptions = DatasetOptions(imageSize = args.image_size,
+                              rotate = (-180, 180),
+                              crop = True,
+                              merge = True,
+                              noise = True)
 
-trainDataset = Dataset(trainImages, trainLabels, datasetOptions)
-validDataset = Dataset(validImages, validLabels, datasetOptions)
+validOptions = DatasetOptions(imageSize = args.image_size,
+                              rotate = (-180, 180),
+                              crop = False,
+                              merge = True,
+                              noise = True)
+
+trainDataset = Dataset(trainImages, trainLabels, trainOptions)
+validDataset = Dataset(validImages, validLabels, validOptions)
 
 loaderTrain, loaderValid = dataLoader(args, trainDataset, validDataset)
 
