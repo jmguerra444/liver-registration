@@ -112,8 +112,8 @@ class DatasetHandler(Dataset):
             lottery = np.random.randint(0, 10) < 5
             if (self.options.noise and lottery):
                 ### Add some noise ###
+                pass
                 
-
         image = tf.to_tensor(image)
         # label = tf.to_tensor(label)
         label = np.expand_dims(np.array(label), 0)
