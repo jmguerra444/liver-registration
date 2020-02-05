@@ -43,11 +43,14 @@ def loadState(path, model, optmizer, args):
 settings = loadSettings()
 args = Arguments(settings["Arguments"])
 
+# modelPath = "C:/Master thesis/master/exported-results/02041952/02041952-006.pt"
+modelPath = "C:/Master thesis/master/exported-results/12181327/12181327-018.pt"; 
 
-modelPath = "C:/Master thesis/master/exported-results/12181327/12181327-004.pt"
-volumePath =  "G:/selected data splited/MR/006"
-
+volumePath =  "C:/Master thesis/Selected MR data/006/LOWDOSE-CT"
 volume = dcmread(volumePath)
+
+settings["2d-unet-params"]["out_channels"] = 3
+size = 256         # Change this according to the size that the NET was trained with
 
 unet = UNet(**settings["2d-unet-params"])
 optimizer = optim.Adam(unet.parameters())
@@ -62,7 +65,7 @@ saveMask = False
 with tqdm(total = volume.shape[2]) as t:
     
     # for slice_ in range(50, voqqlume.shape[2] - 90):
-    for slice_ in range(0, 90):
+    for slice_ in range(0, 78):
         
         t.set_description("Slice : {}".format(slice_))
         image_ = volume[:, :, slice_]
@@ -71,8 +74,8 @@ with tqdm(total = volume.shape[2]) as t:
         image = tf.to_pil_image(image)
         image = image.transpose(Image.FLIP_TOP_BOTTOM)
         image_ = image # Save image "status" to display
-        
-        image = tf.resize(image, size = (256, 256), interpolation = 2)
+
+        image = tf.resize(image, size = (size, size), interpolation = 2)
         image = tf.to_tensor(image)
         image = image.unsqueeze(0)
         image = image.to(args.device)
@@ -90,7 +93,7 @@ with tqdm(total = volume.shape[2]) as t:
             plt.imshow(pred)
             plt.axis('off')
             plt.tight_layout()
-            plt.savefig("{}/out/{:03d}.png".format(volumePath, slice_))
+            plt.savefig("{}/out2/{:03d}.png".format(volumePath, slice_))
         
         if saveMask:
             image_ = np.array(image_)
