@@ -9,20 +9,19 @@
         "decathlon-scanned-index" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-index.csv",
         "decathlon-output-png" : "C:/Master thesis/master/data/medical-decathlon-png",
         "decathlon-output-tif" : "C:/Master thesis/master/data/medical-decathlon-tif",
-
         "images-to-scan" : 10,
         
         "2d-unet-params" :
         {
             "in_channels" : 1,
-            "out_channels" : 3,
+            "out_channels" : 2,
             "initialFeatures" : 32
         },
 
         "Arguments" :
         {
             "batch_size" : 1,
-            "epochs" : 1,
+            "epochs" : 2,
             "lr" : 0.001,
             "workers" : 0,
             "weights" : "./weights",
@@ -35,7 +34,7 @@
         }
     },
 
-    "remote-1" : 
+    "remote-2" : 
     {
         "decathlon-dataset-path" : "/home/jorgemguerrag/decathlon-data",
         "decathlon-scanned-image" : "/home/jorgemguerrag/decathlon-data/scan/local-decathlon-scanned-image.csv",
@@ -48,7 +47,7 @@
         "2d-unet-params" :
         {
             "in_channels" : 1,
-            "out_channels" : 3,
+            "out_channels" : 2,
             "initialFeatures" : 32
         },
 
@@ -61,7 +60,7 @@
             "weights" : "./weights",
             "logs" : "./logs",
             "graphs" : "./graphs",
-            "image_size" : 256,
+            "image_size" : 512,
             "device" : "cuda:0",
             "train" : 1,
             "validation" : 0.20

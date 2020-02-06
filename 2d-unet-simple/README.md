@@ -1,5 +1,7 @@
 # Simple 2D unet example
 
+**Contains many bugs, check 2d-unet-liver-ct**
+
 Basic liver/lesion segmentation using standard 2d unet arcgitecture, inspired from https://github.com/mateuszbuda/brain-segmentation-pytorch
 
 ## Model
