@@ -35,7 +35,7 @@ def simulateLowdose(image):
     image, minima, maxima = normalize(image)
     image = resize(image, (256, 256), anti_aliasing = True, preserve_range = True, order = 1)
 
-    parameters = {"lam" : 1, "mi" : 0, "sd" : 0 / (maxima - minima)}
+    parameters = {"lam" : 1e6, "mi" : 0, "sd" : 20 / (maxima - minima)}
     theta = np.linspace(0., 180., max(image.shape), endpoint = False)
     sinogram = radon(image, theta = theta, circle = True)
 
@@ -53,6 +53,7 @@ def simulateLowdose(image):
         sinogramNoise[:, i] = projNoise
 
     reconstructionNoise = iradon(sinogramNoise * 100, theta=theta, circle=True)
+    # reconstructionNoise, _, _ = normalize(reconstructionNoise) 
     reconstructionNoise = restore(reconstructionNoise, minima, maxima)
     reconstructionNoise = resize(reconstructionNoise, size, anti_aliasing = True, preserve_range = True, order = 1)
     return reconstructionNoise, sinogram, sinogramNoise
@@ -61,7 +62,7 @@ def test():
 
     import pydicom
     import matplotlib.pyplot as plt
-    filename = "shepp.png"
+    filename = "test1.tif"
     image = imread(filename, as_gray = True)
 
     imageNoise, sinogram, sinogramNoise = simulateLowdose(image)
