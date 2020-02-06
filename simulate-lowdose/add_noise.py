@@ -67,7 +67,7 @@ def test():
 
     imageNoise, sinogram, sinogramNoise = simulateLowdose(image)
     imageNoise = imageNoise.astype(np.int16)
-    imsave("{}_noise{}".format(filename,".tif"), imageNoise)
+    imsave("to convert/{}_noise{}".format(filename,".tif"), imageNoise)
     
     fig, axes = plt.subplots(2, 2, figsize=(8, 8))
     axes[0, 0].axis("off")
