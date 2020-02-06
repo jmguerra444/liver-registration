@@ -8,8 +8,8 @@ from tqdm import tqdm
 from numpy.random import randint
 from add_noise import saveLowDose
 
-# filename = sys.argv[1]
-filename = "C:/Master thesis/master/data/medical-decathlon-tif/images-list.csv"
+filename = sys.argv[1]
+# filename = "C:/Master thesis/master/data/medical-decathlon-tif/images-list.csv"
 print(filename)
 
 def loadFromCSV(filename):
