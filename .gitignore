@@ -28,3 +28,7 @@ test.py
 data
 exported-results
 examples
+
+# Some created images
+*.tif
+*.dcm
