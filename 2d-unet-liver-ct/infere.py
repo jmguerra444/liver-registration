@@ -1,3 +1,10 @@
+"""
+Inference script giving a high resolution nifti volume path, label and model
+
+!!! Change the size and output channles is required
+"""
+
+
 # %% Inference method
 import os
 import sys
@@ -49,6 +56,11 @@ volume = np.array(nibabel.load(volume_path).get_fdata(), dtype = np.float32)
 labels = np.array(nibabel.load(label_path).get_fdata(), dtype = np.float32)
 prediction = np.zeros_like(labels)
 
+#### CHANGE THIS IS NEEDED ####
+settings["2d-unet-params"]["out_channels"] = 3
+size = 256
+###############################
+
 unet = UNet(**settings["2d-unet-params"])
 optimizer = optim.Adam(unet.parameters())
 unet, optimizer, epoch, trainLoss, validLoss = loadState(model_path, unet, optimizer, args)
@@ -66,7 +78,9 @@ with tqdm(total = volume.shape[2]) as t:
         label = labels[:, :, slice_]
         
         image = tf.to_pil_image(image)
-        image = tf.resize(image, size = (256, 256), interpolation = 2)
+        image_ = image # Save image "status" to display
+
+        image = tf.resize(image, size = (size, size), interpolation = 2)
         image = tf.to_tensor(image)
         image = image.unsqueeze(0)
         image = image.to(args.device)
@@ -74,22 +88,25 @@ with tqdm(total = volume.shape[2]) as t:
         
         pred = unet(image)
         pred = np.argmax(pred.cpu().detach().numpy()[0, :, :, :], 0)
-        # pred = resize(pred, (512, 512))
-        # prediction[:, :, slice_] = pred
-        
-        # sl = normalizeArray(volume[:, :, slice_])
-        # stack = np.hstack((sl, label * 30, pred * 30))
-        # collection.append(stack)
-        
-        plt.imshow(label)
-        plt.show()
-        plt.imshow(pred)
-        plt.show()
-        
-        t.update()
+        pred = resize(pred, (512, 512), preserve_range = True, order = 0)
 
-s = np.asarray(collection)
-s = np.transpose(s, (2, 1, 0))
-viewer(s)
+        plt.figure(figsize = (16, 8))
+        plt.subplot(1, 3, 1)
+        plt.imshow(image_, vmin = -100, vmax = 400)
+        plt.axis('off')
+
+        plt.subplot(1, 3, 2)
+        plt.imshow(label, vmin = 0, vmax = 2)
+        plt.axis('off')
+        
+        plt.subplot(1, 3, 3)
+        plt.imshow(pred, vmin = 0, vmax = 2)
+        plt.axis('off')
+        
+        plt.tight_layout()
+        plt.tight_layout()
+        plt.show()
+
+        t.update()
 
 # %%
