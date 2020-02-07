@@ -72,7 +72,7 @@ class DatasetHandler(Dataset):
         
         image = imread(self.trainImages[index]).astype(np.float32)
         label = imread(self.trainLabels[index])
-        
+	
         imageTensor, labelTensor = self.transformations(image, label)
         
         return imageTensor, labelTensor
