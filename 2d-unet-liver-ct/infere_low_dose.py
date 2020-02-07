@@ -49,7 +49,7 @@ p = {"size" : 256,
      "channels" : 2,
      "session" : "02071134",
      "epoch" : "009",
-     "patient" : "008"
+     "patient" : "006"
     }
 
 """
@@ -102,8 +102,9 @@ with tqdm(total = volume.shape[2]) as t:
         pred = resize(pred, (512, 512), preserve_range = True, order = 0)
         
         imsave("{}/{:03d}.jpg".format(resultsPath_mask, slice_), np.uint8(pred))
-
+        
         if savePrediction:
+            plt.figure(figsize = (16, 8))
 
             plt.subplot(1, 2, 1)
             plt.imshow(image_, vmin = -100, vmax = 400)
