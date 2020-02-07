@@ -101,7 +101,7 @@ with tqdm(total = volume.shape[2]) as t:
         pred = np.argmax(pred.cpu().detach().numpy()[0, :, :, :], 0)
         pred = resize(pred, (512, 512), preserve_range = True, order = 0)
         
-        imsave("{}/{:03d}.jpg".format(resultsPath_mask, slice_), np.uint8(pred))
+        imsave("{}/{:03d}.png".format(resultsPath_mask, slice_), np.uint8(pred))
         
         if savePrediction:
             plt.figure(figsize = (16, 8))
