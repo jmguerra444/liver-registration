@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from os.path import join
 from skimage import io
-from imageio import imread
+from skimage.io import imread
 
 import torch
 from torch.utils.data.dataset import Dataset
@@ -70,7 +70,7 @@ class DatasetHandler(Dataset):
         This function needs to be overriten from Dataset(torch) class
         """
         
-        image = imread(self.trainImages[index])
+        image = imread(self.trainImages[index]).astype(np.float32)
         label = imread(self.trainLabels[index])
         
         imageTensor, labelTensor = self.transformations(image, label)
