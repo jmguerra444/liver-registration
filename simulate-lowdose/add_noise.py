@@ -35,7 +35,7 @@ def simulateLowdose(image):
     image, minima, maxima = normalize(image)
     image = resize(image, (256, 256), anti_aliasing = True, preserve_range = True, order = 1)
 
-    parameters = {"lam" : 1e6, "mi" : 0, "sd" : 20 / (maxima - minima)}
+    parameters = {"lam" : 1e5, "mi" : 0, "sd" : 30 / (maxima - minima)}
     theta = np.linspace(0., 180., max(image.shape), endpoint = False)
     sinogram = radon(image, theta = theta, circle = True)
 
@@ -76,7 +76,7 @@ def test(filename_):
     imageNoise, sinogram, sinogramNoise = simulateLowdose(image)
     imageNoise = imageNoise.astype(np.int16)
 
-    imsave("to convert/{}_noise{}".format(filename,".tif"), imageNoise)
+    imsave("to convert_2/{}_noise{}".format(filename,".tif"), imageNoise)
 
     fig, axes = plt.subplots(1, 3, figsize=(8, 8))
     axes[0].axis("off")
