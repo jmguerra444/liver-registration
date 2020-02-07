@@ -10,6 +10,7 @@ sys.path.append(os.path.abspath("../lib"))
 import nibabel
 from tqdm import tqdm
 from skimage.transform import resize
+from skimage.io import imsave
 import matplotlib.pyplot as plt
 
 import torch
@@ -22,7 +23,6 @@ from unet import UNet
 from utils import loadSettings, normalizeArray
 from helper import Arguments
 from miscellaneous import dcmread
-
 from visual import viewer
 
 def infere(volume, model, optimizer, args):
@@ -43,14 +43,30 @@ def loadState(path, model, optmizer, args):
 settings = loadSettings()
 args = Arguments(settings["Arguments"])
 
-# modelPath = "C:/Master thesis/master/exported-results/02041952/02041952-006.pt"
-modelPath = "C:/Master thesis/master/exported-results/12181327/12181327-018.pt"; 
+# Define experiment params
 
-volumePath =  "C:/Master thesis/Selected MR data/006/LOWDOSE-CT"
-volume = dcmread(volumePath)
+p = {"size" : 256,
+     "channels" : 2,
+     "session" : "02071134",
+     "epoch" : "009",
+     "patient" : "008"
+    }
 
-settings["2d-unet-params"]["out_channels"] = 3
-size = 256         # Change this according to the size that the NET was trained with
+"""
+02071134-009.pt : (256, 256) (2) Trained with little no crop, rotations(10°), labeled + 30%, 30% corrupted with noise images
+02041952-006.pt : (512, 512) (2) Trained using crop and rotations(180°) with labeled + 30% non-labeled
+12181327-018.pt : (256, 256) (3) Trained using the plain decathlon set only with labeled images
+"""
+
+modelPath = "C:/Master thesis/master/exported-results/{}/{}-{}.pt".format(p["session"], p["session"], p["epoch"])
+volumePath =  "C:/Master thesis/Selected MR data/{}/LOWDOSE-CT".format(p["patient"])
+resultsPath_side = "C:/Master thesis/master/exported-results/000_LOW_DOSE_INFERENCE/{}/{}-{}/side/".format(p["patient"], p["session"], p["epoch"])
+resultsPath_mask = "C:/Master thesis/master/exported-results/000_LOW_DOSE_INFERENCE/{}/{}-{}/mask/".format(p["patient"], p["session"], p["epoch"])
+os.makedirs(resultsPath_side, exist_ok = True)
+os.makedirs(resultsPath_mask, exist_ok = True)
+
+volume = dcmread(volumePath) # TODO: Latter make this also return the metadata so we can keep dims
+settings["2d-unet-params"]["out_channels"] = p["channels"]
 
 unet = UNet(**settings["2d-unet-params"])
 optimizer = optim.Adam(unet.parameters())
@@ -65,7 +81,7 @@ saveMask = False
 with tqdm(total = volume.shape[2]) as t:
     
     # for slice_ in range(50, voqqlume.shape[2] - 90):
-    for slice_ in range(0, 78):
+    for slice_ in range(0, volume.shape[2]):
         
         t.set_description("Slice : {}".format(slice_))
         image_ = volume[:, :, slice_]
@@ -75,7 +91,7 @@ with tqdm(total = volume.shape[2]) as t:
         image = image.transpose(Image.FLIP_TOP_BOTTOM)
         image_ = image # Save image "status" to display
 
-        image = tf.resize(image, size = (size, size), interpolation = 2)
+        image = tf.resize(image, size = (p["size"], p["size"]), interpolation = 2)
         image = tf.to_tensor(image)
         image = image.unsqueeze(0)
         image = image.to(args.device)
@@ -85,15 +101,21 @@ with tqdm(total = volume.shape[2]) as t:
         pred = np.argmax(pred.cpu().detach().numpy()[0, :, :, :], 0)
         pred = resize(pred, (512, 512), preserve_range = True, order = 0)
         
+        imsave("{}/{:03d}.jpg".format(resultsPath_mask, slice_), np.uint8(pred))
+
         if savePrediction:
+
             plt.subplot(1, 2, 1)
-            plt.imshow(image_)
+            plt.imshow(image_, vmin = -100, vmax = 400)
             plt.axis('off')
+
             plt.subplot(1, 2, 2)
-            plt.imshow(pred)
+            plt.imshow(pred, vmin = 0, vmax = 2)
             plt.axis('off')
+
             plt.tight_layout()
-            plt.savefig("{}/out2/{:03d}.png".format(volumePath, slice_))
+            plt.tight_layout()
+            plt.savefig("{}/{:03d}.png".format(resultsPath_side, slice_))
         
         if saveMask:
             image_ = np.array(image_)
@@ -104,16 +126,7 @@ with tqdm(total = volume.shape[2]) as t:
             plt.figure()
             plt.imshow(image_)
             # plt.show()
-            print("bp")
-        # plt.show()
-        
-        # prediction[:, :, slice_] = pred
-        
-        # sl = normalizeArray(volume[:, :, slice_])
-        # stack = np.hstack((sl, label * 30, pred * 30))
-        # collection.append(stack)
-        # plt.imshow(pred)
-        # plt.show()
+
         t.update()
 
 print("Donie!")
