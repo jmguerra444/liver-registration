@@ -33,7 +33,7 @@ def simulateLowdose(image):
 
     size = image.shape
     image, minima, maxima = normalize(image)
-    image = resize(image, (256, 512), anti_aliasing = True, preserve_range = True, order = 1)
+    image = resize(image, (256, 256), anti_aliasing = True, preserve_range = True, order = 1)
 
     parameters = {"lam" : 1e6, "mi" : 0, "sd" : 20 / (maxima - minima)}
     theta = np.linspace(0., 180., max(image.shape), endpoint = False)
