@@ -185,6 +185,7 @@ def saveImages(outputDirectory,
 settings = loadSettings("configuration.json")
 
 # Scan nifti filles and save in csv file all paths and indexes of image and label
+"""
 scanTrainDataset(pathPrefix = settings["decathlon-dataset-path"],
                 datasetSchema = "01-dataset.json",
                 samples = settings["images-to-scan"],
@@ -193,6 +194,7 @@ scanTrainDataset(pathPrefix = settings["decathlon-dataset-path"],
                 outputIndexFile = settings["decathlon-scanned-index"],
                 onlyWithLabel = False)
 
+"""
 #%%
 imagePaths = loadFromCSV(settings["decathlon-scanned-image"])[0]
 labelPaths = loadFromCSV(settings["decathlon-scanned-label"])[0]
