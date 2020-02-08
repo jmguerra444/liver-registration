@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from skimage.io import imread
 from skimage.transform import rotate
 
-def volread(path, angle = None):
+def volread(path, fix_position = False):
     """
     Stolen from: https://stackoverflow.com/a/3207973/7474885
     """
@@ -14,13 +14,15 @@ def volread(path, angle = None):
     images = []
     for file_ in fileList:
         image = imread(file_)
-        
-        if angle != None:
-            image = rotate(image, angle)
-
         images.append(image)
     return images
 
+def avgList(list_):
+
+    acc = 0
+    for i in list_:
+        acc += i
+    return acc / len(list_)
 
 def dice(im1, im2, empty_score=1.0):
     """
@@ -62,37 +64,50 @@ def dice(im1, im2, empty_score=1.0):
 
     return 2. * intersection.sum() / im_sum
 
+def compute_dice(patient, session, epoch):
 
-patient = "006"
-session = "02071134"
-epoch = "009"
+    # In image format
+    predPath = "C:/Master thesis/master/exported-results/000_LOW_DOSE_INFERENCE/{}/{}-{}/mask/".format(patient, session, epoch)
+    manuPath = "C:/Master thesis/master/2d-unet-dice-computer/LD_MANUAL/{}/".format(patient)
 
-# In image format
-predPath = "C:/Master thesis/master/exported-results/000_LOW_DOSE_INFERENCE/{}/{}-{}/mask/".format(patient, session, epoch)
-manuPath = "C:/Master thesis/master/2d-unet-dice-computer/LD_MANUAL/{}/".format(patient)
+    pred = volread(predPath)
+    manu = volread(manuPath)
 
-pred = volread(predPath)
-manu = volread(manuPath, angle = 90)
+    pred.reverse()
 
-pred.reverse()
-
-for slice_ in range(len(manu)):
-    slicePred = pred[slice_]
-    sliceManu = manu[slice_]
-    
-    dice_ = dice(sliceManu, slicePred)
-    print(dice_)
-
-    if True:
-        plt.figure(figsize = (16, 8))
-
-        plt.subplot(1, 2, 1)
-        plt.imshow(slicePred)
+    dice_ = []
+    for slice_ in range(len(manu)):
+        slicePred = pred[slice_]
+        sliceManu = manu[slice_]
         
-        plt.subplot(1, 2, 2)
-        plt.imshow(sliceManu)
+        dice_.append(dice(sliceManu, slicePred))
+        # print(avgList(dice_))
 
-        plt.show()
+        if False:
+            plt.figure(figsize = (16, 8))
+
+            plt.subplot(1, 2, 1)
+            plt.imshow(slicePred)
+            
+            plt.subplot(1, 2, 2)
+            plt.imshow(sliceManu)
+            
+            plt.tight_layout()
+            # plt.show()
+            plt.close('all')
+    
+    print("Patient: {}, Session: {}, Dice: {}".format(patient, session, avgList(dice_)))
+
+# %%
+"""
+Some description of this experiment
+"""
+compute_dice(patient = "006", session = "02071134", epoch = "009")
+compute_dice(patient = "006", session = "02041952", epoch = "006")
+compute_dice(patient = "006", session = "02071921", epoch = "010")
+# compute_dice(patient = "007", session = "02071134", epoch = "009") # TODO: Segment this
+# compute_dice(patient = "013", session = "02071134", epoch = "009")
+# compute_dice(patient = "017", session = "02071134", epoch = "009")
+# compute_dice(patient = "020", session = "02071134", epoch = "009")
 
 print("Done!")
-# %%

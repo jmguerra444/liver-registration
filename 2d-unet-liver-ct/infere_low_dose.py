@@ -47,12 +47,13 @@ args = Arguments(settings["Arguments"])
 
 p = {"size" : 256,
      "channels" : 2,
-     "session" : "02071134",
-     "epoch" : "009",
-     "patient" : "006"
+     "session" : "02071921",
+     "epoch" : "010",
+     "patient" : "020"
     }
 
 """
+02071921-021.pt : (256, 256) (2) 50% Data with increased noise
 02071134-009.pt : (256, 256) (2) Trained with little no crop, rotations(10°), labeled + 30%, 30% corrupted with noise images
 02041952-006.pt : (512, 512) (2) Trained using crop and rotations(180°) with labeled + 30% non-labeled
 12181327-018.pt : (256, 256) (3) Trained using the plain decathlon set only with labeled images
@@ -88,8 +89,8 @@ with tqdm(total = volume.shape[2]) as t:
         
         image = np.float32(image_)
         image = tf.to_pil_image(image)
-        image = image.transpose(Image.FLIP_TOP_BOTTOM)
         image_ = image # Save image "status" to display
+        image = image.transpose(Image.FLIP_TOP_BOTTOM)
 
         image = tf.resize(image, size = (p["size"], p["size"]), interpolation = 2)
         image = tf.to_tensor(image)
@@ -101,9 +102,13 @@ with tqdm(total = volume.shape[2]) as t:
         pred = np.argmax(pred.cpu().detach().numpy()[0, :, :, :], 0)
         pred = resize(pred, (512, 512), preserve_range = True, order = 0)
         
+        image_ = np.asarray(image_.rotate(90))
+        pred = np.asarray(Image.fromarray(pred).transpose(Image.FLIP_TOP_BOTTOM).rotate(90))
+
         imsave("{}/{:03d}.png".format(resultsPath_mask, slice_), np.uint8(pred))
         
         if savePrediction:
+
             plt.figure(figsize = (16, 8))
 
             plt.subplot(1, 2, 1)
