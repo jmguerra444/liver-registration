@@ -67,13 +67,13 @@ trainImages, trainLabels, validImages, validLabels = splitDataset(args = args,
                                                                   batchSize = args.batch_size)
 
 trainOptions = DatasetOptions(imageSize = args.image_size,
-                              rotate = (-90, 90),
-                              crop = True,
+                              rotate = (-5, 5),
+                              crop = False,
                               merge = True,
                               noise = True)
 
 validOptions = DatasetOptions(imageSize = args.image_size,
-                              rotate = (-90, 90),
+                              rotate = (-5, 5),
                               crop = False,
                               merge = True,
                               noise = True)
