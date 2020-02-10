@@ -102,6 +102,7 @@ def compute_dice(patient, session, epoch):
 # %%
 """
 Some description of this experiment
+02091448-005.pt 
 """
 m1_ = [compute_dice(patient = "006", session = "02041952", epoch = "006"),
        compute_dice(patient = "007", session = "02041952", epoch = "006"),
@@ -130,5 +131,12 @@ m4_= [compute_dice(patient = "006", session = "02081335", epoch = "010"),
       compute_dice(patient = "017", session = "02081335", epoch = "010"),
       compute_dice(patient = "020", session = "02081335", epoch = "010")]
 print ("Average : {}".format(avgList(m4_)))
+
+m5_= [compute_dice(patient = "006", session = "02091448", epoch = "005"),
+      compute_dice(patient = "007", session = "02091448", epoch = "005"),
+      compute_dice(patient = "013", session = "02091448", epoch = "005"),
+      compute_dice(patient = "017", session = "02091448", epoch = "005"),
+      compute_dice(patient = "020", session = "02091448", epoch = "005")]
+print ("Average : {}".format(avgList(m5_)))
 
 print("Done!")

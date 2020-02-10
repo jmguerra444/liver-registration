@@ -125,6 +125,7 @@ def infere(p):
 
 # %%
 """
+02091448-005.pt : (256, 256) (2) No noise, small rotations (-5, 5)
 02081335-010.pt : (256, 256) (2) 50% Data with increased noise, with much more rotations and crops
 02071921-010.pt : (256, 256) (2) 50% Data with increased noise
 02071134-009.pt : (256, 256) (2) Trained with little no crop, rotations(10°), labeled + 30%, 30% corrupted with noise images
@@ -139,9 +140,19 @@ p = {"size" : 256,
      "patient" : "020"
     }
 
-infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : "006"})
-infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : "007"})
-infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : "013"})
-infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : "017"})
-infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : "020"})
 
+# New Model
+# infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "006"})
+# infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "007"})
+# infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "013"})
+# infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "017"})
+# infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "020"})
+# infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "021"})
+
+# New Patient
+infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "021"})
+infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : "021"})
+infere({"size" : 256, "channels" : 2, "session" : "02071921", "epoch" : "010", "patient" : "021"})
+infere({"size" : 256, "channels" : 2, "session" : "02071134", "epoch" : "009", "patient" : "021"})
+infere({"size" : 256, "channels" : 2, "session" : "02041952", "epoch" : "006", "patient" : "021"})
+infere({"size" : 256, "channels" : 2, "session" : "12181327", "epoch" : "018", "patient" : "021"})
