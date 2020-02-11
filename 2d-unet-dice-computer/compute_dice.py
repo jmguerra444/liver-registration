@@ -108,35 +108,40 @@ m1_ = [compute_dice(patient = "006", session = "02041952", epoch = "006"),
        compute_dice(patient = "007", session = "02041952", epoch = "006"),
        compute_dice(patient = "013", session = "02041952", epoch = "006"),
        compute_dice(patient = "017", session = "02041952", epoch = "006"),
-       compute_dice(patient = "020", session = "02041952", epoch = "006")]
+       compute_dice(patient = "020", session = "02041952", epoch = "006"),
+       compute_dice(patient = "021", session = "02041952", epoch = "006")]
 print ("Average : {}".format(avgList(m1_)))
 
 m2_ = [compute_dice(patient = "006", session = "02071134", epoch = "009"),
        compute_dice(patient = "007", session = "02071134", epoch = "009"),
        compute_dice(patient = "013", session = "02071134", epoch = "009"),
        compute_dice(patient = "017", session = "02071134", epoch = "009"),
-       compute_dice(patient = "020", session = "02071134", epoch = "009")]
+       compute_dice(patient = "020", session = "02071134", epoch = "009"),
+       compute_dice(patient = "021", session = "02071134", epoch = "009")]
 print ("Average : {}".format(avgList(m2_)))
 
 m3_ = [compute_dice(patient = "006", session = "02071921", epoch = "010"),
        compute_dice(patient = "007", session = "02071921", epoch = "010"),
        compute_dice(patient = "013", session = "02071921", epoch = "010"),
        compute_dice(patient = "017", session = "02071921", epoch = "010"),
-       compute_dice(patient = "020", session = "02071921", epoch = "010"),]
+       compute_dice(patient = "020", session = "02071921", epoch = "010"),
+       compute_dice(patient = "021", session = "02071921", epoch = "010")]
 print ("Average : {}".format(avgList(m3_)))
 
 m4_= [compute_dice(patient = "006", session = "02081335", epoch = "010"),
       compute_dice(patient = "007", session = "02081335", epoch = "010"),
       compute_dice(patient = "013", session = "02081335", epoch = "010"),
       compute_dice(patient = "017", session = "02081335", epoch = "010"),
-      compute_dice(patient = "020", session = "02081335", epoch = "010")]
+      compute_dice(patient = "020", session = "02081335", epoch = "010"),
+      compute_dice(patient = "021", session = "02081335", epoch = "010")]
 print ("Average : {}".format(avgList(m4_)))
 
 m5_= [compute_dice(patient = "006", session = "02091448", epoch = "005"),
       compute_dice(patient = "007", session = "02091448", epoch = "005"),
       compute_dice(patient = "013", session = "02091448", epoch = "005"),
       compute_dice(patient = "017", session = "02091448", epoch = "005"),
-      compute_dice(patient = "020", session = "02091448", epoch = "005")]
+      compute_dice(patient = "020", session = "02091448", epoch = "005"),
+      compute_dice(patient = "021", session = "02091448", epoch = "005")]
 print ("Average : {}".format(avgList(m5_)))
 
 print("Done!")

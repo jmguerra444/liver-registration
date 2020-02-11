@@ -154,5 +154,8 @@ infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "
 infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : "021"})
 infere({"size" : 256, "channels" : 2, "session" : "02071921", "epoch" : "010", "patient" : "021"})
 infere({"size" : 256, "channels" : 2, "session" : "02071134", "epoch" : "009", "patient" : "021"})
-infere({"size" : 256, "channels" : 2, "session" : "02041952", "epoch" : "006", "patient" : "021"})
-infere({"size" : 256, "channels" : 2, "session" : "12181327", "epoch" : "018", "patient" : "021"})
+infere({"size" : 512, "channels" : 2, "session" : "02041952", "epoch" : "006", "patient" : "021"})
+infere({"size" : 256, "channels" : 3, "session" : "12181327", "epoch" : "018", "patient" : "021"})
+
+
+# %%
