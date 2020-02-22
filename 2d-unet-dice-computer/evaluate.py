@@ -53,7 +53,7 @@ def compute_dice(patient, session, epoch):
             # plt.show()
             plt.close('all')
     
-    print("Patient: {}, Session: {}, Dice: {}".format(patient, session, mean(dice_)))
+    print("Patient: {}, Session: {}, Dice: {:.3f}".format(patient, session, mean(dice_)))
     return mean(dice_)
 
 # %%
@@ -75,8 +75,8 @@ for m in models:
     dices = []
     for p in patients:
         dices.append(compute_dice(patient = p, session = m[0], epoch = m[1]))
-    print ("Average : {}".format(mean(dices)))
-    print ("Deviation : {}".format(stdev(dices)))
+    print ("Average : {:.3f}".format(mean(dices)))
+    print ("Deviation : {:.3f}".format(stdev(dices)))
     print ("\n\n")
 
 print("Done!")
