@@ -43,7 +43,7 @@ with tqdm(total = len(imagesList)) as t:
         t.set_description("Slice : {}".format(counter))
 
         lottery = randint(0, 10)
-        if lottery < 6:
+        if lottery < 4:
             saveLowDose(image, image)
         
         t.update()
