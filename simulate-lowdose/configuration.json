@@ -1,0 +1,83 @@
+{
+    "__comment" : "This file includes all posible customizations according to experiment and machine",
+
+    "JorgeGuerra" : 
+    {
+        "decathlon-dataset-path" : "C:/Master thesis/master/data/medical-decathlon",
+        "decathlon-scanned-image" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-image.csv",
+        "decathlon-scanned-label" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-label.csv",
+        "decathlon-scanned-index" : "C:/Master thesis/master/data/medical-decathlon/scan/local-decathlon-scanned-index.csv",
+        "decathlon-output-png" : "C:/Master thesis/master/data/medical-decathlon-png",
+        "decathlon-output-tif" : "C:/Master thesis/master/data/medical-decathlon-tif",
+        "images-to-scan" : 10,
+        
+        "2d-unet-params" :
+        {
+            "in_channels" : 1,
+            "out_channels" : 2,
+            "initialFeatures" : 32
+        },
+
+        "Arguments" :
+        {
+            "batch_size" : 1,
+            "epochs" : 2,
+            "lr" : 0.001,
+            "workers" : 0,
+            "weights" : "./weights",
+            "logs" : "./logs",
+            "graphs" : "./graphs",
+            "image_size" : 64,
+            "device" : "cuda:0",
+            "train" : 1,
+            "validation" : 0.1
+        },
+
+        "data-augmentation" :
+        {
+            "crop" : 0,
+            "rotate" : 0,
+            "noise" : 0
+        }
+    },
+    
+    "remote-2" : 
+    {
+        "decathlon-dataset-path" : "/home/jorgemguerrag/decathlon-data",
+        "decathlon-scanned-image" : "/home/jorgemguerrag/decathlon-data/scan/local-decathlon-scanned-image.csv",
+        "decathlon-scanned-label" : "/home/jorgemguerrag/decathlon-data/scan/local-decathlon-scanned-label.csv",
+        "decathlon-scanned-index" : "/home/jorgemguerrag/decathlon-data/scan/local-decathlon-scanned-index.csv",
+        "decathlon-output-png" : "/home/jorgemguerrag/decathlon-data/decathlon-png",
+        "decathlon-output-tif" : "/home/jorgemguerrag/decathlon-data/decathlon-tif",
+        "images-to-scan" : "ALL",
+        
+        "2d-unet-params" :
+        {
+            "in_channels" : 1,
+            "out_channels" : 2,
+            "initialFeatures" : 32
+        },
+        
+        "Arguments" :
+        {
+            "batch_size" : 4,
+            "epochs" : 20,
+            "lr" : 0.001,
+            "workers" : 0,
+            "weights" : "./weights",
+            "logs" : "./logs",
+            "graphs" : "./graphs",
+            "image_size" : 256,
+            "device" : "cuda:0",
+            "train" : 1,
+            "validation" : 0.20
+        },
+        
+        "data-augmentation" :
+        {
+            "crop" : 0,
+            "rotate" : 10,
+            "noise" : 0
+        }
+    }
+}
