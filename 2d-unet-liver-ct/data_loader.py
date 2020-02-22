@@ -6,11 +6,12 @@ sys.path.append(os.path.abspath("../lib"))
 import json
 import random
 import numpy as np
-
 import matplotlib.pyplot as plt
+
 from os.path import join
 from skimage import io
 from skimage.io import imread
+from PIL import Image
 
 import torch
 from torch.utils.data.dataset import Dataset
@@ -34,7 +35,7 @@ class DatasetOptions:
                  rotate = None,             # Tuple with angles if you rotation desired (-20, 20)
                  crop = False,              # Weather it does crop
                  merge = True,              # Merges tumor into liver class
-                 noise = False
+                 noise = False              # Not implemented, simulate low-dose noise
                  ):
         self.imageSize = imageSize
         self.rotate = rotate
@@ -90,7 +91,13 @@ class DatasetHandler(Dataset):
         label = tf.to_pil_image(label)
 
         label = tf.adjust_brightness(label, 1 / 50)
-        
+
+        image = image.transpose(Image.FLIP_TOP_BOTTOM)
+        label = label.transpose(Image.FLIP_TOP_BOTTOM)
+
+        image = image.rotate(90)
+        label = label.rotate(90)
+
         # Resize
         if (self.options.imageSize != None):
             size = self.options.imageSize
