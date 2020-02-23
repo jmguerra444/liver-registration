@@ -39,7 +39,6 @@ def loadState(path, model, optmizer, args):
 
     return model, optmizer, epoch, validLoss, trainLoss
 
-# %%
 
 # Define experiment params
 
@@ -55,6 +54,7 @@ def infere(p):
     os.makedirs(resultsPath_mask, exist_ok = True)
 
     volume = dcmread(volumePath) # TODO: Latter make this also return the metadata so we can keep dims
+                                 # For whatever reason, this returns the image rotated
     settings["2d-unet-params"]["out_channels"] = p["channels"]
 
     unet = UNet(**settings["2d-unet-params"])
@@ -140,6 +140,10 @@ p = {"size" : 256,
      "patient" : "020"
     }
 
+models = [("02071134", "009"),
+          ("02071921", "010"),
+          ("02081335", "010"),
+          ("02091448", "005")]
 
 # New Model
 # infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "006"})
@@ -149,13 +153,14 @@ p = {"size" : 256,
 # infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "020"})
 # infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "021"})
 
-# New Patient
-infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "021"})
-infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : "021"})
-infere({"size" : 256, "channels" : 2, "session" : "02071921", "epoch" : "010", "patient" : "021"})
-infere({"size" : 256, "channels" : 2, "session" : "02071134", "epoch" : "009", "patient" : "021"})
-infere({"size" : 512, "channels" : 2, "session" : "02041952", "epoch" : "006", "patient" : "021"})
-infere({"size" : 256, "channels" : 3, "session" : "12181327", "epoch" : "018", "patient" : "021"})
+# # New Patient
+# infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "021"})
+# infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : "021"})
+# infere({"size" : 256, "channels" : 2, "session" : "02071921", "epoch" : "010", "patient" : "021"})
+# infere({"size" : 256, "channels" : 2, "session" : "02071134", "epoch" : "009", "patient" : "021"})
+# infere({"size" : 512, "channels" : 2, "session" : "02041952", "epoch" : "006", "patient" : "021"})
+# infere({"size" : 256, "channels" : 3, "session" : "12181327", "epoch" : "018", "patient" : "021"})
 
+infere({"size" : 256, "channels" : 2, "session" : "02071134", "epoch" : "009", "patient" : "021"})
 
 # %%
