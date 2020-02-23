@@ -62,21 +62,39 @@ Some description of this experiment
 02091448-005.pt
 """
 
-patients = ["006", "007", "013", "017", "020", "021"]
-models = [("02041952", "006"), 
+patients = [
+            "006", 
+            "007", 
+            "013", 
+            "017", 
+            "020", 
+            "021"
+            ]
+models = [
+          ("02041952", "006"), 
           ("02071134", "009"), 
           ("02071921", "010"), 
           ("02081335", "010"), 
           ("02091448", "005"),
+          ("02222159", "014"),
          ]
 
 
 for m in models:
-    dices = []
+    dices_models = []
+    dices_patients = [0] * len(patients)
+
+    i = 0 
     for p in patients:
-        dices.append(compute_dice(patient = p, session = m[0], epoch = m[1]))
-    print ("Average : {:.3f}".format(mean(dices)))
-    print ("Deviation : {:.3f}".format(stdev(dices)))
+        d = compute_dice(patient = p, session = m[0], epoch = m[1])
+        dices_models.append(d)
+        dices_patients[i] = dices_patients[i] + d
+        i += 1
+    print ("Average : {:.3f}".format(mean(dices_models)))
+    print ("Deviation : {:.3f}".format(stdev(dices_models)))
     print ("\n\n")
 
+for i in range(len(dices_patients)):
+    r = dices_patients[i] / len(models)
+    print("Patient : {}, mean dice : {:.3f}".format(patients[i], r))
 print("Done!")
