@@ -1,0 +1,11 @@
+version 1
+
+type neuralnetwork
+
+engine torch
+
+fully_convolutional 1
+
+resolution 1
+
+model_file	liver-lowdose.pt
