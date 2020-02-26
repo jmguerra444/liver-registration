@@ -1,0 +1,472 @@
+graph(%input : Tensor,
+      %521 : Tensor,
+      %522 : Tensor,
+      %523 : Tensor,
+      %524 : Tensor,
+      %525 : Tensor,
+      %526 : Tensor,
+      %527 : Tensor,
+      %528 : Tensor,
+      %529 : Tensor,
+      %530 : Tensor,
+      %531 : Tensor,
+      %532 : Tensor,
+      %533 : Tensor,
+      %534 : Tensor,
+      %535 : Tensor,
+      %536 : Tensor,
+      %537 : Tensor,
+      %538 : Tensor,
+      %539 : Tensor,
+      %540 : Tensor,
+      %541 : Tensor,
+      %542 : Tensor,
+      %543 : Tensor,
+      %544 : Tensor,
+      %545 : Tensor,
+      %546 : Tensor,
+      %547 : Tensor,
+      %548 : Tensor,
+      %549 : Tensor,
+      %550 : Tensor,
+      %551 : Tensor,
+      %552 : Tensor,
+      %553 : Tensor,
+      %554 : Tensor,
+      %555 : Tensor,
+      %556 : Tensor,
+      %557 : Tensor,
+      %558 : Tensor,
+      %559 : Tensor,
+      %560 : Tensor,
+      %561 : Tensor,
+      %562 : Tensor,
+      %563 : Tensor,
+      %564 : Tensor,
+      %565 : Tensor,
+      %566 : Tensor,
+      %567 : Tensor,
+      %568 : Tensor,
+      %569 : Tensor,
+      %570 : Tensor,
+      %571 : Tensor,
+      %572 : Tensor,
+      %573 : Tensor,
+      %574 : Tensor,
+      %575 : Tensor,
+      %576 : Tensor,
+      %577 : Tensor,
+      %578 : Tensor,
+      %579 : Tensor,
+      %580 : Tensor,
+      %581 : Tensor,
+      %582 : Tensor,
+      %583 : Tensor,
+      %584 : Tensor,
+      %585 : Tensor,
+      %586 : Tensor,
+      %587 : Tensor,
+      %588 : Tensor,
+      %589 : Tensor,
+      %590 : Tensor,
+      %591 : Tensor,
+      %592 : Tensor,
+      %593 : Tensor,
+      %594 : Tensor,
+      %595 : Tensor,
+      %596 : Tensor,
+      %597 : Tensor,
+      %598 : Tensor,
+      %599 : Tensor,
+      %600 : Tensor,
+      %601 : Tensor,
+      %602 : Tensor,
+      %603 : Tensor,
+      %604 : Tensor,
+      %605 : Tensor,
+      %606 : Tensor,
+      %607 : Tensor,
+      %608 : Tensor,
+      %609 : Tensor,
+      %610 : Tensor,
+      %611 : Tensor,
+      %612 : Tensor,
+      %613 : Tensor,
+      %614 : Tensor,
+      %615 : Tensor,
+      %616 : Tensor,
+      %617 : Tensor,
+      %618 : Tensor,
+      %619 : Tensor,
+      %620 : Tensor,
+      %621 : Tensor,
+      %622 : Tensor,
+      %623 : Tensor,
+      %624 : Tensor,
+      %625 : Tensor,
+      %626 : Tensor,
+      %627 : Tensor,
+      %628 : Tensor,
+      %629 : Tensor,
+      %630 : Tensor,
+      %631 : Tensor,
+      %632 : Tensor,
+      %633 : Tensor,
+      %634 : Tensor,
+      %635 : Tensor,
+      %636 : Tensor,
+      %637 : Tensor,
+      %638 : Tensor):
+  %2 : Long() = prim::Constant[value={1}]()
+  %3 : Tensor? = prim::Constant()
+  %4 : bool = prim::Constant[value=1]()
+  %5 : bool = prim::Constant[value=0]()
+  %6 : int = prim::Constant[value=1]()
+  %7 : int = prim::Constant[value=0]()
+  %8 : int = prim::Constant[value=2]()
+  %9 : int = prim::Constant[value=3]()
+  %10 : float = prim::Constant[value=0.1]()
+  %11 : float = prim::Constant[value=1e-05]()
+  %180 : int[] = prim::ListConstruct(%6, %6)
+  %181 : int[] = prim::ListConstruct(%6, %6)
+  %182 : int[] = prim::ListConstruct(%6, %6)
+  %183 : int[] = prim::ListConstruct(%7, %7)
+  %input0 : Tensor = aten::_convolution(%input, %638, %3, %180, %181, %182, %5, %183, %6, %5, %5, %4)
+  %185 : Tensor = aten::add_(%633, %2, %6)
+  %186 : int = aten::size(%input0, %7)
+  %size_prods : Tensor = prim::NumToTensor(%186)
+  %188 : int = aten::size(%input0, %8)
+  %189 : Tensor = prim::NumToTensor(%188)
+  %190 : int = aten::size(%input0, %9)
+  %191 : Tensor = prim::NumToTensor(%190)
+  %size_prods0 : Tensor = aten::mul_(%size_prods, %189)
+  %size_prods1 : Tensor = aten::mul_(%size_prods0, %191)
+  %input1 : Tensor = aten::batch_norm(%input0, %637, %636, %635, %634, %4, %10, %11, %4)
+  %input2 : Tensor = aten::relu_(%input1)
+  %196 : int[] = prim::ListConstruct(%6, %6)
+  %197 : int[] = prim::ListConstruct(%6, %6)
+  %198 : int[] = prim::ListConstruct(%6, %6)
+  %199 : int[] = prim::ListConstruct(%7, %7)
+  %input3 : Tensor = aten::_convolution(%input2, %632, %3, %196, %197, %198, %5, %199, %6, %5, %5, %4)
+  %201 : Tensor = aten::add_(%627, %2, %6)
+  %202 : int = aten::size(%input3, %7)
+  %size_prods2 : Tensor = prim::NumToTensor(%202)
+  %204 : int = aten::size(%input3, %8)
+  %205 : Tensor = prim::NumToTensor(%204)
+  %206 : int = aten::size(%input3, %9)
+  %207 : Tensor = prim::NumToTensor(%206)
+  %size_prods3 : Tensor = aten::mul_(%size_prods2, %205)
+  %size_prods4 : Tensor = aten::mul_(%size_prods3, %207)
+  %input4 : Tensor = aten::batch_norm(%input3, %631, %630, %629, %628, %4, %10, %11, %4)
+  %input5 : Tensor = aten::relu_(%input4)
+  %212 : int[] = prim::ListConstruct(%8, %8)
+  %213 : int[] = prim::ListConstruct(%8, %8)
+  %214 : int[] = prim::ListConstruct(%7, %7)
+  %215 : int[] = prim::ListConstruct(%6, %6)
+  %input6 : Tensor = aten::max_pool2d(%input5, %212, %213, %214, %215, %5)
+  %217 : int[] = prim::ListConstruct(%6, %6)
+  %218 : int[] = prim::ListConstruct(%6, %6)
+  %219 : int[] = prim::ListConstruct(%6, %6)
+  %220 : int[] = prim::ListConstruct(%7, %7)
+  %input7 : Tensor = aten::_convolution(%input6, %626, %3, %217, %218, %219, %5, %220, %6, %5, %5, %4)
+  %222 : Tensor = aten::add_(%621, %2, %6)
+  %223 : int = aten::size(%input7, %7)
+  %size_prods5 : Tensor = prim::NumToTensor(%223)
+  %225 : int = aten::size(%input7, %8)
+  %226 : Tensor = prim::NumToTensor(%225)
+  %227 : int = aten::size(%input7, %9)
+  %228 : Tensor = prim::NumToTensor(%227)
+  %size_prods6 : Tensor = aten::mul_(%size_prods5, %226)
+  %size_prods7 : Tensor = aten::mul_(%size_prods6, %228)
+  %input8 : Tensor = aten::batch_norm(%input7, %625, %624, %623, %622, %4, %10, %11, %4)
+  %input9 : Tensor = aten::relu_(%input8)
+  %233 : int[] = prim::ListConstruct(%6, %6)
+  %234 : int[] = prim::ListConstruct(%6, %6)
+  %235 : int[] = prim::ListConstruct(%6, %6)
+  %236 : int[] = prim::ListConstruct(%7, %7)
+  %input10 : Tensor = aten::_convolution(%input9, %620, %3, %233, %234, %235, %5, %236, %6, %5, %5, %4)
+  %238 : Tensor = aten::add_(%615, %2, %6)
+  %239 : int = aten::size(%input10, %7)
+  %size_prods8 : Tensor = prim::NumToTensor(%239)
+  %241 : int = aten::size(%input10, %8)
+  %242 : Tensor = prim::NumToTensor(%241)
+  %243 : int = aten::size(%input10, %9)
+  %244 : Tensor = prim::NumToTensor(%243)
+  %size_prods9 : Tensor = aten::mul_(%size_prods8, %242)
+  %size_prods10 : Tensor = aten::mul_(%size_prods9, %244)
+  %input11 : Tensor = aten::batch_norm(%input10, %619, %618, %617, %616, %4, %10, %11, %4)
+  %input12 : Tensor = aten::relu_(%input11)
+  %249 : int[] = prim::ListConstruct(%8, %8)
+  %250 : int[] = prim::ListConstruct(%8, %8)
+  %251 : int[] = prim::ListConstruct(%7, %7)
+  %252 : int[] = prim::ListConstruct(%6, %6)
+  %input13 : Tensor = aten::max_pool2d(%input12, %249, %250, %251, %252, %5)
+  %254 : int[] = prim::ListConstruct(%6, %6)
+  %255 : int[] = prim::ListConstruct(%6, %6)
+  %256 : int[] = prim::ListConstruct(%6, %6)
+  %257 : int[] = prim::ListConstruct(%7, %7)
+  %input14 : Tensor = aten::_convolution(%input13, %614, %3, %254, %255, %256, %5, %257, %6, %5, %5, %4)
+  %259 : Tensor = aten::add_(%609, %2, %6)
+  %260 : int = aten::size(%input14, %7)
+  %size_prods11 : Tensor = prim::NumToTensor(%260)
+  %262 : int = aten::size(%input14, %8)
+  %263 : Tensor = prim::NumToTensor(%262)
+  %264 : int = aten::size(%input14, %9)
+  %265 : Tensor = prim::NumToTensor(%264)
+  %size_prods12 : Tensor = aten::mul_(%size_prods11, %263)
+  %size_prods13 : Tensor = aten::mul_(%size_prods12, %265)
+  %input15 : Tensor = aten::batch_norm(%input14, %613, %612, %611, %610, %4, %10, %11, %4)
+  %input16 : Tensor = aten::relu_(%input15)
+  %270 : int[] = prim::ListConstruct(%6, %6)
+  %271 : int[] = prim::ListConstruct(%6, %6)
+  %272 : int[] = prim::ListConstruct(%6, %6)
+  %273 : int[] = prim::ListConstruct(%7, %7)
+  %input17 : Tensor = aten::_convolution(%input16, %608, %3, %270, %271, %272, %5, %273, %6, %5, %5, %4)
+  %275 : Tensor = aten::add_(%603, %2, %6)
+  %276 : int = aten::size(%input17, %7)
+  %size_prods14 : Tensor = prim::NumToTensor(%276)
+  %278 : int = aten::size(%input17, %8)
+  %279 : Tensor = prim::NumToTensor(%278)
+  %280 : int = aten::size(%input17, %9)
+  %281 : Tensor = prim::NumToTensor(%280)
+  %size_prods15 : Tensor = aten::mul_(%size_prods14, %279)
+  %size_prods16 : Tensor = aten::mul_(%size_prods15, %281)
+  %input18 : Tensor = aten::batch_norm(%input17, %607, %606, %605, %604, %4, %10, %11, %4)
+  %input19 : Tensor = aten::relu_(%input18)
+  %286 : int[] = prim::ListConstruct(%8, %8)
+  %287 : int[] = prim::ListConstruct(%8, %8)
+  %288 : int[] = prim::ListConstruct(%7, %7)
+  %289 : int[] = prim::ListConstruct(%6, %6)
+  %input20 : Tensor = aten::max_pool2d(%input19, %286, %287, %288, %289, %5)
+  %291 : int[] = prim::ListConstruct(%6, %6)
+  %292 : int[] = prim::ListConstruct(%6, %6)
+  %293 : int[] = prim::ListConstruct(%6, %6)
+  %294 : int[] = prim::ListConstruct(%7, %7)
+  %input21 : Tensor = aten::_convolution(%input20, %602, %3, %291, %292, %293, %5, %294, %6, %5, %5, %4)
+  %296 : Tensor = aten::add_(%597, %2, %6)
+  %297 : int = aten::size(%input21, %7)
+  %size_prods17 : Tensor = prim::NumToTensor(%297)
+  %299 : int = aten::size(%input21, %8)
+  %300 : Tensor = prim::NumToTensor(%299)
+  %301 : int = aten::size(%input21, %9)
+  %302 : Tensor = prim::NumToTensor(%301)
+  %size_prods18 : Tensor = aten::mul_(%size_prods17, %300)
+  %size_prods19 : Tensor = aten::mul_(%size_prods18, %302)
+  %input22 : Tensor = aten::batch_norm(%input21, %601, %600, %599, %598, %4, %10, %11, %4)
+  %input23 : Tensor = aten::relu_(%input22)
+  %307 : int[] = prim::ListConstruct(%6, %6)
+  %308 : int[] = prim::ListConstruct(%6, %6)
+  %309 : int[] = prim::ListConstruct(%6, %6)
+  %310 : int[] = prim::ListConstruct(%7, %7)
+  %input24 : Tensor = aten::_convolution(%input23, %596, %3, %307, %308, %309, %5, %310, %6, %5, %5, %4)
+  %312 : Tensor = aten::add_(%591, %2, %6)
+  %313 : int = aten::size(%input24, %7)
+  %size_prods20 : Tensor = prim::NumToTensor(%313)
+  %315 : int = aten::size(%input24, %8)
+  %316 : Tensor = prim::NumToTensor(%315)
+  %317 : int = aten::size(%input24, %9)
+  %318 : Tensor = prim::NumToTensor(%317)
+  %size_prods21 : Tensor = aten::mul_(%size_prods20, %316)
+  %size_prods22 : Tensor = aten::mul_(%size_prods21, %318)
+  %input25 : Tensor = aten::batch_norm(%input24, %595, %594, %593, %592, %4, %10, %11, %4)
+  %input26 : Tensor = aten::relu_(%input25)
+  %323 : int[] = prim::ListConstruct(%8, %8)
+  %324 : int[] = prim::ListConstruct(%8, %8)
+  %325 : int[] = prim::ListConstruct(%7, %7)
+  %326 : int[] = prim::ListConstruct(%6, %6)
+  %input27 : Tensor = aten::max_pool2d(%input26, %323, %324, %325, %326, %5)
+  %328 : int[] = prim::ListConstruct(%6, %6)
+  %329 : int[] = prim::ListConstruct(%6, %6)
+  %330 : int[] = prim::ListConstruct(%6, %6)
+  %331 : int[] = prim::ListConstruct(%7, %7)
+  %input28 : Tensor = aten::_convolution(%input27, %590, %3, %328, %329, %330, %5, %331, %6, %5, %5, %4)
+  %333 : Tensor = aten::add_(%585, %2, %6)
+  %334 : int = aten::size(%input28, %7)
+  %size_prods23 : Tensor = prim::NumToTensor(%334)
+  %336 : int = aten::size(%input28, %8)
+  %337 : Tensor = prim::NumToTensor(%336)
+  %338 : int = aten::size(%input28, %9)
+  %339 : Tensor = prim::NumToTensor(%338)
+  %size_prods24 : Tensor = aten::mul_(%size_prods23, %337)
+  %size_prods25 : Tensor = aten::mul_(%size_prods24, %339)
+  %input29 : Tensor = aten::batch_norm(%input28, %589, %588, %587, %586, %4, %10, %11, %4)
+  %input30 : Tensor = aten::relu_(%input29)
+  %344 : int[] = prim::ListConstruct(%6, %6)
+  %345 : int[] = prim::ListConstruct(%6, %6)
+  %346 : int[] = prim::ListConstruct(%6, %6)
+  %347 : int[] = prim::ListConstruct(%7, %7)
+  %input31 : Tensor = aten::_convolution(%input30, %584, %3, %344, %345, %346, %5, %347, %6, %5, %5, %4)
+  %349 : Tensor = aten::add_(%579, %2, %6)
+  %350 : int = aten::size(%input31, %7)
+  %size_prods26 : Tensor = prim::NumToTensor(%350)
+  %352 : int = aten::size(%input31, %8)
+  %353 : Tensor = prim::NumToTensor(%352)
+  %354 : int = aten::size(%input31, %9)
+  %355 : Tensor = prim::NumToTensor(%354)
+  %size_prods27 : Tensor = aten::mul_(%size_prods26, %353)
+  %size_prods28 : Tensor = aten::mul_(%size_prods27, %355)
+  %input32 : Tensor = aten::batch_norm(%input31, %583, %582, %581, %580, %4, %10, %11, %4)
+  %input33 : Tensor = aten::relu_(%input32)
+  %360 : int[] = prim::ListConstruct(%8, %8)
+  %361 : int[] = prim::ListConstruct(%7, %7)
+  %362 : int[] = prim::ListConstruct(%6, %6)
+  %363 : int[] = prim::ListConstruct(%7, %7)
+  %dec4 : Tensor = aten::_convolution(%input33, %578, %577, %360, %361, %362, %4, %363, %6, %5, %5, %4)
+  %365 : Tensor[] = prim::ListConstruct(%dec4, %input26)
+  %input34 : Tensor = aten::cat(%365, %6)
+  %367 : int[] = prim::ListConstruct(%6, %6)
+  %368 : int[] = prim::ListConstruct(%6, %6)
+  %369 : int[] = prim::ListConstruct(%6, %6)
+  %370 : int[] = prim::ListConstruct(%7, %7)
+  %input35 : Tensor = aten::_convolution(%input34, %576, %3, %367, %368, %369, %5, %370, %6, %5, %5, %4)
+  %372 : Tensor = aten::add_(%571, %2, %6)
+  %373 : int = aten::size(%input35, %7)
+  %size_prods29 : Tensor = prim::NumToTensor(%373)
+  %375 : int = aten::size(%input35, %8)
+  %376 : Tensor = prim::NumToTensor(%375)
+  %377 : int = aten::size(%input35, %9)
+  %378 : Tensor = prim::NumToTensor(%377)
+  %size_prods30 : Tensor = aten::mul_(%size_prods29, %376)
+  %size_prods31 : Tensor = aten::mul_(%size_prods30, %378)
+  %input36 : Tensor = aten::batch_norm(%input35, %575, %574, %573, %572, %4, %10, %11, %4)
+  %input37 : Tensor = aten::relu_(%input36)
+  %383 : int[] = prim::ListConstruct(%6, %6)
+  %384 : int[] = prim::ListConstruct(%6, %6)
+  %385 : int[] = prim::ListConstruct(%6, %6)
+  %386 : int[] = prim::ListConstruct(%7, %7)
+  %input38 : Tensor = aten::_convolution(%input37, %570, %3, %383, %384, %385, %5, %386, %6, %5, %5, %4)
+  %388 : Tensor = aten::add_(%565, %2, %6)
+  %389 : int = aten::size(%input38, %7)
+  %size_prods32 : Tensor = prim::NumToTensor(%389)
+  %391 : int = aten::size(%input38, %8)
+  %392 : Tensor = prim::NumToTensor(%391)
+  %393 : int = aten::size(%input38, %9)
+  %394 : Tensor = prim::NumToTensor(%393)
+  %size_prods33 : Tensor = aten::mul_(%size_prods32, %392)
+  %size_prods34 : Tensor = aten::mul_(%size_prods33, %394)
+  %input39 : Tensor = aten::batch_norm(%input38, %569, %568, %567, %566, %4, %10, %11, %4)
+  %input40 : Tensor = aten::relu_(%input39)
+  %399 : int[] = prim::ListConstruct(%8, %8)
+  %400 : int[] = prim::ListConstruct(%7, %7)
+  %401 : int[] = prim::ListConstruct(%6, %6)
+  %402 : int[] = prim::ListConstruct(%7, %7)
+  %dec3 : Tensor = aten::_convolution(%input40, %564, %563, %399, %400, %401, %4, %402, %6, %5, %5, %4)
+  %404 : Tensor[] = prim::ListConstruct(%dec3, %input19)
+  %input41 : Tensor = aten::cat(%404, %6)
+  %406 : int[] = prim::ListConstruct(%6, %6)
+  %407 : int[] = prim::ListConstruct(%6, %6)
+  %408 : int[] = prim::ListConstruct(%6, %6)
+  %409 : int[] = prim::ListConstruct(%7, %7)
+  %input42 : Tensor = aten::_convolution(%input41, %562, %3, %406, %407, %408, %5, %409, %6, %5, %5, %4)
+  %411 : Tensor = aten::add_(%557, %2, %6)
+  %412 : int = aten::size(%input42, %7)
+  %size_prods35 : Tensor = prim::NumToTensor(%412)
+  %414 : int = aten::size(%input42, %8)
+  %415 : Tensor = prim::NumToTensor(%414)
+  %416 : int = aten::size(%input42, %9)
+  %417 : Tensor = prim::NumToTensor(%416)
+  %size_prods36 : Tensor = aten::mul_(%size_prods35, %415)
+  %size_prods37 : Tensor = aten::mul_(%size_prods36, %417)
+  %input43 : Tensor = aten::batch_norm(%input42, %561, %560, %559, %558, %4, %10, %11, %4)
+  %input44 : Tensor = aten::relu_(%input43)
+  %422 : int[] = prim::ListConstruct(%6, %6)
+  %423 : int[] = prim::ListConstruct(%6, %6)
+  %424 : int[] = prim::ListConstruct(%6, %6)
+  %425 : int[] = prim::ListConstruct(%7, %7)
+  %input45 : Tensor = aten::_convolution(%input44, %556, %3, %422, %423, %424, %5, %425, %6, %5, %5, %4)
+  %427 : Tensor = aten::add_(%551, %2, %6)
+  %428 : int = aten::size(%input45, %7)
+  %size_prods38 : Tensor = prim::NumToTensor(%428)
+  %430 : int = aten::size(%input45, %8)
+  %431 : Tensor = prim::NumToTensor(%430)
+  %432 : int = aten::size(%input45, %9)
+  %433 : Tensor = prim::NumToTensor(%432)
+  %size_prods39 : Tensor = aten::mul_(%size_prods38, %431)
+  %size_prods40 : Tensor = aten::mul_(%size_prods39, %433)
+  %input46 : Tensor = aten::batch_norm(%input45, %555, %554, %553, %552, %4, %10, %11, %4)
+  %input47 : Tensor = aten::relu_(%input46)
+  %438 : int[] = prim::ListConstruct(%8, %8)
+  %439 : int[] = prim::ListConstruct(%7, %7)
+  %440 : int[] = prim::ListConstruct(%6, %6)
+  %441 : int[] = prim::ListConstruct(%7, %7)
+  %dec2 : Tensor = aten::_convolution(%input47, %550, %549, %438, %439, %440, %4, %441, %6, %5, %5, %4)
+  %443 : Tensor[] = prim::ListConstruct(%dec2, %input12)
+  %input48 : Tensor = aten::cat(%443, %6)
+  %445 : int[] = prim::ListConstruct(%6, %6)
+  %446 : int[] = prim::ListConstruct(%6, %6)
+  %447 : int[] = prim::ListConstruct(%6, %6)
+  %448 : int[] = prim::ListConstruct(%7, %7)
+  %input49 : Tensor = aten::_convolution(%input48, %548, %3, %445, %446, %447, %5, %448, %6, %5, %5, %4)
+  %450 : Tensor = aten::add_(%543, %2, %6)
+  %451 : int = aten::size(%input49, %7)
+  %size_prods41 : Tensor = prim::NumToTensor(%451)
+  %453 : int = aten::size(%input49, %8)
+  %454 : Tensor = prim::NumToTensor(%453)
+  %455 : int = aten::size(%input49, %9)
+  %456 : Tensor = prim::NumToTensor(%455)
+  %size_prods42 : Tensor = aten::mul_(%size_prods41, %454)
+  %size_prods43 : Tensor = aten::mul_(%size_prods42, %456)
+  %input50 : Tensor = aten::batch_norm(%input49, %547, %546, %545, %544, %4, %10, %11, %4)
+  %input51 : Tensor = aten::relu_(%input50)
+  %461 : int[] = prim::ListConstruct(%6, %6)
+  %462 : int[] = prim::ListConstruct(%6, %6)
+  %463 : int[] = prim::ListConstruct(%6, %6)
+  %464 : int[] = prim::ListConstruct(%7, %7)
+  %input52 : Tensor = aten::_convolution(%input51, %542, %3, %461, %462, %463, %5, %464, %6, %5, %5, %4)
+  %466 : Tensor = aten::add_(%537, %2, %6)
+  %467 : int = aten::size(%input52, %7)
+  %size_prods44 : Tensor = prim::NumToTensor(%467)
+  %469 : int = aten::size(%input52, %8)
+  %470 : Tensor = prim::NumToTensor(%469)
+  %471 : int = aten::size(%input52, %9)
+  %472 : Tensor = prim::NumToTensor(%471)
+  %size_prods45 : Tensor = aten::mul_(%size_prods44, %470)
+  %size_prods46 : Tensor = aten::mul_(%size_prods45, %472)
+  %input53 : Tensor = aten::batch_norm(%input52, %541, %540, %539, %538, %4, %10, %11, %4)
+  %input54 : Tensor = aten::relu_(%input53)
+  %477 : int[] = prim::ListConstruct(%8, %8)
+  %478 : int[] = prim::ListConstruct(%7, %7)
+  %479 : int[] = prim::ListConstruct(%6, %6)
+  %480 : int[] = prim::ListConstruct(%7, %7)
+  %dec1 : Tensor = aten::_convolution(%input54, %536, %535, %477, %478, %479, %4, %480, %6, %5, %5, %4)
+  %482 : Tensor[] = prim::ListConstruct(%dec1, %input5)
+  %input55 : Tensor = aten::cat(%482, %6)
+  %484 : int[] = prim::ListConstruct(%6, %6)
+  %485 : int[] = prim::ListConstruct(%6, %6)
+  %486 : int[] = prim::ListConstruct(%6, %6)
+  %487 : int[] = prim::ListConstruct(%7, %7)
+  %input56 : Tensor = aten::_convolution(%input55, %534, %3, %484, %485, %486, %5, %487, %6, %5, %5, %4)
+  %489 : Tensor = aten::add_(%529, %2, %6)
+  %490 : int = aten::size(%input56, %7)
+  %size_prods47 : Tensor = prim::NumToTensor(%490)
+  %492 : int = aten::size(%input56, %8)
+  %493 : Tensor = prim::NumToTensor(%492)
+  %494 : int = aten::size(%input56, %9)
+  %495 : Tensor = prim::NumToTensor(%494)
+  %size_prods48 : Tensor = aten::mul_(%size_prods47, %493)
+  %size_prods49 : Tensor = aten::mul_(%size_prods48, %495)
+  %input57 : Tensor = aten::batch_norm(%input56, %533, %532, %531, %530, %4, %10, %11, %4)
+  %input58 : Tensor = aten::relu_(%input57)
+  %500 : int[] = prim::ListConstruct(%6, %6)
+  %501 : int[] = prim::ListConstruct(%6, %6)
+  %502 : int[] = prim::ListConstruct(%6, %6)
+  %503 : int[] = prim::ListConstruct(%7, %7)
+  %input59 : Tensor = aten::_convolution(%input58, %528, %3, %500, %501, %502, %5, %503, %6, %5, %5, %4)
+  %505 : Tensor = aten::add_(%523, %2, %6)
+  %506 : int = aten::size(%input59, %7)
+  %size_prods50 : Tensor = prim::NumToTensor(%506)
+  %508 : int = aten::size(%input59, %8)
+  %509 : Tensor = prim::NumToTensor(%508)
+  %510 : int = aten::size(%input59, %9)
+  %511 : Tensor = prim::NumToTensor(%510)
+  %size_prods51 : Tensor = aten::mul_(%size_prods50, %509)
+  %size_prods52 : Tensor = aten::mul_(%size_prods51, %511)
+  %input60 : Tensor = aten::batch_norm(%input59, %527, %526, %525, %524, %4, %10, %11, %4)
+  %input61 : Tensor = aten::relu_(%input60)
+  %516 : int[] = prim::ListConstruct(%6, %6)
+  %517 : int[] = prim::ListConstruct(%7, %7)
+  %518 : int[] = prim::ListConstruct(%6, %6)
+  %519 : int[] = prim::ListConstruct(%7, %7)
+  %520 : Tensor = aten::_convolution(%input61, %522, %521, %516, %517, %518, %5, %519, %6, %5, %5, %4)
+  return (%520)
+
