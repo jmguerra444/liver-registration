@@ -67,6 +67,10 @@ class FileEdit(QLineEdit):
                 self.dropped.emit(filepath, "log")
                 return
 
+            if filepath[-4:] == ".dcm" or filepath[-4:] == ".DCM":
+                self.dropped.emit(filepath, "dcm")
+                return
+
             self.dropped.emit(filepath, "none")
 
 

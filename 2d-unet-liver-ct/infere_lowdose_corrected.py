@@ -25,9 +25,6 @@ from helper import Arguments
 from miscellaneous import dcmread
 from visual import viewer
 
-def infere(volume, model, optimizer, args):
-    pass
-
 def loadState(path, model, optmizer, args):
     
     checkpoint = torch.load(path)
@@ -75,7 +72,7 @@ def infere(p):
             
             image = np.float32(image_)
             image = tf.to_pil_image(image)
-            image = image.rotate(90)
+            image = image.rotate(90)   # vtk loads the image rotated for some reason.. like wtf brah
             image_ = image # Save image "status" to display
 
             image = tf.resize(image, size = (p["size"], p["size"]), interpolation = 2)
