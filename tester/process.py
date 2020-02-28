@@ -29,7 +29,8 @@ class LoadingThread(QThread):
             data = self.filename
         
         if self.filetype == "dcm":
-            data = np.asarray(pydicom.dcmread(self.filename).pixel_array)
+            d = pydicom.dcmread(self.filename)
+            data = d.pixel_array + d.RescaleIntercept
         
         self.loaded.emit(data, self.filetype)
 

@@ -11,7 +11,6 @@ class KeyMonitor(QObject):
 
     def on_release(self,key):
         if type(key) == keyboard._win32.KeyCode:
-            print(key.char)
             self.letterPressed.emit(key.char.lower())
 
     def stop_monitoring(self):

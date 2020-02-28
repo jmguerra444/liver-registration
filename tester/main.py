@@ -86,19 +86,15 @@ class Window(QMainWindow):
             log_reader(data)
         
         if datatype == "dcm":
-
             self.showWait()
             image_, pred = infere(data)
             self.hideWait()
-
             plt.subplot(1, 2, 1)
             plt.imshow(image_, vmin = -100, vmax = 400)
             plt.axis('off')
-
             plt.subplot(1, 2, 2)
             plt.imshow(pred, vmin = 0, vmax = 2)
             plt.axis('off')
-
             plt.show()
     
     def appendText(self, text, color = "black"):
