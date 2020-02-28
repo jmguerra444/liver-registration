@@ -46,7 +46,7 @@ def run(model : UNet,
             scheduler.step(validLoss, epoch)
             
             # Test and save some Images
-            test(model, args, loaderValid, 3, epoch)
+            test(model, args, loaderValid, samples = 5, epoch = epoch)
             plt.close("all")
             # Add LR scheduler maybe
             logger.info("[E]: Epoch : {}, Train Loss {:05.4f}, Validation Loss {:05.4f}".format(epoch, trainLoss, validLoss))
@@ -97,8 +97,7 @@ def train(model : UNet,
             lossValue.update(loss.item())
             
             if i % int(len(dataLoader) / savesPerEpoch) == 0:
-                logger.info("[LA]: {}".format(lossValue()), c = False)
-                logger.info("[L]: {}".format(loss), c = False)
+                logger.info("[L]: {}".format(lossValue()), c = False)
 
             t.set_postfix(loss = "{:05.6f}".format(lossValue()))
             t.update()
@@ -133,12 +132,9 @@ def validate(model : UNet,
             d2_Value.update(dices[1].item())
             
             if i % int(len(dataLoader) / savesPerEpoch) == 0:
-                logger.info("[VA]: {}".format(lossValue()), c = False)
-                logger.info("[D1A]: {}".format(d1_Value()), c = False)
-                logger.info("[D2A]: {}".format(d2_Value()), c = False)
-                logger.info("[V]: {}".format(loss), c = False)
-                logger.info("[D1]: {}".format(dices[0]), c = False)
-                logger.info("[D2]: {}".format(dices[1]), c = False)
+                logger.info("[V]: {}".format(lossValue()), c = False)
+                logger.info("[D1]: {}".format(d1_Value()), c = False)
+                logger.info("[D2]: {}".format(d2_Value()), c = False)
             
             t.set_postfix(loss = "{:05.6f}".format(lossValue()))
             t.update()

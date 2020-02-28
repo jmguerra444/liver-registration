@@ -66,14 +66,15 @@ trainImages, trainLabels, validImages, validLabels = splitDataset(args = args,
                                                                   labelsPath = labelsPath,
                                                                   batchSize = args.batch_size)
 
+augmentation = settings["data-augmentation"]
 trainOptions = DatasetOptions(imageSize = args.image_size,
-                              rotate = (-180, 180),
-                              crop = True,
+                              rotate = (-augmentation["rotate"], augmentation["rotate"]),
+                              crop = False,
                               merge = True,
                               noise = True)
 
 validOptions = DatasetOptions(imageSize = args.image_size,
-                              rotate = (-180, 180),
+                              rotate = (0, 0),
                               crop = False,
                               merge = True,
                               noise = True)
@@ -120,6 +121,5 @@ if __name__ == '__main__':
         optimizer,
         logger,
         args)
-
 
 # %%

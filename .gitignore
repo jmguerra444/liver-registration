@@ -28,3 +28,8 @@ test.py
 data
 exported-results
 examples
+2d-unet-dice-computer/LD_MANUAL
+
+# Some created images
+*.tif
+*.dcm

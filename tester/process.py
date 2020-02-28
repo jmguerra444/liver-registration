@@ -4,6 +4,7 @@ from PyQt5.QtCore import (QThread,
 import nibabel
 import numpy as np
 from imageio import imread
+import pydicom
 
 from viewer import viewer
 
@@ -26,6 +27,10 @@ class LoadingThread(QThread):
         
         if self.filetype == "log":
             data = self.filename
+        
+        if self.filetype == "dcm":
+            d = pydicom.dcmread(self.filename)
+            data = d.pixel_array + d.RescaleIntercept
         
         self.loaded.emit(data, self.filetype)
 
