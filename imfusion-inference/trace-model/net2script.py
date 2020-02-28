@@ -21,5 +21,5 @@ ph = torch.zeros(1, 1, 256, 256)
 traced_net = torch.jit.trace(unet, ph)
 traced_net.save("lowdose-liver.pt")
 
-print(traced_net.code)
-print(traced_net.graph)
+# print(traced_net.code)
+# print(traced_net.graph)
