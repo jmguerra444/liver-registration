@@ -18,7 +18,7 @@ class Unet3D(torch.nn.Module):
         self.traced_net = torch.jit.trace(unet, p)
 
     def forward(self, x):
-        out = torch.zeros(1, 2, 5, 256, 256)
+        out = torch.zeros(1, 2, 20, 256, 256)
         for i in range(x.size(2)):
             im = x[:, :, i, :, :]
             pred = unet(im)
@@ -35,6 +35,8 @@ args = Arguments(settings["Arguments"])
 unet = UNet(**settings["2d-unet-params"])
 optimizer = optim.Adam(unet.parameters())
 unet, optimizer, epoch, trainLoss, validLoss = loadState(model_path, unet, optimizer, args)
+# unet.cuda()
+# unet.eval()
 
 # imag = torch.zeros(1, 1, 256, 256)
 # traced_net = torch.jit.trace(unet, imag)
@@ -42,7 +44,10 @@ unet, optimizer, epoch, trainLoss, validLoss = loadState(model_path, unet, optim
 # print(traced_net.code)
 # print(traced_net.graph)
 
-volu = torch.zeros(1, 1, 5, 256, 256)
+volu = torch.zeros(1, 1, 20, 256, 256)
+# volu = volu.to('cuda:0')
 unet3 = Unet3D(unet)
+
+
 traced_unet3 = torch.jit.trace(unet3, volu)
-traced_unet3.save("3d-TEST.pt")
+traced_unet3.save("3d-TEST-50.pt")
