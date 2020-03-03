@@ -41,7 +41,7 @@ target_link_libraries(SirtPlugin PRIVATE
 )
 
 # Copy kernels to binary
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/model/lowdose-liver.pt" "${CMAKE_CURRENT_BINARY_DIR}/Release/lowdose-liver.pt" COPYONLY)
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/model/lowdose-liver.pt" "${CMAKE_CURRENT_BINARY_DIR}/bin/Release/lowdose-liver.pt" COPYONLY)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/model/lowdose-liver.configtxt" "${CMAKE_CURRENT_BINARY_DIR}/bin/Release/lowdose-liver.configtxt" COPYONLY)
 
 # Define output target directories and provide instructions on how to launch
