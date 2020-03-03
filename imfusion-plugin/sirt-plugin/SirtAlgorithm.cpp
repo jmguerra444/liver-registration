@@ -1,4 +1,4 @@
-#include "DemoAlgorithm.h"
+#include "SirtAlgorithm.h"
 
 #include <ImFusion/Base/DataList.h>
 #include <ImFusion/Base/MemImage.h>

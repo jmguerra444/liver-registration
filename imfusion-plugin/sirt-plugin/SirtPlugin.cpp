@@ -1,6 +1,6 @@
-#include "DemoPlugin.h"
+#include "SirtPlugin.h"
 
-#include "DemoFactory.h"
+#include "SirtFactory.h"
 
 // Export free factory function to instantiate plugin
 #ifdef WIN32

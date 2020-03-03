@@ -16,19 +16,19 @@ set(CMAKE_AUTOUIC ON)
 
 # Define and configure the CMake target
 set(Sources
-    DemoAlgorithm.cpp
-    DemoController.cpp
-    DemoFactory.cpp
-    DemoPlugin.cpp
+    SirtAlgorithm.cpp
+    SirtController.cpp
+    SirtFactory.cpp
+    SirtPlugin.cpp
 )
 set(Headers
-	DemoAlgorithm.h
-	DemoController.h
-	DemoFactory.h
-	DemoPlugin.h
+	SirtAlgorithm.h
+	SirtController.h
+	SirtFactory.h
+	SirtPlugin.h
 )
 set(UiSources
-	DemoController.ui
+	SirtController.ui
 )
 
 # Define target library

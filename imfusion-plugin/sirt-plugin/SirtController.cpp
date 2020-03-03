@@ -1,12 +1,12 @@
-#include "DemoController.h"
+#include "SirtController.h"
 
-#include "DemoAlgorithm.h"
+#include "SirtAlgorithm.h"
 
 #include <ImFusion/Base/DataModel.h>
 #include <ImFusion/Base/SharedImageSet.h>
 #include <ImFusion/GUI/MainWindowBase.h>
 
-#include "ui_DemoController.h"
+#include "ui_SirtController.h"
 
 
 namespace ImFusion

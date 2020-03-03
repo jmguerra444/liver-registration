@@ -1,7 +1,7 @@
-#include "DemoFactory.h"
+#include "SirtFactory.h"
 
-#include "DemoAlgorithm.h"
-#include "DemoController.h"
+#include "SirtAlgorithm.h"
+#include "SirtController.h"
 
 namespace ImFusion
 {
