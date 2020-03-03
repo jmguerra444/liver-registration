@@ -8,7 +8,7 @@ namespace ImFusion
 	SirtAlgorithmFactory::SirtAlgorithmFactory()
 	{
 		// register the SirtAlgorithm
-		registerAlgorithm<SirtAlgorithm>("Sirt;Sirt algorithm");
+		registerAlgorithm<SirtAlgorithm>("SIRT;SIRT Algorithm");
 	}
 
 
