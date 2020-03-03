@@ -19,7 +19,7 @@ unet, optimizer, epoch, trainLoss, validLoss = loadState(model_path, unet, optim
 
 ph = torch.zeros(1, 1, 256, 256)
 traced_net = torch.jit.trace(unet, ph)
-traced_net.save("lowdose-liver.pt")
+traced_net.save("..//lowdose-liver.pt")
 
 # print(traced_net.code)
 # print(traced_net.graph)
