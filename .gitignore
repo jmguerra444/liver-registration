@@ -33,3 +33,6 @@ examples
 # Some created images
 *.tif
 *.dcm
+
+# Binaries
+build

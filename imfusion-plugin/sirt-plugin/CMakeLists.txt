@@ -1,7 +1,9 @@
 # Define a new CMake project for the demo plugin
-project(DemoPlugin)
+project(SirtPlugin)
 cmake_minimum_required(VERSION 3.2.0)
 
+
+list(APPEND CMAKE_PREFIX_PATH "C:/doseplan/externals/QT_5_7_VS2015/5.7/msvc2015_64/lib/cmake/Qt5")
 # Locate the ImFusion SDK.
 # List required modules/plugins in the COMPONENTS section (e.g. COMPONENTS ImFusionSeg ImFusionReg).
 find_package(ImFusionLib REQUIRED)
@@ -30,12 +32,12 @@ set(UiSources
 )
 
 # Define target library
-add_library(DemoPlugin SHARED ${Sources} ${UiHeaders} ${Headers})
-target_include_directories(DemoPlugin PRIVATE
+add_library(SirtPlugin SHARED ${Sources} ${UiHeaders} ${Headers})
+target_include_directories(SirtPlugin PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}
 )
 # Link agains the ImFusionLib and selected modules/plugins
-target_link_libraries(DemoPlugin PRIVATE
+target_link_libraries(SirtPlugin PRIVATE
 	ImFusionLib
 )
 
