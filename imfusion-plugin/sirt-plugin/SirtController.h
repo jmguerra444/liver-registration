@@ -5,13 +5,13 @@
 
 #include <QtWidgets/QWidget>
 
-class Ui_DemoController;
+class Ui_SirtController;
 namespace ImFusion
 {
-	class DemoAlgorithm;
+	class SirtAlgorithm;
 
-	/// Demonstration of implementing a custom controller using Qt widgets.
-	class DemoController
+	/// Sirtnstration of implementing a custom controller using Qt widgets.
+	class SirtController
 		: public QWidget
 		, public AlgorithmController
 	{
@@ -19,10 +19,10 @@ namespace ImFusion
 
 	public:
 		/// Constructor with the algorithm instance
-		DemoController(DemoAlgorithm* algorithm);
+		SirtController(SirtAlgorithm* algorithm);
 
 		/// Destructor
-		virtual ~DemoController();
+		virtual ~SirtController();
 
 		/// Initializes the widget
 		void init();
@@ -32,7 +32,7 @@ namespace ImFusion
 		void onApply();
 
 	protected:
-		Ui_DemoController* m_ui;    ///< The actual GUI
-		DemoAlgorithm* m_alg;       ///< The algorithm instance
+		Ui_SirtController* m_ui;    ///< The actual GUI
+		SirtAlgorithm* m_alg;       ///< The algorithm instance
 	};
 }

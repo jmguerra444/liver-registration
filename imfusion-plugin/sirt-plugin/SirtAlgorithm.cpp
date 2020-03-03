@@ -8,13 +8,13 @@
 
 namespace ImFusion
 {
-	DemoAlgorithm::DemoAlgorithm(SharedImageSet* img)
+	SirtAlgorithm::SirtAlgorithm(SharedImageSet* img)
 		: m_imgIn(img)
 	{
 	}
 
 
-	bool DemoAlgorithm::createCompatible(const DataList& data, Algorithm** a)
+	bool SirtAlgorithm::createCompatible(const DataList& data, Algorithm** a)
 	{
 		// check requirements to create the algorithm
 		if (data.size() != 1)
@@ -26,14 +26,14 @@ namespace ImFusion
 		// requirements are met, create the algorithm if asked
 		if (a)
 		{
-			*a = new DemoAlgorithm(img);
+			*a = new SirtAlgorithm(img);
 			(*a)->setInput(data);
 		}
 		return true;
 	}
 
 
-	void DemoAlgorithm::compute()
+	void SirtAlgorithm::compute()
 	{
 		// set generic error status until we have finished
 		m_status = static_cast<int>(Status::Error);
@@ -42,7 +42,7 @@ namespace ImFusion
 		for (int i = 0; i < m_imgIn->size(); i++)
 		{
 			// clone raw memory image
-			// (we could also clone m_imgIn directly, but this is for demo purposes)
+			// (we could also clone m_imgIn directly, but this is for Sirt purposes)
 			std::unique_ptr<MemImage> newMem(m_imgIn->mem(i)->clone());
 
 			// perform the downsampling
@@ -65,7 +65,7 @@ namespace ImFusion
 	}
 
 
-	void DemoAlgorithm::output(DataList& dataOut)
+	void SirtAlgorithm::output(DataList& dataOut)
 	{
 		// if we have produced some output, add it to the list
 		// attention: membership is hereby transferred to the one calling output()
@@ -74,7 +74,7 @@ namespace ImFusion
 	}
 
 
-	void DemoAlgorithm::configure(const Properties* p)
+	void SirtAlgorithm::configure(const Properties* p)
 	{
 		// this method restores our members when a workspace file is loaded
 		if (p == nullptr)
@@ -86,7 +86,7 @@ namespace ImFusion
 	}
 
 
-	void DemoAlgorithm::configuration(Properties* p) const
+	void SirtAlgorithm::configuration(Properties* p) const
 	{
 		// this method is necessary to store our settings in a workspace file
 		if (p == nullptr)

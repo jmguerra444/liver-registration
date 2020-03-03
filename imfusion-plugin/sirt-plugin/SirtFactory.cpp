@@ -5,18 +5,18 @@
 
 namespace ImFusion
 {
-	DemoAlgorithmFactory::DemoAlgorithmFactory()
+	SirtAlgorithmFactory::SirtAlgorithmFactory()
 	{
-		// register the DemoAlgorithm
-		registerAlgorithm<DemoAlgorithm>("Demo;Demo algorithm");
+		// register the SirtAlgorithm
+		registerAlgorithm<SirtAlgorithm>("Sirt;Sirt algorithm");
 	}
 
 
-	AlgorithmController* DemoControllerFactory::create(Algorithm* a) const
+	AlgorithmController* SirtControllerFactory::create(Algorithm* a) const
 	{
-		// register the DemoController for the DemoAlgorithm
-		if (DemoAlgorithm* alg = dynamic_cast<DemoAlgorithm*>(a))
-			return new DemoController(alg);
+		// register the SirtController for the SirtAlgorithm
+		if (SirtAlgorithm* alg = dynamic_cast<SirtAlgorithm*>(a))
+			return new SirtController(alg);
 		return 0;
 	}
 }

@@ -8,11 +8,11 @@ namespace ImFusion
 	class AlgorithmControllerFactory;
 
 	/// Minimal example for defining a custom plugin for the ImFusion SDK
-	class DemoPlugin : public ImFusionPlugin
+	class SirtPlugin : public ImFusionPlugin
 	{
 	public:
-		DemoPlugin();
-		virtual ~DemoPlugin();
+		SirtPlugin();
+		virtual ~SirtPlugin();
 		virtual const AlgorithmFactory* getAlgorithmFactory();
 		virtual const AlgorithmControllerFactory* getAlgorithmControllerFactory();
 

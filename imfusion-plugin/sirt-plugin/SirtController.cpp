@@ -11,23 +11,23 @@
 
 namespace ImFusion
 {
-	DemoController::DemoController(DemoAlgorithm* algorithm)
+	SirtController::SirtController(SirtAlgorithm* algorithm)
 		: AlgorithmController(algorithm)
 		, m_alg(algorithm)
 	{
-		m_ui = new Ui_DemoController();
+		m_ui = new Ui_SirtController();
 		m_ui->setupUi(this);
 		connect(m_ui->pushButtonApply, SIGNAL(clicked()), this, SLOT(onApply()));
 	}
 
 
-	DemoController::~DemoController() { delete m_ui; }
+	SirtController::~SirtController() { delete m_ui; }
 
 
-	void DemoController::init() { addToAlgorithmDock(); }
+	void SirtController::init() { addToAlgorithmDock(); }
 
 
-	void DemoController::onApply()
+	void SirtController::onApply()
 	{
 		m_alg->setFactor(m_ui->spinBoxFactor->value());
 		m_alg->compute();

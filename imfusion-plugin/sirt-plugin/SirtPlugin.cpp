@@ -6,30 +6,29 @@
 #ifdef WIN32
 extern "C" __declspec(dllexport) ImFusion::ImFusionPlugin* createPlugin()
 {
-	return new ImFusion::DemoPlugin;
+	return new ImFusion::SirtPlugin;
 }
 #else
 extern "C" ImFusion::ImFusionPlugin* createPlugin()
 {
-	return new ImFusion::DemoPlugin;
+	return new ImFusion::SirtPlugin;
 }
 #endif
 
 
 namespace ImFusion
 {
-	DemoPlugin::DemoPlugin()
+	SirtPlugin::SirtPlugin()
 	{
-		m_algFactory = new DemoAlgorithmFactory;
-		m_algCtrlFactory = new DemoControllerFactory;
+		m_algFactory = new SirtAlgorithmFactory;
+		m_algCtrlFactory = new SirtControllerFactory;
 	}
 
 
-	DemoPlugin::~DemoPlugin() {}
+	SirtPlugin::~SirtPlugin() {}
 
 
-	const ImFusion::AlgorithmFactory* DemoPlugin::getAlgorithmFactory() { return m_algFactory; }
+	const ImFusion::AlgorithmFactory* SirtPlugin::getAlgorithmFactory() { return m_algFactory; }
 
-
-	const ImFusion::AlgorithmControllerFactory* DemoPlugin::getAlgorithmControllerFactory() { return m_algCtrlFactory; }
+	const ImFusion::AlgorithmControllerFactory* SirtPlugin::getAlgorithmControllerFactory() { return m_algCtrlFactory; }
 }

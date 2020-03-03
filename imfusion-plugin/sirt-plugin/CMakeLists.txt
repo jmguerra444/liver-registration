@@ -1,4 +1,4 @@
-# Define a new CMake project for the demo plugin
+# Define a new CMake project for the Sirt plugin
 project(SirtPlugin)
 cmake_minimum_required(VERSION 3.2.0)
 
