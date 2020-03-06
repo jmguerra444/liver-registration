@@ -1,33 +1,33 @@
-#include "SirtController.h"
+#include "LowDoseSegmentationController.h"
 
-#include "SirtAlgorithm.h"
+#include "LowDoseSegmentationAlgorithm.h"
 
 #include <ImFusion/Base/DataModel.h>
 #include <ImFusion/Base/SharedImageSet.h>
 #include <ImFusion/GUI/MainWindowBase.h>
 
-#include "ui_SirtController.h"
+#include "ui_LowDoseSegmentationController.h"
 
 
 namespace ImFusion
 {
-	SirtController::SirtController(SirtAlgorithm* algorithm)
+	LowDoseSegmentationController::LowDoseSegmentationController(LowDoseSegmentationAlgorithm* algorithm)
 		: AlgorithmController(algorithm)
 		, m_alg(algorithm)
 	{
-		m_ui = new Ui_SirtController();
+		m_ui = new Ui_LowDoseSegmentationController();
 		m_ui->setupUi(this);
 		connect(m_ui->pushButtonApply, SIGNAL(clicked()), this, SLOT(onApply()));
 	}
 
 
-	SirtController::~SirtController() { delete m_ui; }
+	LowDoseSegmentationController::~LowDoseSegmentationController() { delete m_ui; }
 
 
-	void SirtController::init() { addToAlgorithmDock(); }
+	void LowDoseSegmentationController::init() { addToAlgorithmDock(); }
 
 
-	void SirtController::onApply()
+	void LowDoseSegmentationController::onApply()
 	{
 		m_alg->setFactor(m_ui->spinBoxFactor->value());
 		m_alg->compute();

@@ -8,15 +8,15 @@ namespace ImFusion
 {
 	class Algorithm;
 
-	/// AlgorithmFactory for Sirt plugin
-	class SirtAlgorithmFactory : public AlgorithmFactory
+	/// AlgorithmFactory for LowDoseSegmentation plugin
+	class LowDoseSegmentationAlgorithmFactory : public AlgorithmFactory
 	{
 	public:
-		SirtAlgorithmFactory();
+		LowDoseSegmentationAlgorithmFactory();
 	};
 
-	/// AlgorithmControllerFactory for Sirt plugin
-	class SirtControllerFactory : public AlgorithmControllerFactory
+	/// AlgorithmControllerFactory for LowDoseSegmentation plugin
+	class LowDoseSegmentationControllerFactory : public AlgorithmControllerFactory
 	{
 	public:
 		virtual AlgorithmController* create(Algorithm* a) const;

@@ -10,13 +10,13 @@ namespace ImFusion
 {
 	class SharedImageSet;
 
-	/// Simple Sirtnstration of a custom Algorithm.
+	/// Simple LowDoseSegmentationnstration of a custom Algorithm.
 	/// This algorithm will downsample the input image by the specified factor.
-	class SirtAlgorithm : public Algorithm
+	class LowDoseSegmentationAlgorithm : public Algorithm
 	{
 	public:
 		/// Creates the algorithm instance with an image
-		SirtAlgorithm(SharedImageSet* img);
+		LowDoseSegmentationAlgorithm(SharedImageSet* img);
 
 		/// Set downsampling factor
 		void setFactor(int factor) { m_factor = factor; }

@@ -5,13 +5,13 @@
 
 #include <QtWidgets/QWidget>
 
-class Ui_SirtController;
+class Ui_LowDoseSegmentationController;
 namespace ImFusion
 {
-	class SirtAlgorithm;
+	class LowDoseSegmentationAlgorithm;
 
-	/// Sirtnstration of implementing a custom controller using Qt widgets.
-	class SirtController
+	/// LowDoseSegmentationnstration of implementing a custom controller using Qt widgets.
+	class LowDoseSegmentationController
 		: public QWidget
 		, public AlgorithmController
 	{
@@ -19,10 +19,10 @@ namespace ImFusion
 
 	public:
 		/// Constructor with the algorithm instance
-		SirtController(SirtAlgorithm* algorithm);
+		LowDoseSegmentationController(LowDoseSegmentationAlgorithm* algorithm);
 
 		/// Destructor
-		virtual ~SirtController();
+		virtual ~LowDoseSegmentationController();
 
 		/// Initializes the widget
 		void init();
@@ -32,7 +32,7 @@ namespace ImFusion
 		void onApply();
 
 	protected:
-		Ui_SirtController* m_ui;    ///< The actual GUI
-		SirtAlgorithm* m_alg;       ///< The algorithm instance
+		Ui_LowDoseSegmentationController* m_ui;    ///< The actual GUI
+		LowDoseSegmentationAlgorithm* m_alg;       ///< The algorithm instance
 	};
 }

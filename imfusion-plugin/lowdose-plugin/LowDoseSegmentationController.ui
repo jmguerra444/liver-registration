@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SirtController</class>
- <widget class="QWidget" name="SirtController">
+ <class>LowDoseSegmentationController</class>
+ <widget class="QWidget" name="LowDoseSegmentationController">
   <property name="geometry">
    <rect>
     <x>0</x>
