@@ -29,7 +29,7 @@ namespace ImFusion
 
 	void LowDoseSegmentationController::onApply()
 	{
-		m_alg->setFactor(m_ui->spinBoxFactor->value());
+		m_alg->setFactor(m_ui->spinBoxThickness->value());
 		m_alg->compute();
 		DataList d;
 		m_alg->output(d);

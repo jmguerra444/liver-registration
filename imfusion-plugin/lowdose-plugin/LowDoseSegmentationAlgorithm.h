@@ -11,15 +11,14 @@ namespace ImFusion
 	class SharedImageSet;
 
 	/// Simple LowDoseSegmentationnstration of a custom Algorithm.
-	/// This algorithm will downsample the input image by the specified factor.
 	class LowDoseSegmentationAlgorithm : public Algorithm
 	{
 	public:
 		/// Creates the algorithm instance with an image
 		LowDoseSegmentationAlgorithm(SharedImageSet* img);
 
-		/// Set downsampling factor
-		void setFactor(int factor) { m_thickness = factor; }
+		/// Set downsampling thickness
+		void setFactor(int thickness) { m_thickness = thickness; }
 
 		/// \name	Methods implementing the algorithm interface
 		//\{
