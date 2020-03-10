@@ -83,7 +83,7 @@ namespace ImFusion
 		auto p = std::make_unique<std::vector<SharedImage*>>(predictions.getImage()->images());
 
 		auto properties = std::make_unique<Properties>();
-		properties->param("Slice Thickness", m_thickness);
+		properties->setParam("Slice Thickness", m_thickness);
 		LOG_INFO(m_thickness);
 		
 		DataList volume;
