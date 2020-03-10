@@ -5,19 +5,27 @@
 #include <ImFusion/Base/SharedImage.h>
 #include <ImFusion/Base/SharedImageSet.h>
 #include <ImFusion/Base/Log.h>
-#include <ImFusion/ML/PixelwiseLearningModel.h>
+#include <ImFusion/Base/Properties.h>
+#include <ImFusion/Base/Settings.h>
 #include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
+#include <ImFusion/Base/ExtractImagesFromVolumeAlgorithm.h>
+#include <ImFusion/Base/CombineImagesAsVolumeAlgorithm.h>
+#include <ImFusion/Base/DataList.h>
 
 #include "QString"
+#include "QDir"
+#include "QCoreApplication"
+#include "QFile"
 
 #include <iostream>
-#include <windows.h>
+#include <filesystem>
 
 namespace ImFusion
 {
 	LowDoseSegmentationAlgorithm::LowDoseSegmentationAlgorithm(SharedImageSet* img)
 		: m_imgIn(img)
 	{
+		LOG_INFO("Instance created");
 	}
 
 
@@ -49,57 +57,50 @@ namespace ImFusion
 
 		m_imgOut = std::make_unique<SharedImageSet>();
 
-		const std::string lowdoseConfigurationFile = "lowdose-liver.configtxt";
-
-		//PixelwiseLearningModel learningModel(lowdoseConfigurationFile);
-		auto learningModel = std::make_unique<PixelwiseLearningModel>(lowdoseConfigurationFile);
-
-		char buf[256];
-		LOG_INFO("Current path is " << GetCurrentDirectoryA(256, buf));
+		 
+		QString lowdoseConfigurationFile = QCoreApplication::applicationDirPath() + "//plugins//SIRT//lowdose-liver.configtxt";
+	
+		// 1. Extract images from Volume
+		DataList images;
+		ImFusion::ExtractImagesFromVolumeAlgorithm imageExtractor(m_imgIn);
+		imageExtractor.compute();
+		imageExtractor.output(images);
+		auto sis = std::make_unique<SharedImageSet>(images.getImage());
 		
-		for (int i = 0; i < m_imgIn->size(); i++)
+		DataList predictions; //DataOut
+		PixelwiseLearningAlgorithm predictingAlgorithm(sis.get());
+		predictingAlgorithm.setModelConfigPath(lowdoseConfigurationFile.toStdString());
+		predictingAlgorithm.setInput(images);
+		predictingAlgorithm.compute();
+		predictingAlgorithm.output(predictions);
+		
+		if(predictingAlgorithm.status() != 0) // Success
 		{
-			LOG_INFO(i);
-			// clone raw memory image
-			// (we could also clone m_imgIn directly, but this is for LowDoseSegmentation purposes)
-			std::unique_ptr<MemImage> newMem(m_imgIn->mem(i)->clone());
+			LOG_ERROR("Could not generate prediction");
+			return;
+		}
+		
+		auto p = std::make_unique<std::vector<SharedImage*>>(predictions.getImage()->images());
 
-			// perform the downsampling
-			//newMem->downsample(m_factor, m_factor, m_factor);
+		auto properties = std::make_unique<Properties>();
+		properties->param("Slice Thickness", m_thickness);
+		LOG_INFO(m_thickness);
+		
+		DataList volume;
+		CombineImagesAsVolumeAlgorithm convertToVolumeAlgorithm(*p.get());
+		convertToVolumeAlgorithm.configure(properties.get());
+		convertToVolumeAlgorithm.compute();
+		convertToVolumeAlgorithm.output(volume);
 
-			// create a SharedImage to hold newMem and copy over modality and transformation matrix
-			// NOTE: if we had cloned m_imgIn initially, we would not need to to these steps
-			auto sharedImage = std::make_unique<SharedImage>(*newMem.release());
-			sharedImage->setModality(m_imgIn->get(i)->modality());
-			sharedImage->setMatrix(m_imgIn->get(i)->matrix());
-
-			// compute never returns data directly - instead,
-			// the output method needs to be called, which
-			// fills a list of output data - see below
-			m_imgOut->add(sharedImage.release());
+		if(convertToVolumeAlgorithm.status() != 0)
+		{
+			LOG_ERROR("Could not convert to volume");
+			return;
 		}
 
-		//for (int i = 0; i < m_imgIn->size(); i++)
-		//{
-		//	// clone raw memory image
-		//	// (we could also clone m_imgIn directly, but this is for LowDoseSegmentation purposes)
-		//	std::unique_ptr<MemImage> newMem(m_imgIn->mem(i)->clone());
-
-		//	// perform the downsampling
-		//	newMem->downsample(m_factor, m_factor, m_factor);
-
-		//	// create a SharedImage to hold newMem and copy over modality and transformation matrix
-		//	// NOTE: if we had cloned m_imgIn initially, we would not need to to these steps
-		//	auto sharedImage = std::make_unique<SharedImage>(*newMem.release());
-		//	sharedImage->setModality(m_imgIn->get(i)->modality());
-		//	sharedImage->setMatrix(m_imgIn->get(i)->matrix());
-
-		//	// compute never returns data directly - instead,
-		//	// the output method needs to be called, which
-		//	// fills a list of output data - see below
-		//	m_imgOut->add(sharedImage.release());
-		//}
-
+		auto v = std::make_unique<SharedImage*>(volume.getImage()->get());
+		m_imgOut->add(*v.get());
+		
 		// set algorithm status to success
 		m_status = static_cast<int>(Status::Success);
 	}
@@ -119,7 +120,7 @@ namespace ImFusion
 		if (p == nullptr)
 			return;
 
-		p->param("factor", m_factor);
+		p->param("thickness", m_thickness);
 		for (int i = 0; i < (int)m_listeners.size(); ++i)
 			m_listeners[i]->algorithmParametersChanged();
 	}
@@ -131,6 +132,6 @@ namespace ImFusion
 		if (p == nullptr)
 			return;
 
-		p->setParam("factor", m_factor, 2);
+		p->setParam("thickness", m_thickness, 2);
 	}
 }

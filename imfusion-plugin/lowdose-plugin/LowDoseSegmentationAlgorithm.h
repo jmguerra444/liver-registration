@@ -19,7 +19,7 @@ namespace ImFusion
 		LowDoseSegmentationAlgorithm(SharedImageSet* img);
 
 		/// Set downsampling factor
-		void setFactor(int factor) { m_factor = factor; }
+		void setFactor(int factor) { m_thickness = factor; }
 
 		/// \name	Methods implementing the algorithm interface
 		//\{
@@ -42,6 +42,6 @@ namespace ImFusion
 	private:
 		SharedImageSet* m_imgIn = nullptr;           ///< Input image to process
 		std::unique_ptr<SharedImageSet> m_imgOut;    ///< Output image after processing
-		int m_factor = 2;                            ///< Downsampling factor
+		int m_thickness = 2;                            ///< Downsampling factor
 	};
 }
