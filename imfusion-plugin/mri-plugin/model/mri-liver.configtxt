@@ -1,0 +1,38 @@
+type	neuralnetwork
+engine	torch
+version 2
+fully_convolutional	1
+invert_prediction	1
+
+model_file	model_tracer.pt
+# target resampling resolution - mm
+resolution	5
+# make image dim multiple (for UNet) - px
+dim_divisor	16
+# subdivisions = patches, -1 = extend to volume dim
+subdivisions_max_size	-1
+# overlap in px of patches
+subdivisions_overlap	0
+
+#active_labels	1
+## PREPROCESSING
+# clip = clamp
+clip 0
+#min_clip -1024
+#max_clip 3000
+# img is divided by this
+# adjust_scale 1000
+# 
+percentile_normalize 1
+
+## POSTPROCESSING
+# take only largest
+largest_component	1
+# make out dims same as in dims
+crop_to_input 1
+# to get raw output disable largest component and threshold
+# threshold_output 1
+# threshold_value 0.5
+
+#output_layer	output_node0
+#output_layer	conv3d_11/add
