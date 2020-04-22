@@ -9,6 +9,7 @@
 #include <ImFusion/Base/Settings.h>
 #include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
 #include <ImFusion/Base/ExtractImagesFromVolumeAlgorithm.h>
+#include <ImFusion/Base/SplitChannelsAlgorithm.h>
 #include <ImFusion/Base/CombineImagesAsVolumeAlgorithm.h>
 #include <ImFusion/Base/DataList.h>
 
@@ -59,11 +60,11 @@ namespace ImFusion
 
 		QString mriConfigurationFile = QCoreApplication::applicationDirPath() + "//plugins//SIRT//mri-liver.configtxt";
 
-		DataList predictions; //DataOut
+		DataList result_1; //DataOut
 		PixelwiseLearningAlgorithm predictingAlgorithm(m_imgIn);
 		predictingAlgorithm.setModelConfigPath(mriConfigurationFile.toStdString());
 		predictingAlgorithm.compute();
-		predictingAlgorithm.output(predictions);
+		predictingAlgorithm.output(result_1);
 
 		if (predictingAlgorithm.status() != 0) // Success
 		{
@@ -71,8 +72,27 @@ namespace ImFusion
 			return;
 		}
 
-		auto v = std::make_unique<SharedImage*>(predictions.getImage()->get());
+		auto predictionMultiChannel = std::make_unique<SharedImageSet*>(result_1.getImage());
+
+		DataList result_2;
+		SplitChannelsAlgorithm splitChannelsAlgorithm(*predictionMultiChannel);
+		splitChannelsAlgorithm.setOutputSorting(SplitChannelsAlgorithm::GroupByFrame);
+		splitChannelsAlgorithm.compute();
+		splitChannelsAlgorithm.output(result_2);
+
+		if (predictingAlgorithm.status() != 0)
+		{
+			LOG_ERROR("Split channels failed");
+			return;
+		}
+
+		
+		auto v = std::make_unique<SharedImage*>(result_2.getImage()->get());
 		m_imgOut->add(*v.get());
+
+		//auto b = std::make_unique<SharedImage*>(result_1.getImage()->get());
+		//m_imgOut->add(*b.get());
+		
 		// set algorithm status to success
 		m_status = static_cast<int>(Status::Success);
 	}
