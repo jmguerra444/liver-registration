@@ -95,13 +95,13 @@ namespace ImFusion
 
 		//
 		auto y = result_3.getSurfaces();
-		LOG_ERROR(y[0]->numberOfVertices() << "   " << y[0]->numberOfFaces());
-		
-		LOG_ERROR("V" << MeshProcessing::computeVolume(y[0]));
-		LOG_ERROR("1" << y[0]->isValid());
-		LOG_ERROR("2" << y[0]->origin());
-		LOG_ERROR("3" << y[0]->center());
-		LOG_ERROR("4" << y[0]->listHoles().size());
+		//LOG_ERROR(y[0]->numberOfVertices() << "   " << y[0]->numberOfFaces());
+		//
+		//LOG_ERROR("V" << MeshProcessing::computeVolume(y[0]));
+		//LOG_ERROR("1" << y[0]->isValid());
+		//LOG_ERROR("2" << y[0]->origin());
+		//LOG_ERROR("3" << y[0]->center());
+		//LOG_ERROR("4" << y[0]->listHoles().size());
 
 
 		
