@@ -2,16 +2,15 @@
 
 #include <ImFusion/Base/DataList.h>
 #include <ImFusion/Base/MemImage.h>
-#include <ImFusion/Base/SharedImage.h>
-#include <ImFusion/Base/SharedImageSet.h>
 #include <ImFusion/Base/Log.h>
 #include <ImFusion/Base/Properties.h>
 #include <ImFusion/Base/Settings.h>
-#include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
 #include <ImFusion/Base/ExtractImagesFromVolumeAlgorithm.h>
 #include <ImFusion/Base/SplitChannelsAlgorithm.h>
-#include <ImFusion/Base/CombineImagesAsVolumeAlgorithm.h>
-#include <ImFusion/Base/DataList.h>
+#include <ImFusion/Base/MeshProcessing.h>
+#include <ImFusion/Seg/LabelToMeshAlgorithm.h>
+#include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
+#include <ImFusion/Base/Mesh.h>
 
 #include "QString"
 #include "QDir"
@@ -60,40 +59,54 @@ namespace ImFusion
 
 		QString mriConfigurationFile = QCoreApplication::applicationDirPath() + "//plugins//SIRT//mri-liver.configtxt";
 
-		DataList result_1; //DataOut
+		// DO PREDICTION
+		DataList result1; //DataOut
 		PixelwiseLearningAlgorithm predictingAlgorithm(m_imgIn);
 		predictingAlgorithm.setModelConfigPath(mriConfigurationFile.toStdString());
 		predictingAlgorithm.compute();
-		predictingAlgorithm.output(result_1);
-
+		predictingAlgorithm.output(result1);
 		if (predictingAlgorithm.status() != 0) // Success
 		{
 			LOG_ERROR("Could not generate prediction");
 			return;
 		}
 
-		auto predictionMultiChannel = std::make_unique<SharedImageSet*>(result_1.getImage());
-
+		// SPLIT CHANNELS
+		auto result1SIS = std::make_unique<SharedImageSet>(*result1.getImage());
 		DataList result_2;
-		SplitChannelsAlgorithm splitChannelsAlgorithm(*predictionMultiChannel);
-		splitChannelsAlgorithm.setOutputSorting(SplitChannelsAlgorithm::GroupByFrame);
+		SplitChannelsAlgorithm splitChannelsAlgorithm(result1SIS.get());
+		splitChannelsAlgorithm.setOutputSorting(SplitChannelsAlgorithm::GroupByChannel);
 		splitChannelsAlgorithm.compute();
 		splitChannelsAlgorithm.output(result_2);
-
 		if (predictingAlgorithm.status() != 0)
 		{
 			LOG_ERROR("Split channels failed");
 			return;
 		}
 
-		
-		auto v = std::make_unique<SharedImage*>(result_2.getImage()->get());
-		m_imgOut->add(*v.get());
+		auto b = std::make_unique<SharedImageSet>(*result_2.getImage());
+		DataList result_3;
+		LabelToMeshAlgorithm labelToMeshAlgorithm(b.get());
+		labelToMeshAlgorithm.setIsoValue(0.5);
+		labelToMeshAlgorithm.setAboveIsoValue(true);
+		labelToMeshAlgorithm.setSmoothing(0);
+		labelToMeshAlgorithm.compute();
+		labelToMeshAlgorithm.output(result_3);
 
-		//auto b = std::make_unique<SharedImage*>(result_1.getImage()->get());
-		//m_imgOut->add(*b.get());
+		//
+		auto y = result_3.getSurfaces();
+		LOG_ERROR(y[0]->numberOfVertices() << "   " << y[0]->numberOfFaces());
 		
-		// set algorithm status to success
+		LOG_ERROR("V" << MeshProcessing::computeVolume(y[0]));
+		LOG_ERROR("1" << y[0]->isValid());
+		LOG_ERROR("2" << y[0]->origin());
+		LOG_ERROR("3" << y[0]->center());
+		LOG_ERROR("4" << y[0]->listHoles().size());
+
+
+		
+		// ADD TO DisplayWidgetMulti
+		m_imgOut->add(b->get());
 		m_status = static_cast<int>(Status::Success);
 	}
 
@@ -102,7 +115,9 @@ namespace ImFusion
 		// if we have produced some output, add it to the list
 		// attention: membership is hereby transferred to the one calling output()
 		if (m_imgOut)
+		{
 			dataOut.add(m_imgOut.release());
+		}
 	}
 
 
@@ -112,7 +127,6 @@ namespace ImFusion
 		if (p == nullptr)
 			return;
 
-		p->param("thickness", m_thickness);
 		for (int i = 0; i < (int)m_listeners.size(); ++i)
 			m_listeners[i]->algorithmParametersChanged();
 	}
@@ -123,7 +137,5 @@ namespace ImFusion
 		// this method is necessary to store our settings in a workspace file
 		if (p == nullptr)
 			return;
-
-		p->setParam("thickness", m_thickness, 2);
 	}
 }

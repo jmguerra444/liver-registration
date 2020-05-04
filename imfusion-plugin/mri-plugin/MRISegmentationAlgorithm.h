@@ -9,7 +9,8 @@
 namespace ImFusion
 {
 	class SharedImageSet;
-
+	class Mesh;
+	
 	/// Simple MRISegmentationnstration of a custom Algorithm.
 	class MRISegmentationAlgorithm : public Algorithm
 	{
@@ -18,7 +19,6 @@ namespace ImFusion
 		MRISegmentationAlgorithm(SharedImageSet* img);
 
 		/// Set downsampling thickness
-		void setFactor(int thickness) { m_thickness = thickness; }
 
 		/// \name	Methods implementing the algorithm interface
 		//\{
@@ -41,6 +41,6 @@ namespace ImFusion
 	private:
 		SharedImageSet* m_imgIn = nullptr;           ///< Input image to process
 		std::unique_ptr<SharedImageSet> m_imgOut;    ///< Output image after processing
-		int m_thickness = 2;                            ///< Downsampling factor
+		std::unique_ptr<std::vector<Mesh*>> m_meshOut;    ///< Output image after processing
 	};
 }
