@@ -8,6 +8,7 @@
 #include <ImFusion/Base/ExtractImagesFromVolumeAlgorithm.h>
 #include <ImFusion/Base/SplitChannelsAlgorithm.h>
 #include <ImFusion/Base/MeshProcessing.h>
+#include <ImFusion/Base/MeshPostProcessingAlgorithm.h>
 #include <ImFusion/Seg/LabelToMeshAlgorithm.h>
 #include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
 #include <ImFusion/Base/Mesh.h>
@@ -60,11 +61,11 @@ namespace ImFusion
 		QString mriConfigurationFile = QCoreApplication::applicationDirPath() + "//plugins//SIRT//mri-liver.configtxt";
 
 		// DO PREDICTION
-		DataList result1; //DataOut
+		DataList result_1; //DataOut
 		PixelwiseLearningAlgorithm predictingAlgorithm(m_imgIn);
 		predictingAlgorithm.setModelConfigPath(mriConfigurationFile.toStdString());
 		predictingAlgorithm.compute();
-		predictingAlgorithm.output(result1);
+		predictingAlgorithm.output(result_1);
 		if (predictingAlgorithm.status() != 0) // Success
 		{
 			LOG_ERROR("Could not generate prediction");
@@ -72,7 +73,7 @@ namespace ImFusion
 		}
 
 		// SPLIT CHANNELS
-		auto result1SIS = std::make_unique<SharedImageSet>(*result1.getImage());
+		auto result1SIS = std::make_unique<SharedImageSet>(*result_1.getImage());
 		DataList result_2;
 		SplitChannelsAlgorithm splitChannelsAlgorithm(result1SIS.get());
 		splitChannelsAlgorithm.setOutputSorting(SplitChannelsAlgorithm::GroupByChannel);
@@ -84,29 +85,41 @@ namespace ImFusion
 			return;
 		}
 
-		auto b = std::make_unique<SharedImageSet>(*result_2.getImage());
-		DataList result_3;
-		LabelToMeshAlgorithm labelToMeshAlgorithm(b.get());
-		labelToMeshAlgorithm.setIsoValue(0.5);
-		labelToMeshAlgorithm.setAboveIsoValue(true);
-		labelToMeshAlgorithm.setSmoothing(0);
-		labelToMeshAlgorithm.compute();
-		labelToMeshAlgorithm.output(result_3);
+		auto result2SIS = std::make_unique<SharedImageSet>(*result_2.getImage());
 
-		//
-		auto y = result_3.getSurfaces();
-		//LOG_ERROR(y[0]->numberOfVertices() << "   " << y[0]->numberOfFaces());
-		//
-		//LOG_ERROR("V" << MeshProcessing::computeVolume(y[0]));
-		//LOG_ERROR("1" << y[0]->isValid());
-		//LOG_ERROR("2" << y[0]->origin());
-		//LOG_ERROR("3" << y[0]->center());
-		//LOG_ERROR("4" << y[0]->listHoles().size());
+		// TODO: Fix the compute volumes stuff
+		//DataList result_3;
+		//LabelToMeshAlgorithm labelToMeshAlgorithm(result2SIS.get());
+		//labelToMeshAlgorithm.setIsoValue(0.5);
+		//labelToMeshAlgorithm.setAboveIsoValue(true);
+		//labelToMeshAlgorithm.setSmoothing(0);
+		//labelToMeshAlgorithm.compute();
+		//labelToMeshAlgorithm.output(result_3);
+		//if (labelToMeshAlgorithm.status() != 0)
+		//{
+		//	LOG_ERROR("Can't extract meshes");
+		//	return;
+		//}
 
+		//auto meshRaw = result_3.getSurfaces()[0];
+		//LOG_ERROR("control 1");
+		//LOG_ERROR("control 1");
+		//DataList result_4;
+		//MeshPostProcessingAlgorithm meshPostProcessingAlgorithm(meshRaw);
+		//meshPostProcessingAlgorithm.setMode(MeshPostProcessingAlgorithm::Mode::FILL_HOLES);
+		//meshPostProcessingAlgorithm.compute();
+		//meshPostProcessingAlgorithm.output(result_4);
+		//if (meshPostProcessingAlgorithm.status() != 0)
+		//{
+		//	LOG_ERROR("Can't do post-processing");
+		//	return;
+		//}
 
+		//auto meshProcessed = result_4.getSurfaces()[0];
+		//LOG_ERROR("Volume:  " << MeshProcessing::computeVolume(meshProcessed));
 		
 		// ADD TO DisplayWidgetMulti
-		m_imgOut->add(b->get());
+		m_imgOut->add(result2SIS->get());
 		m_status = static_cast<int>(Status::Success);
 	}
 
