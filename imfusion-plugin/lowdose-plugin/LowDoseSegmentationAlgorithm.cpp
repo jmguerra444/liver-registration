@@ -2,15 +2,15 @@
 
 #include <ImFusion/Base/DataList.h>
 #include <ImFusion/Base/MemImage.h>
-#include <ImFusion/Base/SharedImage.h>
-#include <ImFusion/Base/SharedImageSet.h>
 #include <ImFusion/Base/Log.h>
 #include <ImFusion/Base/Properties.h>
 #include <ImFusion/Base/Settings.h>
-#include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
 #include <ImFusion/Base/ExtractImagesFromVolumeAlgorithm.h>
 #include <ImFusion/Base/CombineImagesAsVolumeAlgorithm.h>
-#include <ImFusion/Base/DataList.h>
+#include <ImFusion/Base/SplitChannelsAlgorithm.h>
+#include <ImFusion/Base/Mesh.h>
+#include <ImFusion/Seg/LabelToMeshAlgorithm.h>
+#include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
 
 #include "QString"
 #include "QDir"
@@ -56,49 +56,74 @@ namespace ImFusion
 		m_status = static_cast<int>(Status::Error);
 
 		m_imgOut = std::make_unique<SharedImageSet>();
-
-		 
 		QString lowdoseConfigurationFile = QCoreApplication::applicationDirPath() + "//plugins//SIRT//lowdose-liver.configtxt";
 	
-		// 1. Extract images from Volume
+		// EXTRACT IMAGES FROM VOLUME
 		DataList images;
 		ImFusion::ExtractImagesFromVolumeAlgorithm imageExtractor(m_imgIn);
 		imageExtractor.compute();
 		imageExtractor.output(images);
 		auto sis = std::make_unique<SharedImageSet>(images.getImage());
-		
-		DataList predictions; //DataOut
+
+		// PREDICT
+		DataList result_1;
 		PixelwiseLearningAlgorithm predictingAlgorithm(sis.get());
 		predictingAlgorithm.setModelConfigPath(lowdoseConfigurationFile.toStdString());
 		predictingAlgorithm.setInput(images);
 		predictingAlgorithm.compute();
-		predictingAlgorithm.output(predictions);
-		
+		predictingAlgorithm.output(result_1);
 		if(predictingAlgorithm.status() != 0) // Success
 		{
 			LOG_ERROR("Could not generate prediction");
 			return;
 		}
-		
-		auto p = std::make_unique<std::vector<SharedImage*>>(predictions.getImage()->images());
 
+		// TODO: Make it detect thickness automatic
 		auto properties = std::make_unique<Properties>();
 		properties->setParam("Slice Thickness", m_thickness);
 		LOG_INFO(m_thickness);
-		
-		DataList volume;
-		CombineImagesAsVolumeAlgorithm convertToVolumeAlgorithm(*p.get());
+
+		auto result1SIS = std::make_unique<std::vector<SharedImage*>>(result_1.getImage()->images());
+		DataList result_2;
+		CombineImagesAsVolumeAlgorithm convertToVolumeAlgorithm(*result1SIS.get());
 		convertToVolumeAlgorithm.configure(properties.get());
 		convertToVolumeAlgorithm.compute();
-		convertToVolumeAlgorithm.output(volume);
-
+		convertToVolumeAlgorithm.output(result_2);
 		if(convertToVolumeAlgorithm.status() != 0)
 		{
 			LOG_ERROR("Could not convert to volume");
 			return;
 		}
 
-		auto v = std::make_unique<SharedImage*>(volume.getImage()->get());
+		// SPLIT CHANNELS
+		auto result2SIS = std::make_unique<SharedImageSet>(*result_2.getImage());
+		DataList result_3;
+		SplitChannelsAlgorithm splitChannelsAlgorithm(result2SIS.get());
+		splitChannelsAlgorithm.setOutputSorting(SplitChannelsAlgorithm::GroupByFrame);
+		splitChannelsAlgorithm.compute();
+		splitChannelsAlgorithm.output(result_2);
+		if (predictingAlgorithm.status() != 0)
+		{
+			LOG_ERROR("Split channels failed");
+			return;
+		}
+
+		// GENERATE MESH TO COMPUTE VOLUME
+		auto result2SIS = std::make_unique<SharedImageSet>(*result_2.getImage());
+		DataList result_3;
+		LabelToMeshAlgorithm labelToMeshAlgorithm(result2SIS.get());
+		labelToMeshAlgorithm.setIsoValue(0.5);
+		labelToMeshAlgorithm.setAboveIsoValue(true);
+		labelToMeshAlgorithm.setSmoothing(0);
+		labelToMeshAlgorithm.compute();
+		labelToMeshAlgorithm.output(result_3);
+		if (labelToMeshAlgorithm.status() != 0)
+		{
+			LOG_ERROR("Can't extract meshes");
+			return;
+		}
+
+		auto v = std::make_unique<SharedImage*>(result_2.getImage()->get());
 		m_imgOut->add(*v.get());
 		
 		// set algorithm status to success

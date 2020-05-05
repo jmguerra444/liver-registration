@@ -10,9 +10,9 @@
 #include <ImFusion/Base/MeshProcessing.h>
 #include <ImFusion/Base/MeshPostProcessingAlgorithm.h>
 #include <ImFusion/Base/MeshToLabelMapAlgorithm.h>
+#include <ImFusion/Base/Mesh.h>
 #include <ImFusion/Seg/LabelToMeshAlgorithm.h>
 #include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
-#include <ImFusion/Base/Mesh.h>
 
 #include "QString"
 #include "QDir"
@@ -113,7 +113,8 @@ namespace ImFusion
 		}
 		LOG_INFO("Volume:  " << MeshProcessing::computeVolume(mesh) / 1e3 << " ml");
 
-		m_imgOut->add(result1SIS->get());
+		//LOG_ERROR(result1SIS.get()->images().size());
+		//m_imgOut->add(result1SIS->get());
 		m_imgOut->add(result2SIS->get());
 		m_status = static_cast<int>(Status::Success);
 	}
