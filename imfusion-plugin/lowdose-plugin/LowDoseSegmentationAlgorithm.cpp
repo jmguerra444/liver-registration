@@ -9,6 +9,8 @@
 #include <ImFusion/Base/CombineImagesAsVolumeAlgorithm.h>
 #include <ImFusion/Base/SplitChannelsAlgorithm.h>
 #include <ImFusion/Base/Mesh.h>
+#include <ImFusion/Base/MeshPostProcessingAlgorithm.h>
+#include <ImFusion/Base/MeshProcessing.h>
 #include <ImFusion/Seg/LabelToMeshAlgorithm.h>
 #include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
 
@@ -67,66 +69,89 @@ namespace ImFusion
 
 		// PREDICT
 		DataList result_1;
-		PixelwiseLearningAlgorithm predictingAlgorithm(sis.get());
-		predictingAlgorithm.setModelConfigPath(lowdoseConfigurationFile.toStdString());
-		predictingAlgorithm.setInput(images);
-		predictingAlgorithm.compute();
-		predictingAlgorithm.output(result_1);
-		if(predictingAlgorithm.status() != 0) // Success
 		{
-			LOG_ERROR("Could not generate prediction");
-			return;
+			PixelwiseLearningAlgorithm predictingAlgorithm(sis.get());
+			predictingAlgorithm.setModelConfigPath(lowdoseConfigurationFile.toStdString());
+			predictingAlgorithm.setInput(images);
+			predictingAlgorithm.compute();
+			predictingAlgorithm.output(result_1);
+			if(predictingAlgorithm.status() != 0) // Success
+			{
+				LOG_ERROR("Could not generate prediction");
+				return;
+			}
 		}
 
 		// TODO: Make it detect thickness automatic
 		auto properties = std::make_unique<Properties>();
 		properties->setParam("Slice Thickness", m_thickness);
-		LOG_INFO(m_thickness);
+		LOG_INFO("Slice thickness(mm) " << m_thickness);
 
-		auto result1SIS = std::make_unique<std::vector<SharedImage*>>(result_1.getImage()->images());
+		auto p = std::make_unique<std::vector<SharedImage*>>(result_1.getImage()->images());
 		DataList result_2;
-		CombineImagesAsVolumeAlgorithm convertToVolumeAlgorithm(*result1SIS.get());
-		convertToVolumeAlgorithm.configure(properties.get());
-		convertToVolumeAlgorithm.compute();
-		convertToVolumeAlgorithm.output(result_2);
-		if(convertToVolumeAlgorithm.status() != 0)
 		{
-			LOG_ERROR("Could not convert to volume");
-			return;
+			CombineImagesAsVolumeAlgorithm convertToVolumeAlgorithm(*p);
+			convertToVolumeAlgorithm.configure(properties.get());
+			convertToVolumeAlgorithm.compute();
+			convertToVolumeAlgorithm.output(result_2);
+			if(convertToVolumeAlgorithm.status() != 0)
+			{
+				LOG_ERROR("Could not convert to volume");
+				return;
+			}
 		}
 
 		// SPLIT CHANNELS
 		auto result2SIS = std::make_unique<SharedImageSet>(*result_2.getImage());
 		DataList result_3;
-		SplitChannelsAlgorithm splitChannelsAlgorithm(result2SIS.get());
-		splitChannelsAlgorithm.setOutputSorting(SplitChannelsAlgorithm::GroupByFrame);
-		splitChannelsAlgorithm.compute();
-		splitChannelsAlgorithm.output(result_2);
-		if (predictingAlgorithm.status() != 0)
 		{
-			LOG_ERROR("Split channels failed");
-			return;
+			SplitChannelsAlgorithm splitChannelsAlgorithm(result2SIS.get());
+			splitChannelsAlgorithm.setOutputSorting(SplitChannelsAlgorithm::GroupByFrame);
+			splitChannelsAlgorithm.compute();
+			splitChannelsAlgorithm.output(result_3);
+			if (splitChannelsAlgorithm.status() != 0)
+			{
+				LOG_ERROR("Split channels failed");
+				return;
+			}
 		}
 
 		// GENERATE MESH TO COMPUTE VOLUME
-		auto result2SIS = std::make_unique<SharedImageSet>(*result_2.getImage());
-		DataList result_3;
-		LabelToMeshAlgorithm labelToMeshAlgorithm(result2SIS.get());
-		labelToMeshAlgorithm.setIsoValue(0.5);
-		labelToMeshAlgorithm.setAboveIsoValue(true);
-		labelToMeshAlgorithm.setSmoothing(0);
-		labelToMeshAlgorithm.compute();
-		labelToMeshAlgorithm.output(result_3);
-		if (labelToMeshAlgorithm.status() != 0)
+		auto result3SIS = std::make_unique<SharedImageSet>(*result_3.getImage());
+		DataList result_4;
 		{
-			LOG_ERROR("Can't extract meshes");
-			return;
+			LabelToMeshAlgorithm labelToMeshAlgorithm(result3SIS.get());
+			labelToMeshAlgorithm.setIsoValue(0.5);
+			labelToMeshAlgorithm.setAboveIsoValue(true);
+			labelToMeshAlgorithm.setSmoothing(0);
+			labelToMeshAlgorithm.compute();
+			labelToMeshAlgorithm.output(result_4);
+			if (labelToMeshAlgorithm.status() != 0)
+			{
+				LOG_ERROR("Can't extract meshes");
+				return;
+			}
 		}
 
-		auto v = std::make_unique<SharedImage*>(result_2.getImage()->get());
-		m_imgOut->add(*v.get());
+		//// FILL HOLES IN THE MESH
+		auto mesh = result_4.getSurfaces()[0];
+		MeshPostProcessingAlgorithm meshPostProcessingAlgorithm(mesh);
+		meshPostProcessingAlgorithm.setMode(MeshPostProcessingAlgorithm::Mode::FILL_HOLES);
+		meshPostProcessingAlgorithm.compute();
+
+		if (meshPostProcessingAlgorithm.status() != 0)
+		{
+			LOG_ERROR("Can't do post-processing");
+			return;
+		}
+		LOG_INFO("Volume:  " << MeshProcessing::computeVolume(mesh) / 1e3 << " ml");
+
+		// MANAGE SOME RESOURCES
+		result_2.clear();
+		result_3.clear();
 		
-		// set algorithm status to success
+		 //set algorithm status to success
+		m_imgOut->add(result3SIS->get());
 		m_status = static_cast<int>(Status::Success);
 	}
 
