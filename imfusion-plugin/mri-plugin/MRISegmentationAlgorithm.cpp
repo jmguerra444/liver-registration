@@ -9,6 +9,7 @@
 #include <ImFusion/Base/SplitChannelsAlgorithm.h>
 #include <ImFusion/Base/MeshProcessing.h>
 #include <ImFusion/Base/MeshPostProcessingAlgorithm.h>
+#include <ImFusion/Base/MeshToLabelMapAlgorithm.h>
 #include <ImFusion/Seg/LabelToMeshAlgorithm.h>
 #include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
 #include <ImFusion/Base/Mesh.h>
@@ -71,7 +72,6 @@ namespace ImFusion
 			LOG_ERROR("Could not generate prediction");
 			return;
 		}
-
 		// SPLIT CHANNELS
 		auto result1SIS = std::make_unique<SharedImageSet>(*result_1.getImage());
 		DataList result_2;
@@ -85,40 +85,35 @@ namespace ImFusion
 			return;
 		}
 
+		// GENERATE MESH TO COMPUTE VOLUME
 		auto result2SIS = std::make_unique<SharedImageSet>(*result_2.getImage());
+		DataList result_3;
+		LabelToMeshAlgorithm labelToMeshAlgorithm(result2SIS.get());
+		labelToMeshAlgorithm.setIsoValue(0.5);
+		labelToMeshAlgorithm.setAboveIsoValue(true);
+		labelToMeshAlgorithm.setSmoothing(0);
+		labelToMeshAlgorithm.compute();
+		labelToMeshAlgorithm.output(result_3);
+		if (labelToMeshAlgorithm.status() != 0)
+		{
+			LOG_ERROR("Can't extract meshes");
+			return;
+		}
 
-		// TODO: Fix the compute volumes stuff
-		//DataList result_3;
-		//LabelToMeshAlgorithm labelToMeshAlgorithm(result2SIS.get());
-		//labelToMeshAlgorithm.setIsoValue(0.5);
-		//labelToMeshAlgorithm.setAboveIsoValue(true);
-		//labelToMeshAlgorithm.setSmoothing(0);
-		//labelToMeshAlgorithm.compute();
-		//labelToMeshAlgorithm.output(result_3);
-		//if (labelToMeshAlgorithm.status() != 0)
-		//{
-		//	LOG_ERROR("Can't extract meshes");
-		//	return;
-		//}
-
-		//auto meshRaw = result_3.getSurfaces()[0];
-		//LOG_ERROR("control 1");
-		//LOG_ERROR("control 1");
-		//DataList result_4;
-		//MeshPostProcessingAlgorithm meshPostProcessingAlgorithm(meshRaw);
-		//meshPostProcessingAlgorithm.setMode(MeshPostProcessingAlgorithm::Mode::FILL_HOLES);
-		//meshPostProcessingAlgorithm.compute();
-		//meshPostProcessingAlgorithm.output(result_4);
-		//if (meshPostProcessingAlgorithm.status() != 0)
-		//{
-		//	LOG_ERROR("Can't do post-processing");
-		//	return;
-		//}
-
-		//auto meshProcessed = result_4.getSurfaces()[0];
-		//LOG_ERROR("Volume:  " << MeshProcessing::computeVolume(meshProcessed));
+		// FILL HOLES IN THE MESH
+		auto mesh = result_3.getSurfaces()[0];
+		MeshPostProcessingAlgorithm meshPostProcessingAlgorithm(mesh);
+		meshPostProcessingAlgorithm.setMode(MeshPostProcessingAlgorithm::Mode::FILL_HOLES);
+		meshPostProcessingAlgorithm.compute();
 		
-		// ADD TO DisplayWidgetMulti
+		if (meshPostProcessingAlgorithm.status() != 0)
+		{
+			LOG_ERROR("Can't do post-processing");
+			return;
+		}
+		LOG_INFO("Volume:  " << MeshProcessing::computeVolume(mesh) / 1e3 << " ml");
+
+		m_imgOut->add(result1SIS->get());
 		m_imgOut->add(result2SIS->get());
 		m_status = static_cast<int>(Status::Success);
 	}
