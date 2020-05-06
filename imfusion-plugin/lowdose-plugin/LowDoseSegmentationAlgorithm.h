@@ -41,6 +41,6 @@ namespace ImFusion
 	private:
 		SharedImageSet* m_imgIn = nullptr;           ///< Input image to process
 		std::unique_ptr<SharedImageSet> m_imgOut;    ///< Output image after processing
-		int m_thickness = 2;                            ///< Downsampling factor
+		double m_thickness = 2;                            ///< Downsampling factor
 	};
 }

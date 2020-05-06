@@ -182,6 +182,6 @@ namespace ImFusion
 		if (p == nullptr)
 			return;
 
-		p->setParam("thickness", m_thickness, 2);
+		p->setParam("thickness", m_thickness, 2.0);
 	}
 }
