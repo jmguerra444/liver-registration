@@ -10,6 +10,7 @@
 #include <ImFusion/Base/MeshProcessing.h>
 #include <ImFusion/Base/MeshPostProcessingAlgorithm.h>
 #include <ImFusion/Base/MeshToLabelMapAlgorithm.h>
+#include <ImFusion/Base/LinkPose.h>
 #include <ImFusion/Base/Mesh.h>
 #include <ImFusion/Seg/LabelToMeshAlgorithm.h>
 #include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
@@ -123,6 +124,14 @@ namespace ImFusion
 	{
 		// if we have produced some output, add it to the list
 		// attention: membership is hereby transferred to the one calling output()
+
+		//// LINK POSE
+		DataList linkPoseDataList;
+		linkPoseDataList.add(m_imgIn);
+		linkPoseDataList.add(m_imgOut.get());
+		LinkPose linkPose(linkPoseDataList);
+		linkPose.compute();
+
 		if (m_imgOut)
 		{
 			dataOut.add(m_imgOut.release());
