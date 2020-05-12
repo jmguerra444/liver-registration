@@ -64,13 +64,16 @@ namespace ImFusion
 
 		// DO PREDICTION
 		DataList result_1; //DataOut
-		PixelwiseLearningAlgorithm predictingAlgorithm(m_imgIn);
-		predictingAlgorithm.setModelConfigPath(mriConfigurationFile.toStdString());
-		predictingAlgorithm.compute();
-		predictingAlgorithm.output(result_1);
-		if (predictingAlgorithm.status() != 0) // Success
 		{
-			LOG_ERROR("Could not generate prediction");
+			PixelwiseLearningAlgorithm predictingAlgorithm(m_imgIn);
+			predictingAlgorithm.setModelConfigPath(mriConfigurationFile.toStdString());
+			predictingAlgorithm.compute();
+			predictingAlgorithm.output(result_1);
+			if (predictingAlgorithm.status() != 0) // Success
+			{
+				LOG_ERROR("Could not generate prediction");
+				return;
+			}
 		}
 		// SPLIT CHANNELS
 		auto result1SIS = std::make_unique<SharedImageSet>(*result_1.getImage());
