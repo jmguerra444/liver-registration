@@ -113,9 +113,25 @@ namespace ImFusion
 			return;
 		}
 		LOG_INFO("Volume:  " << MeshProcessing::computeVolume(mesh) / 1e3 << " ml");
-
-		//LOG_ERROR(result1SIS.get()->images().size());
-		//m_imgOut->add(result1SIS->get());
+		
+		DataList result_5;
+		{
+			MeshToLabelMapAlgorithm meshToLabelMapAlgorithm(mesh, m_imgIn);
+			auto meshToLabelMapProperties = std::make_unique<Properties>();
+			meshToLabelMapProperties->setParam("Output Spacing", 1);
+			meshToLabelMapProperties->setParam("Margin", 10);
+			meshToLabelMapProperties->setParam("InsideValue", 1);
+			meshToLabelMapProperties->setParam("Outside Value", 0);
+			meshToLabelMapAlgorithm.configure(meshToLabelMapProperties.get());
+			meshToLabelMapAlgorithm.compute();
+			meshToLabelMapAlgorithm.output(result_5);
+			if (meshToLabelMapAlgorithm.status() != 0)
+			{
+				LOG_ERROR("Can't create label map");
+				return;
+			}
+		}
+		auto result5SIS = std::make_unique<SharedImageSet>(*result_5.getImage());
 		m_imgOut->add(result2SIS->get());
 		m_status = static_cast<int>(Status::Success);
 	}

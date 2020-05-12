@@ -12,6 +12,7 @@
 #include <ImFusion/Base/MeshPostProcessingAlgorithm.h>
 #include <ImFusion/Base/MeshProcessing.h>
 #include <ImFusion/Base/LinkPose.h>
+#include <ImFusion/Base/MeshToLabelMapAlgorithm.h>
 #include <ImFusion/Seg/LabelToMeshAlgorithm.h>
 #include <ImFusion/ML/PixelwiseLearningAlgorithm.h>
 
@@ -147,12 +148,32 @@ namespace ImFusion
 		}
 		LOG_INFO("Volume:  " << MeshProcessing::computeVolume(mesh) / 1e3 << " ml");
 
+		DataList result_5;
+		{
+			MeshToLabelMapAlgorithm meshToLabelMapAlgorithm(mesh, m_imgIn);
+			auto meshToLabelMapProperties = std::make_unique<Properties>();
+			meshToLabelMapProperties->setParam("Output Spacing", 1);
+			meshToLabelMapProperties->setParam("Margin", 10);
+			meshToLabelMapProperties->setParam("InsideValue", 1);
+			meshToLabelMapProperties->setParam("Outside Value", 0);
+			meshToLabelMapAlgorithm.configure(meshToLabelMapProperties.get());
+			meshToLabelMapAlgorithm.compute();
+			meshToLabelMapAlgorithm.output(result_5);
+			if (meshToLabelMapAlgorithm.status() != 0)
+			{
+				LOG_ERROR("Can't create label map");
+				return;
+			}
+		}
+		auto result5SIS = std::make_unique<SharedImageSet>(*result_5.getImage());
+
+		
 		// MANAGE SOME RESOURCES
 		result_2.clear();
 		result_3.clear();
 		
 		 //set algorithm status to success
-		m_imgOut->add(result3SIS->get());
+		m_imgOut->add(result5SIS->get());
 		m_status = static_cast<int>(Status::Success);
 	}
 
