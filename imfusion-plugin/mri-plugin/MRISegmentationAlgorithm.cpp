@@ -71,34 +71,37 @@ namespace ImFusion
 		if (predictingAlgorithm.status() != 0) // Success
 		{
 			LOG_ERROR("Could not generate prediction");
-			return;
 		}
 		// SPLIT CHANNELS
 		auto result1SIS = std::make_unique<SharedImageSet>(*result_1.getImage());
 		DataList result_2;
-		SplitChannelsAlgorithm splitChannelsAlgorithm(result1SIS.get());
-		splitChannelsAlgorithm.setOutputSorting(SplitChannelsAlgorithm::GroupByChannel);
-		splitChannelsAlgorithm.compute();
-		splitChannelsAlgorithm.output(result_2);
-		if (predictingAlgorithm.status() != 0)
 		{
-			LOG_ERROR("Split channels failed");
-			return;
+			SplitChannelsAlgorithm splitChannelsAlgorithm(result1SIS.get());
+			splitChannelsAlgorithm.setOutputSorting(SplitChannelsAlgorithm::GroupByChannel);
+			splitChannelsAlgorithm.compute();
+			splitChannelsAlgorithm.output(result_2);
+			if (splitChannelsAlgorithm.status() != 0)
+			{
+				LOG_ERROR("Split channels failed");
+				return;
+			}
 		}
 
 		// GENERATE MESH TO COMPUTE VOLUME
 		auto result2SIS = std::make_unique<SharedImageSet>(*result_2.getImage());
 		DataList result_3;
-		LabelToMeshAlgorithm labelToMeshAlgorithm(result2SIS.get());
-		labelToMeshAlgorithm.setIsoValue(0.5);
-		labelToMeshAlgorithm.setAboveIsoValue(true);
-		labelToMeshAlgorithm.setSmoothing(0);
-		labelToMeshAlgorithm.compute();
-		labelToMeshAlgorithm.output(result_3);
-		if (labelToMeshAlgorithm.status() != 0)
 		{
-			LOG_ERROR("Can't extract meshes");
-			return;
+			LabelToMeshAlgorithm labelToMeshAlgorithm(result2SIS.get());
+			labelToMeshAlgorithm.setIsoValue(0.5);
+			labelToMeshAlgorithm.setAboveIsoValue(true);
+			labelToMeshAlgorithm.setSmoothing(0);
+			labelToMeshAlgorithm.compute();
+			labelToMeshAlgorithm.output(result_3);
+			if (labelToMeshAlgorithm.status() != 0)
+			{
+				LOG_ERROR("Can't extract meshes");
+				return;
+			}
 		}
 
 		// FILL HOLES IN THE MESH
