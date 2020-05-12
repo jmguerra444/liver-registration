@@ -135,12 +135,12 @@ namespace ImFusion
 			}
 		}
 
-		//// FILL HOLES IN THE MESH
+		//// DO SOME MESH POST PROCESSING
 		auto mesh = result_4.getSurfaces()[0];
 		MeshPostProcessingAlgorithm meshPostProcessingAlgorithm(mesh);
 		meshPostProcessingAlgorithm.setMode(MeshPostProcessingAlgorithm::Mode::FILL_HOLES);
 		meshPostProcessingAlgorithm.compute();
-
+		MeshProcessing::reduceToOneComponent(mesh);
 		if (meshPostProcessingAlgorithm.status() != 0)
 		{
 			LOG_ERROR("Can't do post-processing");

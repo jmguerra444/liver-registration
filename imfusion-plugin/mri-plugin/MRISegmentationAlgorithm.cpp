@@ -107,12 +107,12 @@ namespace ImFusion
 			}
 		}
 
-		// FILL HOLES IN THE MESH
+		// POST PROCESSING ALGORITHM
 		auto mesh = result_3.getSurfaces()[0];
 		MeshPostProcessingAlgorithm meshPostProcessingAlgorithm(mesh);
 		meshPostProcessingAlgorithm.setMode(MeshPostProcessingAlgorithm::Mode::FILL_HOLES);
 		meshPostProcessingAlgorithm.compute();
-		
+		MeshProcessing::reduceToOneComponent(mesh);
 		if (meshPostProcessingAlgorithm.status() != 0)
 		{
 			LOG_ERROR("Can't do post-processing");
@@ -138,7 +138,7 @@ namespace ImFusion
 			}
 		}
 		auto result5SIS = std::make_unique<SharedImageSet>(*result_5.getImage());
-		m_imgOut->add(result2SIS->get());
+		m_imgOut->add(result5SIS->get());
 		m_status = static_cast<int>(Status::Success);
 	}
 
