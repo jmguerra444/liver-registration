@@ -17,11 +17,6 @@ namespace ImFusion
 		/// Creates the algorithm instance with an image
 		LowDoseSegmentationAlgorithm(SharedImageSet* img);
 
-		/// Set downsampling thickness
-		void setFactor(double thickness) { m_thickness = thickness; }
-
-		/// \name	Methods implementing the algorithm interface
-		//\{
 		/// Factory method to check for applicability or to create the algorithm
 		static bool createCompatible(const DataList& data, Algorithm** a = 0);
 
@@ -30,17 +25,13 @@ namespace ImFusion
 
 		/// If new data was created, make it available here
 		void output(DataList& dataOut) override;
-		//\}
 
 		/// \name	Methods implementing the Configurable interface
-		//\{
 		void configure(const Properties* p) override;
 		void configuration(Properties* p) const override;
-		//\}
 
 	private:
 		SharedImageSet* m_imgIn = nullptr;           ///< Input image to process
 		std::unique_ptr<SharedImageSet> m_imgOut;    ///< Output image after processing
-		double m_thickness = 2.0;                            ///< Downsampling factor
 	};
 }
