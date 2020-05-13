@@ -60,6 +60,9 @@ namespace ImFusion
 		m_status = static_cast<int>(Status::Error);
 
 		m_imgOut = std::make_unique<SharedImageSet>();
+		auto thickness = m_imgIn->mem()->spacing().z();
+		LOG_INFO("Slice thickness:  " << thickness << " mm");
+
 		QString lowdoseConfigurationFile = QCoreApplication::applicationDirPath() + "//plugins//SIRT//lowdose-liver.configtxt";
 	
 		// EXTRACT IMAGES FROM VOLUME
@@ -86,8 +89,8 @@ namespace ImFusion
 
 		// TODO: Make it detect thickness automatic
 		auto properties = std::make_unique<Properties>();
-		properties->setParam("Slice Thickness", m_thickness);
-		LOG_INFO("Slice thickness(mm) " << m_thickness);
+		properties->setParam("Slice Thickness", thickness);
+		LOG_INFO("Slice thickness(mm) " << thickness);
 
 		auto p = std::make_unique<std::vector<SharedImage*>>(result_1.getImage()->images());
 		DataList result_2;
@@ -199,7 +202,6 @@ namespace ImFusion
 		if (p == nullptr)
 			return;
 
-		p->param("thickness", m_thickness);
 		for (int i = 0; i < (int)m_listeners.size(); ++i)
 			m_listeners[i]->algorithmParametersChanged();
 	}
@@ -210,7 +212,5 @@ namespace ImFusion
 		// this method is necessary to store our settings in a workspace file
 		if (p == nullptr)
 			return;
-
-		p->setParam("thickness", m_thickness, 2.0);
 	}
 }
