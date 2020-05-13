@@ -18,10 +18,6 @@ namespace ImFusion
 		/// Creates the algorithm instance with an image
 		MRISegmentationAlgorithm(SharedImageSet* img);
 
-		/// Set downsampling thickness
-
-		/// \name	Methods implementing the algorithm interface
-		//\{
 		/// Factory method to check for applicability or to create the algorithm
 		static bool createCompatible(const DataList& data, Algorithm** a = 0);
 
@@ -33,10 +29,8 @@ namespace ImFusion
 		//\}
 
 		/// \name	Methods implementing the Configurable interface
-		//\{
 		void configure(const Properties* p) override;
 		void configuration(Properties* p) const override;
-		//\}
 
 	private:
 		SharedImageSet* m_imgIn = nullptr;           ///< Input image to process
