@@ -6,7 +6,7 @@
             <param name="original">1</param>
             <param name="topDown">1</param>
             <param name="uid">data0</param>
-            <param name="name">Patient 2^^^^</param>
+            <param name="name"></param>
             <param name="transformation">1 -0 0 3.62230324744999 -0 1 -0 3.58692789077 -0 -0 1 20.210189819333 -0 0 -0 1 </param>
             <property name="Components">
                 <property name="DisplayOptions2d">
