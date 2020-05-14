@@ -266,7 +266,7 @@
     "../../../Selected MR-CT data/102_SEGM/Diagnostic",
     "../../../Selected MR-CT data/103_SEGM/Diagnostic"
   ],
-  "diagnostic-mri-mesh":[
+  "diagnostic-mr-mesh":[
     "../../../Selected MR-CT data/006_SEGM/Liver.stl",
     "../../../Selected MR-CT data/007_SEGM/Liver.stl",
     "../../../Selected MR-CT data/008_SEGM/Liver.stl",
