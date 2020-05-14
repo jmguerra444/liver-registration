@@ -19,9 +19,11 @@
 #include "QDir"
 #include "QCoreApplication"
 #include "QFile"
+#include "QDateTime"
 
 #include <iostream>
 #include <filesystem>
+#include <fstream>
 
 namespace ImFusion
 {
@@ -128,8 +130,9 @@ namespace ImFusion
 			LOG_ERROR("Can't do post-processing");
 			return;
 		}
-		LOG_INFO("[SIRT] Volume:  " << MeshProcessing::computeVolume(mesh) / 1e3 << " ml");
-		
+		auto v = MeshProcessing::computeVolume(mesh) / 1e3;
+		LOG_INFO("[SIRT] Volume:  " << v << " ml");
+
 		DataList result_5;
 		{
 			MeshToLabelMapAlgorithm meshToLabelMapAlgorithm(mesh, m_imgIn);
@@ -148,6 +151,14 @@ namespace ImFusion
 			}
 		}
 		auto result5SIS = std::make_unique<SharedImageSet>(*result_5.getImage());
+
+		// SAVE OUR RESULTS
+		std::string filename = "C:\\Master thesis\\master\\kri-evaluation\\plugin-volumetry-mri.txt";
+		std::ofstream outfile;
+		outfile.open(filename, std::ios_base::app);
+		outfile << "[SIRT] " << QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm").toStdString() << "  " << v << std::endl;
+		outfile.close();
+		
 		m_imgOut->add(result5SIS->get());
 		m_status = static_cast<int>(Status::Success);
 	}
