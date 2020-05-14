@@ -158,11 +158,7 @@ namespace ImFusion
 		// attention: membership is hereby transferred to the one calling output()
 
 		//// LINK POSE
-		DataList linkPoseDataList;
-		linkPoseDataList.add(m_imgIn);
-		linkPoseDataList.add(m_imgOut.get());
-		LinkPose linkPose(linkPoseDataList);
-		linkPose.compute();
+		auto linkedPose = new LinkPose(DataList{ m_imgOut.get(), m_imgIn });
 
 		if (m_imgOut)
 		{
