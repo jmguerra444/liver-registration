@@ -60,8 +60,18 @@ namespace ImFusion
 		m_status = static_cast<int>(Status::Error);
 
 		m_imgOut = std::make_unique<SharedImageSet>();
+
+		if (m_imgIn->modality() == Data::CT)
+		{
+			LOG_INFO("[SIRT] CT volume correctly detected");
+		}else
+		{
+			LOG_ERROR("[SIRT] Not a CT volume");
+			return;
+		}
+		
 		auto thickness = m_imgIn->mem()->spacing().z();
-		LOG_INFO("Slice thickness:  " << thickness << " mm");
+		LOG_INFO("[SIRT] Slice thickness:  " << thickness << " mm");
 
 		QString lowdoseConfigurationFile = QCoreApplication::applicationDirPath() + "//plugins//SIRT//lowdose-liver.configtxt";
 	
@@ -90,7 +100,6 @@ namespace ImFusion
 		// TODO: Make it detect thickness automatic
 		auto properties = std::make_unique<Properties>();
 		properties->setParam("Slice Thickness", thickness);
-		LOG_INFO("Slice thickness(mm) " << thickness);
 
 		auto p = std::make_unique<std::vector<SharedImage*>>(result_1.getImage()->images());
 		DataList result_2;
@@ -149,7 +158,7 @@ namespace ImFusion
 			LOG_ERROR("Can't do post-processing");
 			return;
 		}
-		LOG_INFO("Volume:  " << MeshProcessing::computeVolume(mesh) / 1e3 << " ml");
+		LOG_INFO("[SIRT] Volume:  " << MeshProcessing::computeVolume(mesh) / 1e3 << " ml");
 
 		DataList result_5;
 		{

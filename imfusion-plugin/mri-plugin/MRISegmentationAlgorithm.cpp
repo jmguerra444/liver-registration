@@ -28,7 +28,7 @@ namespace ImFusion
 	MRISegmentationAlgorithm::MRISegmentationAlgorithm(SharedImageSet* img)
 		: m_imgIn(img)
 	{
-		LOG_INFO("Instance created");
+		LOG_INFO("[SIRT] Instance created");
 	}
 
 
@@ -59,6 +59,16 @@ namespace ImFusion
 		m_status = static_cast<int>(Status::Error);
 
 		m_imgOut = std::make_unique<SharedImageSet>();
+
+		if (m_imgIn->modality() == Data::MRI)
+		{
+			LOG_INFO("[SIRT] MRI volume correctly detected");
+		}
+		else
+		{
+			LOG_ERROR("[SIRT] Not a MRI volume");
+			return;
+		}
 
 		QString mriConfigurationFile = QCoreApplication::applicationDirPath() + "//plugins//SIRT//mri-liver.configtxt";
 
@@ -118,7 +128,7 @@ namespace ImFusion
 			LOG_ERROR("Can't do post-processing");
 			return;
 		}
-		LOG_INFO("Volume:  " << MeshProcessing::computeVolume(mesh) / 1e3 << " ml");
+		LOG_INFO("[SIRT] Volume:  " << MeshProcessing::computeVolume(mesh) / 1e3 << " ml");
 		
 		DataList result_5;
 		{
