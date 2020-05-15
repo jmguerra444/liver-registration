@@ -6,7 +6,7 @@ import json
 from utils import getData, log
 
 data = getData()
-workspace = "C://Master thesis//master//kri-evaluation//workspaces//base-mri.iws"
+workspace = "C://Master thesis//master//kri-evaluation//automatic-evaluation//base-mri.iws"
 filename = "C://Master thesis//master//kri-evaluation//plugin-volumetry-mri.txt"
 
 log("STARTING PROCESS {}".format(str(datetime.datetime.now())), filename)
