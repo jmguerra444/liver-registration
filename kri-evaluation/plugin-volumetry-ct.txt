@@ -1,0 +1,54 @@
+STARTING PROCESS 2020-05-15 14:48:09.054566
+../../../Selected MR-CT data/001_SEGM/Diagnostic
+../../../Selected MR-CT data/002_SEGM/Diagnostic
+STARTING PROCESS 2020-05-15 14:58:33.793282
+../../../Selected MR-CT data/001_SEGM/Diagnostic
+STARTING PROCESS 2020-05-15 15:21:29.595809
+../../../Selected MR-CT data/001_SEGM/Diagnostic
+STARTING PROCESS 2020-05-15 15:29:22.257029
+../../../Selected MR-CT data/001_SEGM/Diagnostic
+../../../Selected MR-CT data/002_SEGM/Diagnostic
+../../../Selected MR-CT data/003_SEGM/Diagnostic
+../../../Selected MR-CT data/004_SEGM/Diagnostic
+../../../Selected MR-CT data/005_SEGM/Diagnostic
+../../../Selected MR-CT data/009_SEGM/Diagnostic
+../../../Selected MR-CT data/012_SEGM/Diagnostic
+../../../Selected MR-CT data/014_SEGM/Diagnostic
+../../../Selected MR-CT data/015_SEGM/Diagnostic
+../../../Selected MR-CT data/016_SEGM/Diagnostic
+../../../Selected MR-CT data/017_SEGM/Diagnostic
+../../../Selected MR-CT data/018_SEGM/Diagnostic
+../../../Selected MR-CT data/019_SEGM/Diagnostic
+../../../Selected MR-CT data/024_SEGM/Diagnostic
+../../../Selected MR-CT data/027_SEGM/Diagnostic
+../../../Selected MR-CT data/029_SEGM/Diagnostic
+../../../Selected MR-CT data/031_SEGM/Diagnostic
+../../../Selected MR-CT data/032_SEGM/Diagnostic
+../../../Selected MR-CT data/033_SEGM/Diagnostic
+../../../Selected MR-CT data/035_SEGM/Diagnostic
+../../../Selected MR-CT data/038_SEGM/Diagnostic
+../../../Selected MR-CT data/043_SEGM/Diagnostic
+../../../Selected MR-CT data/045_SEGM/Diagnostic
+../../../Selected MR-CT data/047_SEGM/Diagnostic
+../../../Selected MR-CT data/048_SEGM/Diagnostic
+../../../Selected MR-CT data/051_SEGM/Diagnostic
+../../../Selected MR-CT data/052_SEGM/Diagnostic
+../../../Selected MR-CT data/053_SEGM/Diagnostic
+../../../Selected MR-CT data/054_SEGM/Diagnostic
+../../../Selected MR-CT data/057_SEGM/Diagnostic
+../../../Selected MR-CT data/058_SEGM/Diagnostic
+../../../Selected MR-CT data/059_SEGM/Diagnostic
+../../../Selected MR-CT data/060_SEGM/Diagnostic
+../../../Selected MR-CT data/061_SEGM/Diagnostic
+../../../Selected MR-CT data/063_SEGM/Diagnostic
+../../../Selected MR-CT data/064_SEGM/Diagnostic
+../../../Selected MR-CT data/065_SEGM/Diagnostic
+../../../Selected MR-CT data/068_SEGM/Diagnostic
+../../../Selected MR-CT data/072_SEGM/Diagnostic
+../../../Selected MR-CT data/073_SEGM/Diagnostic
+../../../Selected MR-CT data/076_SEGM/Diagnostic
+../../../Selected MR-CT data/077_SEGM/Diagnostic
+../../../Selected MR-CT data/084_SEGM/Diagnostic
+../../../Selected MR-CT data/087_SEGM/Diagnostic
+../../../Selected MR-CT data/089_SEGM/Diagnostic
+../../../Selected MR-CT data/101_SEGM/Diagnostic
