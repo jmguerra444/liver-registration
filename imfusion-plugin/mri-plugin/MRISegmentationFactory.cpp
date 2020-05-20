@@ -8,7 +8,7 @@ namespace ImFusion
 	MRISegmentationAlgorithmFactory::MRISegmentationAlgorithmFactory()
 	{
 		// register the MRISegmentationAlgorithm
-		registerAlgorithm<MRISegmentationAlgorithm>("SIRT;MRISegmentation Algorithm");
+		registerAlgorithm<MRISegmentationAlgorithm>("SIRT;MRI Segmentation Algorithm");
 	}
 
 

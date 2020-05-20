@@ -8,7 +8,7 @@ namespace ImFusion
 	LowDoseSegmentationAlgorithmFactory::LowDoseSegmentationAlgorithmFactory()
 	{
 		// register the LowDoseSegmentationAlgorithm
-		registerAlgorithm<LowDoseSegmentationAlgorithm>("SIRT;LowDoseSegmentation Algorithm");
+		registerAlgorithm<LowDoseSegmentationAlgorithm>("SIRT;LowDose Segmentation Algorithm");
 	}
 
 
