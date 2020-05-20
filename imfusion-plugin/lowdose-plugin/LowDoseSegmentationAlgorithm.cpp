@@ -203,6 +203,7 @@ namespace ImFusion
 		// if we have produced some output, add it to the list
 		// attention: membership is hereby transferred to the one calling output()
 
+		m_imgOut->setName("LowDose Mask");
 		auto linkedPose = new LinkPose(DataList{ m_imgOut.get(), m_imgIn });
 
 		if (m_imgOut)

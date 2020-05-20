@@ -31,7 +31,7 @@ namespace ImFusion
 		void configuration(Properties* p) const override;
 
 	private:
-		SharedImageSet* m_imgIn = nullptr;           ///< Input image to process
+		SharedImageSet* m_imgIn = nullptr;           /// Lowdose volume
 		std::unique_ptr<SharedImageSet> m_imgOut;    ///< Output image after processing
 	};
 }
