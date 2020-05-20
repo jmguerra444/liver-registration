@@ -16,4 +16,6 @@ cd ..
 xcopy /y "C:\Master thesis\master\imfusion-plugin\registration-plugin\build\bin\Release\RegistrationPlugin.dll" "C:\Program Files\ImFusion\ImFusion Suite\Suite\plugins\RegistrationPlugin.dll"
 xcopy /y "C:\Master thesis\master\imfusion-plugin\mri-plugin\build\bin\Release\MRISegmentationPlugin.dll" "C:\Program Files\ImFusion\ImFusion Suite\Suite\plugins"
 xcopy /y "C:\Master thesis\master\imfusion-plugin\lowdose-plugin\build\bin\Release\LowDoseSegmentationPlugin.dll" "C:\Program Files\ImFusion\ImFusion Suite\Suite\plugins"
+
+runas /savecred /user:jmguerra444@hotmail.com "ImFusionSuite.exe"
 pause
