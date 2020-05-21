@@ -169,6 +169,7 @@ namespace ImFusion
 		// attention: membership is hereby transferred to the one calling output()
 
 		m_imgOut->setName("MRI Mask");
+		m_imgOut->setModality(Data::Modality::MRI);
 		//// LINK POSE
 		auto linkedPose = new LinkPose(DataList{ m_imgOut.get(), m_imgIn });
 
