@@ -17,5 +17,5 @@ for i in lowdose_data:
     print("Now doing {}".format(i))
     log(i, filename)
     p = subprocess.Popen('ImFusionSuite "{}" Data="{}"'.format(workspace, i))
-    time.sleep(60)
+    time.sleep(100)
     p.terminate()
