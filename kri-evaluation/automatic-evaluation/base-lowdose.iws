@@ -75,7 +75,7 @@
             <param name="inputUids"></param>
             <param name="outputUids">"data0" </param>
         </property>
-        <property name="LowDoseSegmentation Algorithm">
+        <property name="LowDose Segmentation Processed Algorithm">
             <param name="inputUids">"data0" </param>
             <param name="outputUids"></param>
             <param name="execute">1</param>
