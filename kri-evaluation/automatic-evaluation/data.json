@@ -57,7 +57,7 @@
     102,
     103
   ],
-  "ct-patients":[
+  "ct-patients": [
     1,
     2,
     3,
@@ -209,7 +209,7 @@
     "../../../Selected MR-CT data/102_SEGM/CT",
     "../../../Selected MR-CT data/103_SEGM/CT"
   ],
-  "diagnostic-mr":[
+  "diagnostic-mr": [
     "../../../Selected MR-CT data/006_SEGM/Diagnostic",
     "../../../Selected MR-CT data/007_SEGM/Diagnostic",
     "../../../Selected MR-CT data/008_SEGM/Diagnostic",
@@ -266,7 +266,7 @@
     "../../../Selected MR-CT data/102_SEGM/Diagnostic",
     "../../../Selected MR-CT data/103_SEGM/Diagnostic"
   ],
-  "diagnostic-mr-mesh":[
+  "diagnostic-mr-mesh": [
     "../../../Selected MR-CT data/006_SEGM/Liver.stl",
     "../../../Selected MR-CT data/007_SEGM/Liver.stl",
     "../../../Selected MR-CT data/008_SEGM/Liver.stl",
@@ -323,7 +323,7 @@
     "../../../Selected MR-CT data/102_SEGM/Liver.stl",
     "../../../Selected MR-CT data/103_SEGM/Liver.stl"
   ],
-  "diagnostic-ct":[
+  "diagnostic-ct": [
     "../../../Selected MR-CT data/001_SEGM/Diagnostic",
     "../../../Selected MR-CT data/002_SEGM/Diagnostic",
     "../../../Selected MR-CT data/003_SEGM/Diagnostic",
@@ -370,5 +370,53 @@
     "../../../Selected MR-CT data/087_SEGM/Diagnostic",
     "../../../Selected MR-CT data/089_SEGM/Diagnostic",
     "../../../Selected MR-CT data/101_SEGM/Diagnostic"
+  ],
+  "diagnostic-mesh-ct": [
+    "../../../Selected MR-CT data/001_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/002_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/003_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/004_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/005_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/009_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/012_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/014_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/015_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/016_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/017_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/018_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/019_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/024_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/027_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/029_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/031_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/032_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/033_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/035_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/038_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/043_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/045_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/047_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/048_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/051_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/052_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/053_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/054_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/057_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/058_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/059_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/060_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/061_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/063_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/064_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/065_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/068_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/072_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/073_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/076_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/077_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/084_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/087_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/089_SEGM/Liver.stl",
+    "../../../Selected MR-CT data/101_SEGM/Liver.stl"
   ]
 }
