@@ -23,7 +23,7 @@ for p in landmarks:
         points2 = landmarks[p].get("points2")
         c = 'ImFusionSuite ws.iws mr="{}" ct="{}" p1="{}" p2="{}"'.format(mriPath, ctPath, points1, points2)
         
-        p = subprocess.Popen(c)
+        process = subprocess.Popen(c)
         screenshotPath = "screenshots/{}.png".format(p)
         screenshot(screenshotPath, 5)
-        p.wait()
+        process.wait()
