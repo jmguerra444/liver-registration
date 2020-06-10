@@ -1,11 +1,11 @@
-<!--ImFusion Suite, 04.06.2020-->
+<!--ImFusion Suite, 09.06.2020-->
 <propertyfile version="1.1">
     <param name="workspaceVersion">10</param>
     <property name="Datasets">
         <property name="Data">
             <param name="original">1</param>
             <param name="topDown">1</param>
-            <param name="uid">data2</param>
+            <param name="uid">data0</param>
             <param name="name">LungLeber Low Dose 5.0  B30sWT</param>
             <param name="transformation">1 -0 -0 -10 -0 1 0 163 -0 -0 1 -1370.5 -0 0 -0 1 </param>
             <property name="Components">
@@ -14,8 +14,8 @@
                     <param name="invert">0</param>
                     <param name="wlInOriginalValues">1</param>
                     <property name="TransferFunction">
-                        <param name="window">293.964075810391</param>
-                        <param name="level">90.572295327916</param>
+                        <param name="window">481.571922711244</param>
+                        <param name="level">147.823017966989</param>
                         <param name="presetName"></param>
                         <param name="textureSize">256</param>
                     </property>
@@ -66,7 +66,7 @@
         <property name="Data">
             <param name="original">1</param>
             <param name="topDown">1</param>
-            <param name="uid">data3</param>
+            <param name="uid">data1</param>
             <param name="name">Abd_t1_vibe_dixon_tra_bh_venous_W</param>
             <param name="transformation">1 -0 0 -4.23311996460001 -0 1 -0 -16.65864372253 0 -0 1 326.79999999702 -0 0 -0 1 </param>
             <property name="Components">
@@ -75,8 +75,8 @@
                     <param name="invert">0</param>
                     <param name="wlInOriginalValues">1</param>
                     <property name="TransferFunction">
-                        <param name="window">640.529801324503</param>
-                        <param name="level">605.359527121002</param>
+                        <param name="window">1209</param>
+                        <param name="level">583.5</param>
                         <param name="presetName"></param>
                         <param name="textureSize">256</param>
                     </property>
@@ -126,55 +126,41 @@
     </property>
     <property name="Algorithms">
         <property name="DICOM Folder">
-            <param name="location">C:/Master thesis/Selected MR-CT data/021_SEGM/CT?series=1.3.12.2.1107.5.6.1.36538.31430118060107464239000002546</param>
+            <param name="location">../../../Selected MR-CT data/022_SEGM/CT?series=1.3.12.2.1107.5.6.1.36538.31430118062108335753100000897</param>
             <param name="reconstructVolume">1</param>
             <param name="execute">1</param>
             <param name="inputUids"></param>
             <param name="outputUids">"data0" </param>
         </property>
         <property name="DICOM Folder">
-            <param name="location">C:/Master thesis/Selected MR-CT data/021_SEGM/Diagnostic?series=1.3.46.670589.11.44004.5.0.10460.2017111008394297000</param>
+            <param name="location">../../../Selected MR-CT data/022_SEGM/Diagnostic?series=1.3.12.2.1107.5.2.38.51004.2018061511465985722015498.0.0.0</param>
             <param name="reconstructVolume">1</param>
             <param name="execute">1</param>
             <param name="inputUids"></param>
             <param name="outputUids">"data1" </param>
         </property>
-        <property name="DICOM Folder">
-            <param name="location">C:/Master thesis/Selected MR-CT data/022_SEGM/CT?series=1.3.12.2.1107.5.6.1.36538.31430118062108335753100000897</param>
-            <param name="reconstructVolume">1</param>
-            <param name="execute">1</param>
-            <param name="inputUids"></param>
-            <param name="outputUids">"data2" </param>
-        </property>
-        <property name="DICOM Folder">
-            <param name="location">C:/Master thesis/Selected MR-CT data/022_SEGM/Diagnostic?series=1.3.12.2.1107.5.2.38.51004.2018061511465985722015498.0.0.0</param>
-            <param name="reconstructVolume">1</param>
-            <param name="execute">1</param>
-            <param name="inputUids"></param>
-            <param name="outputUids">"data3" </param>
-        </property>
         <property name="Point Correspondences">
-            <param name="points1">44.0089086859688 -41.945991091314 16.5 
--26.130289532294 -38.5077951002227 16.5 
--93.5189309576837 67.3886414253897 16.5 
--59.8246102449889 60.5122494432071 -28.880846325167 
--59.8246102449889 -17.1909799554566 68.076280623608 
--120.336859688196 -31.6314031180401 -70.8268374164811 
-40.5707126948775 -31.6314031180401 24.0673719376392 
--89.3930957683742 -31.6314031180401 67.3886414253898 
+            <param name="points1">-101.13666285075 102.57884791494 17.20000000298 
+-2.1292976421767 21.3041451317825 17.20000000298 
+52.0538375465947 1.10861292505868 17.20000000298 
+-58.6106300354 96.5444954272654 -27.584141550647 
+-58.6106300354 15.2697926441083 56.1534310138179 
+-124.128636977913 16.37739372253 -76.8415371768031 
+9.85147912523117 16.37739372253 21.1806801192472 
+-80.7821288268956 16.37739372253 59.108874751387 
 </param>
-            <param name="points2">48.6609373316361 6.04421086631595 17.5 
--26.8335478013154 1.53095360293298 17.5 
--112.175139690739 106.977055120153 17.5 
--57.6057564152902 95.1886986458953 -29.1310241545627 
--57.6057564152902 14.3603640198549 54.5693832754487 
--121.85794611134 8.91628367028693 -69.3400434101563 
-18.0530290535319 8.91628367028693 14.3603640198551 
--81.2386307408935 8.91628367028693 57.4414560794196 
+            <param name="points2">-91.66015625 68.3430989583333 22.5 
+-14.1955961853129 -16.7766136735516 22.5 
+60.0086566015498 -52.2656041368337 22.5 
+-54.03125 58.7181478574304 -20.6481399059096 
+-54.03125 -20.0028855338499 67.7517090662659 
+-120.0173132031 -29.09375 -70.9779809265643 
+36.7794992074015 -29.09375 23.2291573941483 
+-82.5925596236384 -29.09375 72.2684896706836 
 </param>
             <param name="registrationMode">0</param>
             <param name="exportAsPointClouds">0</param>
-            <param name="inputUids">"data3" "data2" </param>
+            <param name="inputUids">"data0" "data1" </param>
             <param name="outputUids"></param>
             <property name="Controller">
                 <param name="userCloseable">1</param>
@@ -205,11 +191,11 @@
                 <param name="interpolation">1</param>
                 <param name="flip">1</param>
                 <param name="blendingMode">1</param>
-                <param name="zoom">1</param>
+                <param name="zoom">0.802518797962478</param>
                 <param name="showZoom">1</param>
                 <param name="showIn3D">17</param>
-                <param name="viewMatrix">1 0 0 4.23311996460001 0 1 0 16.65864372253 0 0 1 -310.29999999702 0 0 0 1 </param>
-                <param name="sliceMatrix">1 0 0 4.23311996460001 0 1 0 16.65864372253 0 0 1 -310.29999999702 0 0 0 1 </param>
+                <param name="viewMatrix">1 0 0 4.23311996460001 0 1 0 16.65864372253 0 0 1 -304.29999999702 0 0 0 1 </param>
+                <param name="sliceMatrix">1 0 0 4.23311996460001 0 1 0 16.65864372253 0 0 1 -304.29999999702 0 0 0 1 </param>
                 <param name="showOrientationMarkers">0</param>
                 <param name="displayOptionsSource">1</param>
             </property>
@@ -218,11 +204,11 @@
                 <param name="interpolation">1</param>
                 <param name="flip">1</param>
                 <param name="blendingMode">1</param>
-                <param name="zoom">1</param>
+                <param name="zoom">0.802518797962478</param>
                 <param name="showZoom">1</param>
                 <param name="showIn3D">17</param>
-                <param name="viewMatrix">0 0 -1 -55.5914902803889 1 0 0 16.65864372253 0 -1 0 -326.79999999702 0 0 0 1 </param>
-                <param name="sliceMatrix">0 0 -1 -55.5914902803889 1 0 0 16.65864372253 0 -1 0 -326.79999999702 0 0 0 1 </param>
+                <param name="viewMatrix">0 0 -1 -49.7981300354 1 0 0 16.65864372253 0 -1 0 -326.79999999702 0 0 0 1 </param>
+                <param name="sliceMatrix">0 0 -1 -49.7981300354 1 0 0 16.65864372253 0 -1 0 -326.79999999702 0 0 0 1 </param>
                 <param name="showOrientationMarkers">0</param>
                 <param name="displayOptionsSource">1</param>
             </property>
@@ -231,11 +217,11 @@
                 <param name="interpolation">1</param>
                 <param name="flip">1</param>
                 <param name="blendingMode">1</param>
-                <param name="zoom">1</param>
+                <param name="zoom">0.802518797962478</param>
                 <param name="showZoom">1</param>
                 <param name="showIn3D">17</param>
-                <param name="viewMatrix">1 0 0 4.23311996460001 0 0 1 -14.9727593955101 0 -1 0 -326.79999999702 0 0 0 1 </param>
-                <param name="sliceMatrix">1 0 0 4.23311996460001 0 0 1 -14.9727593955101 0 -1 0 -326.79999999702 0 0 0 1 </param>
+                <param name="viewMatrix">1 0 0 4.23311996460001 0 0 1 -12.43510627747 0 -1 0 -326.79999999702 0 0 0 1 </param>
+                <param name="sliceMatrix">1 0 0 4.23311996460001 0 0 1 -12.43510627747 0 -1 0 -326.79999999702 0 0 0 1 </param>
                 <param name="showOrientationMarkers">0</param>
                 <param name="displayOptionsSource">1</param>
             </property>
@@ -245,7 +231,7 @@
                 <param name="sceneCenter">4.23311996460001 16.65864372253 -326.79999999702 </param>
                 <param name="displayOptionsSource">1</param>
                 <property name="Camera">
-                    <param name="poseMatrix">0.388465042065942 -0.914401270998324 0.113864949345076 50.7993313135026 -0.069656647749107 0.0940757446173767 0.993125221560224 323.281013036662 -0.918826894750619 -0.393725881637641 -0.0271489891450924 -733.57631731062 0 0 -0 1 </param>
+                    <param name="poseMatrix">1 -0 0 -4.23311996460001 -0 0 1 326.79999999702 -0 -1 0 -718.493827594275 0 0 -0 1 </param>
                     <param name="mode">0</param>
                     <param name="principalPoint">0.5 0.5 </param>
                     <param name="focalLength">1.37373870972731 1.37373870972731 </param>
@@ -263,16 +249,16 @@
                 <param name="visible"></param>
             </property>
             <property name="1">
-                <param name="visible">"data3" </param>
+                <param name="visible">"data1" "data0" </param>
             </property>
             <property name="2">
-                <param name="visible">"data3" </param>
+                <param name="visible">"data1" "data0" </param>
             </property>
             <property name="3">
-                <param name="visible">"data3" </param>
+                <param name="visible">"data1" "data0" </param>
             </property>
             <property name="4">
-                <param name="visible">"data3" </param>
+                <param name="visible">"data1" "data0" </param>
             </property>
         </property>
     </property>

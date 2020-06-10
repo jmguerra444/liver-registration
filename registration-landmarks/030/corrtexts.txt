@@ -1,0 +1,8 @@
+Fiducial 1
+Fiducial 2
+Fiducial 3
+Fiducial 4
+Fiducial 5
+Fiducial 6
+Fiducial 7
+Fiducial 8
