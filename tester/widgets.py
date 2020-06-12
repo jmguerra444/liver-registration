@@ -54,6 +54,11 @@ class FileEdit(QLineEdit):
             if filepath[-6:] == "nii.gz" or filepath[-6:] == "NII.GZ":
                 self.dropped.emit(filepath, "nii")
                 return
+
+            # any file type here
+            if filepath[-4:] == ".nii" or filepath[-4:] == ".NII":
+                self.dropped.emit(filepath, "nii")
+                return
             
             if filepath[-4:] == ".png" or filepath[-4:] == ".PNG":
                 self.dropped.emit(filepath, "png")
