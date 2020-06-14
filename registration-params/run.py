@@ -7,7 +7,6 @@ import datetime
 import os
 
 # %% Setup
-logger = "logger.log"
 landmarks = getData("landmarks.json")
 
 description = input("What's the description os this experiment?")
