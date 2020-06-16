@@ -7,6 +7,7 @@
 #include <ImFusion/Base/SharedImage.h>
 #include <ImFusion/Base/SharedImageSet.h>
 
+#include <Windows.h>
 
 namespace ImFusion
 {
@@ -50,6 +51,12 @@ namespace ImFusion
 		Log::init(true, true, filename);
 		Log::log(Log::Info, "", "Log flushed");
 
+		int delay = 10;
+		for(int i = 0; i < delay; i++)
+		{
+			LOG_INFO(delay - i);
+			Sleep(1000);
+		}
 		m_status = static_cast<int>(Status::Success);
 	}
 
