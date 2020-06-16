@@ -1,3 +1,4 @@
-screenshots
+studies/*
+!studies/completed
 .vscode
 .idea
