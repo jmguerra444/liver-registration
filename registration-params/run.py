@@ -43,8 +43,9 @@ log("STARTING PROCESS {}".format(now()), study.get("descriptionFile"))
 for p in landmarks :
     
     # To only one
-    if not(run_only and int(p) == run_only):
-        continue
+    if run_only:
+        if not(run_only and int(p) == run_only):
+            continue
     
     # Stop condition
     if (int(p) < 0):
