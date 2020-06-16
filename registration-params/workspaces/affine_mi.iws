@@ -139,7 +139,6 @@
             <param name="inputUids"></param>
             <param name="outputUids">"data1" </param>
         </property>
-
         <property name="Image Registration">
             <param name="image2IsMoving">0</param>
             <param name="verbose">1</param>
@@ -154,7 +153,7 @@
                 <param name="image1IsReference">1</param>
                 <param name="preApplyTransformation">0</param>
                 <param name="relWorld">0</param>
-                <param name="affine">0</param>
+                <param name="affine">1</param>
                 <property name="Optimizer">
                     <param name="dim">6</param>
                     <param name="type">34</param>
@@ -168,7 +167,7 @@
                     <param name="abortParAbs">1</param>
                 </property>
                 <property name="SimilarityMeasureFactory">
-                    <param name="mode">NCC</param>
+                    <param name="mode">MI</param>
                     <param name="device">1</param>
                     <property name="SimilarityMeasure">
                         <param name="useImg1Mask">1</param>
