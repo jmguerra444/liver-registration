@@ -5,16 +5,33 @@ import time
 import subprocess
 import datetime
 import os
+import argparse
+# import pdb
+
+# Change this to run only in one set
+run_only = 8
+description = "Dummy study description"
+workspace = "affine_mi.iws"
+timer = 30
+
+# run_only = 0
+# parser = argparse.ArgumentParser()
+# parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "rigid_mi.iws")
+# parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
+# parser.add_argument("--timer", help = "Timer", type = int, default = 50)
+# args = parser.parse_args()
+# description = args.description
+# workspace = args.workspace
+# timer = args.timer
 
 # %% Setup
 landmarks = getData("landmarks.json")
-
-description = input("What's the description os this experiment?")
 study_id = now()
 study = {
     "id" : study_id,
-    "workspaceFile" : "workspaces\\rigid_ncc.iws",
-    "description": description,
+    "workspaceFile" : "workspaces\\{}".format(workspace),
+    "description" : description,
+    "studyFolder" : absolutePath("studies\\{}".format(study_id)),
     "descriptionFile" : absolutePath("studies\\{}\\description".format(study_id)),
     "screenshotFolder" : absolutePath("studies\\{}\\screenshots\\".format(study_id))
     }
@@ -24,6 +41,10 @@ setup(study)
 log("\n",study.get("descriptionFile"))
 log("STARTING PROCESS {}".format(now()), study.get("descriptionFile"))
 for p in landmarks :
+    
+    # To only one
+    if not(run_only and int(p) == run_only):
+        continue
     
     # Stop condition
     if (int(p) < 0):
@@ -43,9 +64,11 @@ for p in landmarks :
         
         process = subprocess.Popen(c)
         screenshotPath = "{}\\{}.png".format(study["screenshotFolder"], p)
-        screenshot(screenshotPath, 50) # Not asynchronous
-        process.terminate()
-        # process.wait()
+        screenshot(screenshotPath, 30) # Not asynchronous
 
+        if run_only:
+            process.wait()
+        else:
+            process.terminate()
 
 # %%
