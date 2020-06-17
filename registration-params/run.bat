@@ -1,12 +1,18 @@
-python run.py --workspace="rigid_ssd.iws" ^
-              --description="Rigid registration with SSD similarity"
-
-python run.py --workspace="affine_mi.iws" ^
-              --description="Affine registration with MI similarity"
-
-python run.py --workspace="affine_ncc.iws" ^
-              --description="Affine registration with NCC similarity"
-
-python run.py --workspace="affine_ssd.iws" ^
-              --description="Affine registration with SSD similarity"
-
+python run.py --workspace="t_rigid_mi.iws" ^
+              --description="Rigid registration with MI similarity" ^
+              --timer=100
+python run.py --workspace="t_rigid_ncc.iws" ^
+              --description="Rigid registration with NCC similarity" ^
+              --timer=100
+python run.py --workspace="t_rigid_ssd.iws" ^
+              --description="Rigid registration with SSD similarity" ^
+              --timer=100
+python run.py --workspace="t_affine_mi.iws" ^
+              --description="Affine registration with MI similarity" ^
+              --timer=100
+python run.py --workspace="t_affine_ncc.iws" ^
+              --description="Affine registration with NCC similarity" ^
+              --timer=100
+python run.py --workspace="t_affine_ssd.iws" ^
+              --description="Affine registration with SSD similarity" ^
+              --timer=100
