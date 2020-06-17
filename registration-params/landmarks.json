@@ -308,67 +308,67 @@
     "points1": "3.55469 -31.1035 -100.202 69.3164 -91.5332 -100.202 -73.4417 -106.641 -116.416 -73.4417 87.0898 -59.541 -141.299 -24.4396 -140.41 57.7637 -24.4396 -55.0977"
   },
   "092": {
-    "annotated": false,
-    "mri-data": "",
-    "ct-data": "",
-    "points2": "",
-    "points1": ""
+    "annotated": true,
+    "mri-data": "C:/Master thesis/Selected MR-CT data/092_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/092_SEGM/CT/",
+    "points2": "-86.7391 90.5435 10.5 -6.84783 -9.13043 10.5 44.8913 -66.1957 10.5 -69.1797 -53.2609 -76.087 -124.022 -17.4453 -51.7391 18.2609 -17.4453 49.4565",
+    "points1": "-67.7174 89.7826 -15.2978 -5.32609 -18.2609 -15.2978 34.2391 -82.1739 -15.2978 -71.8312 -69.2391 -79.1304 -131.63 -15.0461 -53.2609 28.913 -17.4523 37.2826"
   },
   "093": {
-    "annotated": false,
-    "mri-data": "",
-    "ct-data": "",
-    "points2": "",
-    "points1": ""
+    "annotated": true,
+    "mri-data": "C:/Master thesis/Selected MR-CT data/093_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/093_SEGM/CT/",
+    "points2": "-76.8478 77.6087 16.5 -32.7174 -1.11022e-16 16.5 52.5 -78.3696 16.5 -44.8913 -70.7609 -44.1304 -121.739 -19.7826 -52.5 35.7609 -19.8516 56.3043",
+    "points1": "-78.7687 54.2629 46.0169 -17.5042 -29.7571 46.0169 56.0133 -91.8969 46.0169 -38.3496 -96.2729 -7.00167 -108.526 -45.6406 -22.7554 47.2612 -45.6406 96.2729"
   },
   "094": {
-    "annotated": false,
-    "mri-data": "",
-    "ct-data": "",
-    "points2": "",
-    "points1": ""
+    "annotated": true,
+    "mri-data": "C:/Master thesis/Selected MR-CT data/094_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/094_SEGM/CT/",
+    "points2": "-34.2391 33.4783 -6 58.587 -60.1087 -6 -44.1304 -52.5 -42.6087 -99.6739 29.4766 -101.196",
+    "points1": "-37.3476 -4.78815 -51.7151 47.8815 -99.5936 -51.7151 -50.4585 -92.8902 -86.1867 -110.128 -1.69311 -142.687"
   },
   "095": {
-    "annotated": false,
-    "mri-data": "",
-    "ct-data": "",
-    "points2": "",
-    "points1": ""
+    "annotated": true,
+    "mri-data": "C:/Master thesis/Selected MR-CT data/094_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/094_SEGM/CT/",
+    "points2": "-48.2213 22.9249 2 -22.1344 -33.9921 2 29.249 -99.6047 2 -52.9644 -108.3 -9.48617 -156.522 -22.1344 -85.3755 67.1937 -22.1344 59.2885",
+    "points1": "-41.9235 22.6613 55.9927 -22.6613 -37.3912 55.9927 19.2621 -96.3107 55.9927 -60.4503 -111.041 54.3872 -165.428 -15.6923 -32.8589 62.3187 -15.6923 98.5768"
   },
   "096": {
-    "annotated": false,
-    "mri-data": "",
-    "ct-data": "",
-    "points2": "",
-    "points1": ""
+    "annotated": true,
+    "mri-data": "C:/Master thesis/Selected MR-CT data/096_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/096_SEGM/CT/",
+    "points2": "-24.1211 28.1413 42 89.248 -37.7897 42 -97.2884 -5.62826 -77.9915 94.8763 -5.62826 67.5391",
+    "points1": "-30.192 21.6145 29 75.9942 -52.0222 29 -110.455 -14.1367 -85.9094 92.3126 -14.1367 62.4311"
   },
   "097": {
-    "annotated": false,
-    "mri-data": "",
-    "ct-data": "",
-    "points2": "",
-    "points1": ""
+    "annotated": true,
+    "mri-data": "C:/Master thesis/Selected MR-CT data/097_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/097_SEGM/CT/",
+    "points2": "-5.32609 -26.6304 15.75 72.2826 -85.2174 15.75 -45.6522 -83.6957 -44.8913 -143.804 -28.913 -63.913 60.1087 -28.913 44.1304",
+    "points1": "-6.04038 -61.4105 -91.3359 58.3903 -136.915 -91.3359 -41.3083 -121.814 -125.841 -137.922 -60.7588 -145.976 63.4239 -60.7588 -55.3701"
   },
   "098": {
-    "annotated": false,
-    "mri-data": "",
-    "ct-data": "",
-    "points2": "",
-    "points1": ""
+    "annotated": true,
+    "mri-data": "C:/Master thesis/Selected MR-CT data/098_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/098_SEGM/CT/",
+    "points2": "-3.80435 -11.413 5.4 73.8043 -43.3696 5.4 -122.5 -26.6304 -50.9783 80.6522 -27.0703 35",
+    "points1": "-21.2215 -35.0912 -89.2145 55.7092 -78.2804 -89.2145 -137.632 -47.0164 -136.296 58.1261 -47.0164 -56.1218"
   },
   "099": {
-    "annotated": false,
-    "mri-data": "",
-    "ct-data": "",
-    "points2": "",
-    "points1": ""
+    "annotated": true,
+    "mri-data": "C:/Master thesis/Selected MR-CT data/099_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/099_SEGM/CT/",
+    "points2": "-23.2495 -19.2801 -18.15 19.2801 -102.638 -18.15 -154.24 -32.0158 -79.9555 41.9625 -32.0158 32.3225",
+    "points1": "-13.9408 -45.5334 -69.6262 -0.243011 -126.416 -69.6262 -147.414 -52.4569 -124.585 37.8319 -52.4569 -29.3524"
   },
   "100": {
-    "annotated": false,
-    "mri-data": "",
-    "ct-data": "",
-    "points2": "",
-    "points1": ""
+    "annotated": true,
+    "mri-data": "C:/Master thesis/Selected MR-CT data/100_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/100_SEGM/CT/",
+    "points2": "-0.76087 -11.413 -19.5 44.8913 -83.6957 -19.5 -119.457 -9.8913 -61.6304 64.6739 -9.8913 28.913",
+    "points1": "-21.3967 27.9893 -47.1842 27.2869 -54.0618 -47.1842 -149.88 25.6223 -88.0682 63.9998 25.6223 8.20511"
   },
   "102": {
     "annotated": false,
@@ -378,10 +378,10 @@
     "points1": ""
   },
   "103": {
-    "annotated": false,
-    "mri-data": "",
-    "ct-data": "",
-    "points2": "",
-    "points1": ""
+    "annotated": true,
+    "mri-data": "C:/Master thesis/Selected MR-CT data/103_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/103_SEGM/CT/",
+    "points2": "-14.426 29.2378 49.5 11.1213 -16.5544 49.5 55.4675 -44.5118 49.5 -81.8125 -9.15845 -94.4767",
+    "points1": "-4.62828 10.6486 -37.7746 20.4565 -37.5141 -37.7746 64.104 -74.6396 -37.7746 -46.4763 -40.6373 -190.644"
   }
 }
