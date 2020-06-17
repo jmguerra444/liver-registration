@@ -31,9 +31,9 @@ study = {
     "id" : study_id,
     "workspaceFile" : "workspaces\\{}".format(workspace),
     "description" : description,
-    "studyFolder" : absolutePath("studies\\{}".format(study_id)),
-    "descriptionFile" : absolutePath("studies\\{}\\description".format(study_id)),
-    "screenshotFolder" : absolutePath("studies\\{}\\screenshots\\".format(study_id))
+    "studyFolder" : absolutePath("studies\\in-progress\\{}".format(study_id)),
+    "descriptionFile" : absolutePath("studies\\in-progress\\{}\\description".format(study_id)),
+    "screenshotFolder" : absolutePath("studies\\in-progress\\{}\\screenshots\\".format(study_id))
     }
 setup(study)
 
