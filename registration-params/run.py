@@ -9,10 +9,10 @@ import argparse
 # import pdb
 
 # Change this to run only in one set
-run_only = 8
+run_only = 6
 description = "Dummy study description"
-workspace = "affine_mi.iws"
-timer = 30
+workspace = "t_affine_ncc.iws"
+timer = 70
 
 # run_only = 0
 # parser = argparse.ArgumentParser()
@@ -65,7 +65,7 @@ for p in landmarks :
         
         process = subprocess.Popen(c)
         screenshotPath = "{}\\{}.png".format(study["screenshotFolder"], p)
-        screenshot(screenshotPath, 30) # Not asynchronous
+        screenshot(screenshotPath, timer) # Not asynchronous
 
         if run_only:
             process.wait()
