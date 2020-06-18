@@ -260,8 +260,8 @@
   },
   "081": {
     "annotated": true,
-    "mri-data": "C:/Master thesis/Selected MR-CT data/080_SEGM/Diagnostic/",
-    "ct-data": "C:/Master thesis/Selected MR-CT data/080_SEGM/CT/",
+    "mri-data": "C:/Master thesis/Selected MR-CT data/081_SEGM/Diagnostic/",
+    "ct-data": "C:/Master thesis/Selected MR-CT data/081_SEGM/CT/",
     "points2": "-82.723 69.5801 29.75 17.0085 -26.2858 29.75 84.2692 -12.3698 29.75 -12.4688 -63.3952 -14.6891 -12.4688 20.874 67.2607 -98.1852 -14.8438 -95.8659 80.4036 -14.8438 23.9665 -69.5801 -14.8438 98.9583",
     "points1": "-75.765 59.5296 -36.1891 8.50423 -42.5212 -36.1891 85.0423 -57.9834 -36.1891 -33.7142 -81.1768 -107.463 -33.7142 25.5127 -28.6051 -105.916 -35.7315 -167.765 76.5381 -35.7315 -16.2354 -73.4456 -35.7315 13.916"
   },
