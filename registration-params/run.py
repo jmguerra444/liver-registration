@@ -71,5 +71,3 @@ for p in landmarks :
             process.wait()
         else:
             process.terminate()
-
-# %%
