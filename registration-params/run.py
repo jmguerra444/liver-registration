@@ -9,20 +9,20 @@ import argparse
 # import pdb
 
 # Change this to run only in one set
-# run_only = 8
-# description = "Dummy study description"
-# workspace = "0_basic.iws"
-# timer = 120
+run_only = 37
+description = "Dummy study description"
+workspace = "t_affine_mi.iws"
+timer = 120
 
-run_only = 0
-parser = argparse.ArgumentParser()
-parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
-parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
-parser.add_argument("--timer", help = "Timer", type = int, default = 50)
-args = parser.parse_args()
-description = args.description
-workspace = args.workspace
-timer = args.timer
+# run_only = 0
+# parser = argparse.ArgumentParser()
+# parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
+# parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
+# parser.add_argument("--timer", help = "Timer", type = int, default = 50)
+# args = parser.parse_args()
+# description = args.description
+# workspace = args.workspace
+# timer = args.timer
 
 # %% Setup
 landmarks = getData("landmarks.json")
@@ -48,7 +48,7 @@ for p in landmarks :
             continue
     
     # Stop condition
-    if (int(p) < 91):
+    if (int(p) < 0):
         continue
 
     if landmarks[p].get("annotated"):
