@@ -31,13 +31,10 @@ namespace ImFusion
 		// check requirements to create the algorithm
 		if (data.size() != 2)
 			return false;
-		
-		//SharedImageSet* volume_1 = data.getImage(Data::VOLUME);
-		//SharedImageSet* volume_2 = data.getImage(Data::VOLUME, Data::LABEL);
+
 		SharedImageSet* volume_1 = data.getImages()[0];
 		SharedImageSet* volume_2 = data.getImages()[1];
-		//Data* mov = data.getItem(0);
-		//Data* ref = data.getItem(1);
+
 
 		if (volume_1 == nullptr || volume_2==nullptr)
 			return false;
