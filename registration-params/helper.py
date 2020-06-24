@@ -12,3 +12,13 @@ def setup(study):
 
     # Copy workspacefile
     copy(study.get("workspaceFile"), study.get("studyFolder"))
+
+
+def kind(workspace):
+    kinds = {
+        "td" : "thesis-deformable",
+        "tl" : "thesis-linear",
+        "0_" : "misc",
+        "n_" : "normal-linear"
+    }
+    return kinds.get(workspace[:2], "")

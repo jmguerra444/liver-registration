@@ -1,6 +1,6 @@
 # %% Dependencies
 from utils import getData, log, screenshot, now, absolutePath
-from helper import setup
+from helper import setup, kind
 import time
 import subprocess
 import datetime
@@ -25,11 +25,12 @@ timer = 120
 # timer = args.timer
 
 # %% Setup
+
 landmarks = getData("landmarks.json")
 study_id = workspace[:-4] + "_" + now()
 study = {
     "id" : study_id,
-    "workspaceFile" : "workspaces\\{}".format(workspace),
+    "workspaceFile" : "workspaces\\{}\\{}".format(kind(workspace), workspace),
     "description" : description,
     "studyFolder" : absolutePath("studies\\in-progress\\{}".format(study_id)),
     "descriptionFile" : absolutePath("studies\\in-progress\\{}\\description".format(study_id)),
