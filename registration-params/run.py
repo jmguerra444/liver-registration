@@ -23,6 +23,7 @@ timer = 120
 # description = args.description
 # workspace = args.workspace
 # timer = args.timer
+parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
 
 # %% Setup
 
