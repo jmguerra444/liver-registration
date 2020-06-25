@@ -262,7 +262,7 @@
                     <param name="abortParAbs">1</param>
                 </property>
                 <property name="SimilarityMeasureFactory">
-                    <param name="mode">NCC</param>
+                    <param name="mode">MI</param>
                     <param name="device">1</param>
                     <property name="SimilarityMeasure">
                         <param name="useImg1Mask">1</param>
