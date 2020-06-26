@@ -18,6 +18,7 @@ def kind(workspace):
     kinds = {
         "td" : "thesis-deformable",
         "tl" : "thesis-linear",
+        "tf" : "thesis-linear-deformable",
         "0_" : "misc",
         "n_" : "normal-linear"
     }

@@ -1,0 +1,9 @@
+python run.py --workspace="tf_rigid_ffd_mi.iws" ^
+              --description="Rigid(SSD) then FFD (MI)" ^
+              --timer=450
+python run.py --workspace="tf_rigid_ffd_ncc.iws" ^
+              --description="Rigid(SSD) then FFD (NCC)" ^
+              --timer=450
+python run.py --workspace="tf_rigid_ffd_ssd.iws" ^
+              --description="Rigid(SSD) then FFD (SSD)" ^
+              --timer=450
