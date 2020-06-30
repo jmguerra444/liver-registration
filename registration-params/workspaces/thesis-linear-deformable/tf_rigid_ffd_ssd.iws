@@ -263,6 +263,11 @@
                 </property>
             </property>
         </property>
+        <property name="Initialize Registration">
+            <param name="mode">1</param>
+            <param name="execute">1</param>
+            <param name="inputUids">"data3" "data2" </param>
+        </property>
         <property name="Image Registration">
             <param name="verbose">1</param>
             <param name="Mode">FFD</param>
