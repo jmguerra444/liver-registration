@@ -145,6 +145,15 @@ models = [("02071134", "009"),
           ("02081335", "010"),
           ("02091448", "005")]
 
+patients = ["025", "030", "036", "037", "040", "065"]
+for p in patients:
+    infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : p})
+    infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : p})
+    infere({"size" : 256, "channels" : 2, "session" : "02071921", "epoch" : "010", "patient" : p})
+    infere({"size" : 256, "channels" : 2, "session" : "02071134", "epoch" : "009", "patient" : p})
+    infere({"size" : 512, "channels" : 2, "session" : "02041952", "epoch" : "006", "patient" : p})
+    infere({"size" : 256, "channels" : 3, "session" : "12181327", "epoch" : "018", "patient" : p})
+
 # New Model
 # infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "006"})
 # infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "007"})
@@ -161,6 +170,6 @@ models = [("02071134", "009"),
 # infere({"size" : 512, "channels" : 2, "session" : "02041952", "epoch" : "006", "patient" : "021"})
 # infere({"size" : 256, "channels" : 3, "session" : "12181327", "epoch" : "018", "patient" : "021"})
 
-infere({"size" : 256, "channels" : 2, "session" : "02071134", "epoch" : "009", "patient" : "021"})
+# infere({"size" : 256, "channels" : 2, "session" : "02071134", "epoch" : "009", "patient" : "021"})
 
 # %%

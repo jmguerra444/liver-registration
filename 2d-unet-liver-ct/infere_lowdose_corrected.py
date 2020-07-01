@@ -44,7 +44,7 @@ def infere(p):
     args = Arguments(settings["Arguments"])
 
     modelPath = "C:/Master thesis/master/exported-results/{}/{}-{}.pt".format(p["session"], p["session"], p["epoch"])
-    volumePath =  "C:/Master thesis/Selected MR data/{}/LOWDOSE-CT".format(p["patient"])
+    volumePath =  "C:/Users/Jorgue Guerra/OneDrive - SurgicEye GmbH//thesis//data/Selected MR data/{}/LOWDOSE-CT".format(p["patient"])
     resultsPath_side = "C:/Master thesis/master/exported-results/000_LOW_DOSE_INFERENCE/{}/{}-{}/side/".format(p["patient"], p["session"], p["epoch"])
     resultsPath_mask = "C:/Master thesis/master/exported-results/000_LOW_DOSE_INFERENCE/{}/{}-{}/mask/".format(p["patient"], p["session"], p["epoch"])
     os.makedirs(resultsPath_side, exist_ok = True)
@@ -133,19 +133,30 @@ CORRECTED
 """
 
 # # New Patient
+patients = ["025", "030", "036", "037", "040", "065"]
+for p in patients:
+    infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : p})
+    # infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : p})
+    # infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : p})
+    # infere({"size" : 256, "channels" : 2, "session" : "02071921", "epoch" : "010", "patient" : p})
+    # infere({"size" : 256, "channels" : 2, "session" : "02071134", "epoch" : "009", "patient" : p})
+    # infere({"size" : 512, "channels" : 2, "session" : "02041952", "epoch" : "006", "patient" : p})
+    # infere({"size" : 256, "channels" : 3, "session" : "12181327", "epoch" : "018", "patient" : p})
+
 # infere({"size" : 256, "channels" : 2, "session" : "02091448", "epoch" : "005", "patient" : "021"})
 # infere({"size" : 256, "channels" : 2, "session" : "02081335", "epoch" : "010", "patient" : "021"})
 # infere({"size" : 256, "channels" : 2, "session" : "02071921", "epoch" : "010", "patient" : "021"})
 # infere({"size" : 256, "channels" : 2, "session" : "02071134", "epoch" : "009", "patient" : "021"})
 # infere({"size" : 512, "channels" : 2, "session" : "02041952", "epoch" : "006", "patient" : "021"})
 # infere({"size" : 256, "channels" : 3, "session" : "12181327", "epoch" : "018", "patient" : "021"})
+# infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "021"})
 
 # New Model
 # infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "006"})
-infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "007"})
-infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "013"})
-infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "017"})
-infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "020"})
-infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "021"})
+# infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "007"})
+# infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "013"})
+# infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "017"})
+# infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "020"})
+# infere({"size" : 256, "channels" : 2, "session" : "02222159", "epoch" : "014", "patient" : "021"})
 
 # %%
