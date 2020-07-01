@@ -48,9 +48,13 @@ for p in landmarks :
     if run_only:
         if not(run_only and int(p) == run_only):
             continue
-    
-    # Stop condition
+
+    # Run above
     if (int(p) < 0):
+        continue
+
+    # Run until
+    if (int(p) > 1000):
         continue
 
     if landmarks[p].get("annotated"):
