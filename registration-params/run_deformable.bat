@@ -1,3 +1,12 @@
-python run.py --workspace="td_ffd_ncc.iws" ^
-              --description="Free form deformation with ncc similarity" ^
-              --timer=300
+python run.py --workspace="td_ffd_ssd.iws" ^
+              --description="Free form deformation with ssd similarity" ^
+              --timer=180
+REM python run.py --workspace="td_ffd_555_mi.iws" ^
+REM               --description="Free form deformation with ncc similarity, spacing 555" ^
+REM               --timer=600
+REM python run.py --workspace="td_ffd_555_ncc.iws" ^
+REM               --description="Free form deformation with mi similarity, spacing 555" ^
+REM               --timer=600
+REM python run.py --workspace="td_ffd_555_ssd.iws" ^
+REM               --description="Free form deformation with ssd similarity, spacing 555" ^
+REM               --timer=600
