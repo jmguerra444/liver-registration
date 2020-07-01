@@ -47,7 +47,7 @@ def infere(p):
     args = Arguments(settings["Arguments"])
 
     modelPath = "C:/Master thesis/master/exported-results/{}/{}-{}.pt".format(p["session"], p["session"], p["epoch"])
-    volumePath =  "C:/Master thesis/Selected MR data/{}/LOWDOSE-CT".format(p["patient"])
+    volumePath =  "C:/Users/Jorgue Guerra/OneDrive - SurgicEye GmbH//thesis//data/Selected MR data/{}/LOWDOSE-CT".format(p["patient"])
     resultsPath_side = "C:/Master thesis/master/exported-results/000_LOW_DOSE_INFERENCE/{}/{}-{}/side/".format(p["patient"], p["session"], p["epoch"])
     resultsPath_mask = "C:/Master thesis/master/exported-results/000_LOW_DOSE_INFERENCE/{}/{}-{}/mask/".format(p["patient"], p["session"], p["epoch"])
     os.makedirs(resultsPath_side, exist_ok = True)
