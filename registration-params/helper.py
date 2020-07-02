@@ -20,6 +20,16 @@ def kind(workspace):
         "tl" : "thesis-linear",
         "tf" : "thesis-linear-deformable",
         "0_" : "misc",
-        "n_" : "normal-linear"
+        "n_" : "normal-linear",
+        "su" : "sub-study"
     }
     return kinds.get(workspace[:2], "")
+
+def filterLandmarks(landmarks, best):
+    
+    new_landmarks = {}
+    for p in landmarks:
+        if (int(p) in best):
+            new_landmarks[p] = landmarks[p]       
+    
+    return new_landmarks

@@ -1,6 +1,6 @@
 # %% Dependencies
 from utils import getData, log, screenshot, now, absolutePath
-from helper import setup, kind
+from helper import setup, kind, filterLandmarks
 import time
 import subprocess
 import datetime
@@ -8,10 +8,12 @@ import os
 import argparse
 # import pdb
 
+bestLandmarks = [25,  36,  39,  41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
+
 # Change this to run only in one set
-run_only = 37
-description = "Dummy study description"
-workspace = "t_affine_mi.iws"
+run_only = 8
+description = "Dummy study"
+workspace = "tf_rigid_ffd_test.iws"
 timer = 120
 
 # run_only = 0
@@ -23,7 +25,6 @@ timer = 120
 # description = args.description
 # workspace = args.workspace
 # timer = args.timer
-parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
 
 # %% Setup
 
@@ -38,6 +39,9 @@ study = {
     "screenshotFolder" : absolutePath("studies\\in-progress\\{}\\screenshots\\".format(study_id))
     }
 setup(study)
+
+# For only selected landmarks study
+landmarks = filterLandmarks(landmarks, bestLandmarks)
 
 # %% Session
 log("\n",study.get("descriptionFile"))
