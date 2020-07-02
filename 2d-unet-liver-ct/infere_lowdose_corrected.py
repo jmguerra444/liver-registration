@@ -128,7 +128,7 @@ def infere(p):
 
 
 CORRECTED
-02222159-014.pt : (256, 256) (2) Noise on30% of the images, rotations on 10%, no crop, uses 30% of images with no label
+02222159-014.pt : (256, 256) (2) Noise on 30% of the images, rotations on 10%, no crop, uses 30% of images with no label
 
 """
 
