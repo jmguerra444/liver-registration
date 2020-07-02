@@ -36,21 +36,23 @@ def compute_dice(patient, session, epoch):
     for slice_ in range(len(manu)):
         slicePred = pred[slice_]
         sliceManu = manu[slice_]
-        
         dice_.append(dice(sliceManu, slicePred))
         # print(avgList(dice_))
 
-        if False:
+        if True:
             plt.figure(figsize = (16, 8))
+            
+            plt.suptitle("Model Evaluation, Patient {} Slice {}".format(patient, slice_), fontsize=20)
 
             plt.subplot(1, 2, 1)
+            plt.title("Predicted")
             plt.imshow(slicePred)
             
             plt.subplot(1, 2, 2)
+            plt.title("Ground Truth")
             plt.imshow(sliceManu)
-            
-            plt.tight_layout()
-            # plt.show()
+
+            plt.show()
             plt.close('all')
     
     print("Patient: {}, Session: {}, Dice: {:.3f}".format(patient, session, mean(dice_)))
@@ -63,19 +65,25 @@ Some description of this experiment
 """
 
 patients = [
-            "006", 
-            "007", 
-            "013", 
-            "017", 
-            "020", 
-            "021"
+            # "006", 
+            # "007", 
+            # "013", 
+            # "017", 
+            # "020", 
+            # "021",
+            # "025",
+            # "030",
+            # "036",
+            # "037",
+            # "040",
+            # "065",
             ]
 models = [
-          ("02041952", "006"), 
-          ("02071134", "009"), 
-          ("02071921", "010"), 
-          ("02081335", "010"), 
-          ("02091448", "005"),
+        #   ("02041952", "006"), 
+        #   ("02071134", "009"), 
+        #   ("02071921", "010"), 
+        #   ("02081335", "010"), 
+        #   ("02091448", "005"),
           ("02222159", "014"),
          ]
 
