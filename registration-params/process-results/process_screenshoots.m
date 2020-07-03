@@ -1,5 +1,5 @@
 results = [];
-root = 'C:\Master thesis\master\registration-params\studies\completed\v5\';
+root = 'C:\Master thesis\master\registration-params\studies\completed\v6\';
 folder_ids = getFolders(root);
 
 for i = 1 : length(folder_ids)
