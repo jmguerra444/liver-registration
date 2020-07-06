@@ -6,25 +6,25 @@ import subprocess
 import datetime
 import os
 import argparse
-# import pdb
 
-bestLandmarks = [25,  36,  39,  41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
+# bestLandmarks = [25,  41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
+bestLandmarks = [25]
 
 # Change this to run only in one set
-run_only = 8
-description = "Dummy study"
-workspace = "tf_rigid_ffd_test.iws"
-timer = 120
+# run_only = 25
+# description = "Dummy study"
+# workspace = "su_basic_0.iws"
+# timer = 120
 
-# run_only = 0
-# parser = argparse.ArgumentParser()
-# parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
-# parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
-# parser.add_argument("--timer", help = "Timer", type = int, default = 50)
-# args = parser.parse_args()
-# description = args.description
-# workspace = args.workspace
-# timer = args.timer
+run_only = 0
+parser = argparse.ArgumentParser()
+parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
+parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
+parser.add_argument("--timer", help = "Timer", type = int, default = 50)
+args = parser.parse_args()
+description = args.description
+workspace = args.workspace
+timer = args.timer
 
 # %% Setup
 

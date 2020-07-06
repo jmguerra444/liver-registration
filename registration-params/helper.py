@@ -21,7 +21,8 @@ def kind(workspace):
         "tf" : "thesis-linear-deformable",
         "0_" : "misc",
         "n_" : "normal-linear",
-        "su" : "sub-study"
+        "su" : "sub-study",
+        "so" : "sub-study-optimizer"
     }
     return kinds.get(workspace[:2], "")
 
