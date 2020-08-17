@@ -14,16 +14,30 @@ def log_reader(path):
     report = ""
     trainLoss = np.array([float(l[5:]) for l in f if l[:3] == "[L]"])
     validLoss = np.array([float(l[5:]) for l in f if l[:3] == "[V]"])
-    summary = np.array([(l[5:]) for l in f if l[:3] == "[E]"])
+    summary = [(l[5:]) for l in f if l[:3] == "[E]"]
 
     d1_loss = np.array([float(l[6:]) for l in f if l[:4] == "[D1]"])
     d2_loss = np.array([float(l[6:]) for l in f if l[:4] == "[D2]"])
     info = np.array([l for l in f if l[0] != "["])
     
     # validLoss, d1_loss, d2_loss = reject_outliers(validLoss), reject_outliers(d1_loss), reject_outliers(d2_loss)
+    # trainLoss = medfilt(trainLoss, 5)
     validLoss = medfilt(validLoss, 5)
     d1_loss = medfilt(d1_loss, 5)
+    d1_loss = medfilt(d1_loss, 5)
     d2_loss = medfilt(d2_loss, 5)
+
+
+    tr = [float(x[22:28]) for x in summary]
+    vl = [float(x[46:52]) for x in summary]
+    plt.plot(trainLoss, label = "Training")
+    plt.plot(validLoss, label = "Validation")
+    plt.ylabel('Loss')
+    # Set the y axis label of the current axis.
+    plt.xlabel('Training epochs')
+    # Set a title of the current axes.
+    plt.legend()
+    plt.show()
 
     epochs = list(range(0, len(summary)))
     fig = plt.figure()
