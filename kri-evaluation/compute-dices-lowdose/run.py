@@ -22,6 +22,8 @@ patients = [
             "065",
             ]
 
+# patients = ["020"]
+
 for p in patients:
     lowdose = "C:/Users/Jorgue Guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR data/{}/LOWDOSE-CT".format(p)
     gt = "C:/Users/Jorgue Guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR data/{}/ws_ct/Liver.stl".format(p)
@@ -31,5 +33,5 @@ for p in patients:
 
     screenshotPath = "screenshots/{}.png".format(p)
     process = subprocess.Popen(c)
-    screenshot(screenshotPath, 40)
-    process.terminate()
+    screenshot(screenshotPath, 60)
+    # process.terminate()
