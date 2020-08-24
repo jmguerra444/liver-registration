@@ -154,7 +154,7 @@ namespace ImFusion
 		MeshPostProcessingAlgorithm meshPostProcessingAlgorithm(mesh);
 		meshPostProcessingAlgorithm.setMode(MeshPostProcessingAlgorithm::Mode::FILL_HOLES);
 		meshPostProcessingAlgorithm.compute();
-		MeshProcessing::reduceToOneComponent(mesh);
+		// MeshProcessing::reduceToOneComponent(mesh);
 		if (meshPostProcessingAlgorithm.status() != 0)
 		{
 			LOG_ERROR("Can't do post-processing");
