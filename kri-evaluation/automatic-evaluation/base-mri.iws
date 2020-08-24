@@ -407,7 +407,7 @@
             <param name="inputUids">"data1" </param>
             <param name="outputUids">"data2" </param>
         </property>
-        <property name="MRISegmentation Algorithm">
+        <property name="MRI Segmentation Algorithm">
             <param name="inputUids">"data0" </param>
             <param name="execute">1</param>
             <param name="outputUids"></param>

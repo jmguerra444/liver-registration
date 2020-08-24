@@ -11,6 +11,12 @@ filename = "C://Master thesis//master//kri-evaluation//plugin-volumetry-mri.txt"
 
 log("STARTING PROCESS {}".format(str(datetime.datetime.now())), filename)
 
+# To run only one patient
+
+a = 86
+data["diagnostic-mr"] = ["../../../Selected MR-CT data/{:03d}_SEGM/Diagnostic".format(a)]
+data["diagnostic-mr-mesh"] = ["../../../Selected MR-CT data/{:03d}_SEGM/Liver.stl".format(a)]
+
 mri_data = data["diagnostic-mr"]
 mesh_data = data["diagnostic-mr-mesh"]
 

@@ -11,6 +11,9 @@ filename = "C://Master thesis//master//kri-evaluation//plugin-volumetry-lowdose.
 
 log("STARTING PROCESS {}".format(str(datetime.datetime.now())), filename)
 
+a = 2
+data["lowdose-ct"] = ["../../../Selected MR-CT data/{:03d}_SEGM/CT".format(a)]
+
 lowdose_data = data["lowdose-ct"]
 
 for i in lowdose_data:
