@@ -35,7 +35,7 @@ def simulateLowdose(image):
     image, minima, maxima = normalize(image)
     image = resize(image, (256, 256), anti_aliasing = True, preserve_range = True, order = 1)
 
-    parameters = {"lam" : 1e5, "mi" : 0, "sd" : 30 / (maxima - minima)}
+    parameters = {"lam" : 1e6, "mi" : 0,  "sd" : 20 / (maxima - minima)}
     theta = np.linspace(0., 180., max(image.shape), endpoint = False)
     sinogram = radon(image, theta = theta, circle = True)
 
@@ -76,9 +76,9 @@ def test(filename_):
     imageNoise, sinogram, sinogramNoise = simulateLowdose(image)
     imageNoise = imageNoise.astype(np.int16)
 
-    imsave("to convert_2/{}_noise{}".format(filename,".tif"), imageNoise)
+    imsave("to convert_3/{}_noise{}".format(filename,".tif"), imageNoise)
 
-    fig, axes = plt.subplots(1, 3, figsize=(8, 8))
+    fig, axes = plt.subplots(1, 3, figsize=(8, 8), facecolor=(0, 0, 0))
     axes[0].axis("off")
     axes[0].set_title("Original")
     axes[0].imshow(image, cmap = plt.cm.Greys_r, vmin = -100, vmax = 400)
@@ -88,8 +88,15 @@ def test(filename_):
     axes[1].imshow(imageNoise, cmap = plt.cm.Greys_r, vmin = -100, vmax = 400)
 
     axes[2].set_title("Comparison over the 200th projection")
-    axes[2].plot(sinogramNoise[:, 200] * 100, 'r')
-    axes[2].plot(sinogram[:, 200], 'g')
+    axes[2].plot(sinogramNoise[:, 0] * 100, 'r')
+    axes[2].plot(sinogram[:, 0], 'g')
+    axes[2].set_facecolor((0.0, 0.0, 0.0))
+    axes[2].tick_params(axis='x', colors='black')
+    axes[2].tick_params(axis='y', colors='black')
+    axes[2].spines['bottom'].set_color('white')
+    axes[2].spines['top'].set_color('white') 
+    axes[2].spines['right'].set_color('white')
+    axes[2].spines['left'].set_color('white')
 
     fig.tight_layout()
     fig.tight_layout()
@@ -97,8 +104,8 @@ def test(filename_):
 
     plt.show()
 
-# test("test1.tif")
-# test("test2.tif")
-# test("test3.tif")
+# test("test6.tif")
+# test("test5.tif")
+test("test2.tif")
 
 # %%
