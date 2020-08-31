@@ -28,6 +28,9 @@ def kind(workspace):
 
 def filterLandmarks(landmarks, best):
     
+    if not best:
+        return landmarks
+    
     new_landmarks = {}
     for p in landmarks:
         if (int(p) in best):

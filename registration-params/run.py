@@ -8,9 +8,12 @@ import os
 import argparse
 
 # bestLandmarks = [25,  41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
-# bestLandmarks = [25]
+# bestLandmarks = [41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
+# bestLandmarks = [] # To perform the study in the whole set
+
 
 # Change this to run only in one set
+bestLandmarks = []
 run_only = 6
 description = "Dummy study"
 workspace = "td_ffd_ncc.iws"
@@ -26,8 +29,10 @@ timer = 120
 # workspace = args.workspace
 # timer = args.timer
 
-# %% Setup
+# workspace = "so_step_20.iws"
+# timer = 450
 
+# %% Setup
 landmarks = getData("landmarks.json")
 study_id = workspace[:-4] + "_" + now()
 study = {
@@ -41,7 +46,7 @@ study = {
 setup(study)
 
 # For only selected landmarks study
-# landmarks = filterLandmarks(landmarks, bestLandmarks)
+landmarks = filterLandmarks(landmarks, bestLandmarks)
 
 # %% Session
 log("\n",study.get("descriptionFile"))
