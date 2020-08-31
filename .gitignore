@@ -36,3 +36,6 @@ examples
 
 # Binaries
 build
+
+# Temp files
+~*
