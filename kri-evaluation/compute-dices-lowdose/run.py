@@ -22,7 +22,7 @@ patients = [
             "065",
             ]
 
-# patients = ["020"]
+patients = ["006"]
 
 for p in patients:
     lowdose = "C:/Users/Jorgue Guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR data/{}/LOWDOSE-CT".format(p)

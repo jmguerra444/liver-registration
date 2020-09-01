@@ -16,7 +16,7 @@ import argparse
 bestLandmarks = []
 run_only = 6
 description = "Dummy study"
-workspace = "td_ffd_ncc.iws"
+workspace = "tl_affine_ssd.iws"
 timer = 120
 
 # run_only = 0

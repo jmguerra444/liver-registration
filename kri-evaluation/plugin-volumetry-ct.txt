@@ -52,3 +52,7 @@ STARTING PROCESS 2020-05-15 15:29:22.257029
 ../../../Selected MR-CT data/087_SEGM/Diagnostic
 ../../../Selected MR-CT data/089_SEGM/Diagnostic
 ../../../Selected MR-CT data/101_SEGM/Diagnostic
+STARTING PROCESS 2020-09-01 09:36:30.507773
+../../../Selected MR-CT data/001_SEGM/Diagnostic
+STARTING PROCESS 2020-09-01 09:39:11.231746
+../../../Selected MR-CT data/027_SEGM/Diagnostic

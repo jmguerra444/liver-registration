@@ -11,6 +11,10 @@ filename = "C://Master thesis//master//kri-evaluation//plugin-volumetry-ct.txt"
 
 log("STARTING PROCESS {}".format(str(datetime.datetime.now())), filename)
 
+a = 27
+data["diagnostic-ct"] = ["../../../Selected MR-CT data/{:03d}_SEGM/Diagnostic".format(a)]
+data["diagnostic-ct-mesh"] = ["../../../Selected MR-CT data/{:03d}_SEGM/Liver.stl".format(a)]
+
 ct_data = data["diagnostic-ct"]
 ct_mesh = data["diagnostic-mesh-ct"]
 

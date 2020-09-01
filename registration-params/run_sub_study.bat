@@ -34,6 +34,6 @@ REM python run.py --workspace="so_step_5.iws" ^
 REM               --description="Substudy for number of point controls 444" ^
 REM               --timer=360
 
-python run.py --workspace="so_step_10.iws" ^
-              --description="Substudy for number of point controls 444" ^
-              --timer=500
+REM python run.py --workspace="so_step_10.iws" ^
+REM               --description="Substudy for number of point controls 444" ^
+REM               --timer=500
