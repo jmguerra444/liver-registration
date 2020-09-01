@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<propertyfile version="1.1">
+	<param name="workspaceVersion">2</param>
+	<property name="Datasets">
+		<property name="Data">
+			<param name="filename">CT?1.3.12.2.1107.5.6.1.36538.31430116072109190637500002353</param>
+			<param name="algorithm">DICOM Folder</param>
+			<param name="topDown">1</param>
+			<param name="name">LungLeber Low Dose 5.0  B30sWT</param>
+			<param name="transformation">0.987096407749642 0.15762080427572 -0.0282199196885575 2.09014014191845 -0.155924213624719 0.986256025027243 0.0546506422924282 38.846020372244 0.0364461440109419 -0.0495452839020755 0.99810667938342 -16.4652086470187 0 0 0 1 </param>
+			<param name="DosePlan:role">CT</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Functional?1.3.12.2.1107.5.6.1.36538.31430116072113155460900000109</param>
+			<param name="algorithm">DICOM Folder</param>
+			<param name="topDown">1</param>
+			<param name="name">Tomo Leber [ - Corrected Recon - AC ]</param>
+			<param name="transformation">0.987656414412198 0.154208091554624 -0.0274712862735223 22.0132573367734 -0.152985154469666 0.98732985511675 0.0421343055838192 38.2226304729144 0.0336206719493676 -0.0374115182026275 0.99873421325368 -17.6645321751371 0 0 0 1 </param>
+			<param name="DosePlan:role">Functional</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Diagnostic?1.3.12.2.1107.5.2.30.25416.2016071814201198020065311.0.0.0</param>
+			<param name="algorithm">DICOM Folder</param>
+			<param name="topDown">1</param>
+			<param name="name">t1_vibe_fs_tra</param>
+			<param name="transformation">1 -0 -0 -5.49281883239999 -0 1 0 70.11544036865 -0 -0 1 -50.4188050925715 -0 0 -0 1 </param>
+			<param name="DosePlan:role">Diagnostic</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Liver.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Liver</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">4059350</param>
+			<param name="DosePlan:segmentationType">0</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Liver.mhd</param>
+			<param name="algorithm">MetaImage</param>
+			<param name="name">Liver Label Map</param>
+			<param name="transformation">1 -0 -0 -5.49281883239999 -0 1 0 70.11544036865 -0 -0 1 -50.4188050925715 -0 0 -0 1 </param>
+		</property>
+		<property name="Data">
+			<param name="filename">Left lobe.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Left lobe</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">1771400</param>
+			<param name="DosePlan:segmentationType">1</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Right lobe.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Right lobe</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">2287950</param>
+			<param name="DosePlan:segmentationType">2</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Lesion 1.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Lesion 1</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">4958.04345703125</param>
+			<param name="DosePlan:segmentationType">3</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Lesion 1.mhd</param>
+			<param name="algorithm">MetaImage</param>
+			<param name="name">Lesion 1 Label Map</param>
+			<param name="transformation">1 -0 -0 -5.49281883239999 -0 1 0 70.11544036865 -0 -0 1 -50.4188050925715 -0 0 -0 1 </param>
+		</property>
+	</property>
+</propertyfile>

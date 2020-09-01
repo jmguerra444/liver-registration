@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<propertyfile version="1.1">
+	<param name="workspaceVersion">2</param>
+	<property name="Datasets">
+		<property name="Data">
+			<param name="filename">CT?1.3.12.2.1107.5.6.1.36538.31430118030807490376500004026</param>
+			<param name="algorithm">DICOM Folder</param>
+			<param name="topDown">1</param>
+			<param name="name">LungLeber Low Dose 5.0  B30sWT</param>
+			<param name="transformation">0.986424733446516 0.0737868595642451 0.146702912720275 16.2892878134879 -0.0747753668486767 0.997199648201926 0.00122724838479854 31.7556596731667 -0.146201538150637 -0.0121803522772755 0.989179836663074 -25.0233146254492 0 0 0 1 </param>
+			<param name="DosePlan:role">CT</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Functional?1.3.12.2.1107.5.6.1.36538.31430118030813381867100000109</param>
+			<param name="algorithm">DICOM Folder</param>
+			<param name="topDown">1</param>
+			<param name="name">Tomo Leber [ - Corrected Recon - AC ]</param>
+			<param name="transformation">0.986536759205394 0.0703723297917446 0.147624381238997 33.2322189220273 -0.0695217896613256 0.997520664083721 -0.0109199582534035 31.0160478451147 -0.148026833711994 0.000509829044590005 0.988983213495327 -26.3516765964266 0 0 0 1 </param>
+			<param name="DosePlan:role">Functional</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Diagnostic?1.3.12.2.1107.5.2.30.25695.2018012913334554818200663.0.0.0</param>
+			<param name="algorithm">DICOM Folder</param>
+			<param name="topDown">1</param>
+			<param name="name">t1_vibe_tra dixon_W</param>
+			<param name="transformation">1 -0 0 12.03259181976 -0 1 -0 33.82216644287 -0 -0 1 -23.912201955912 -0 0 -0 1 </param>
+			<param name="DosePlan:role">Diagnostic</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Liver.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Liver</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">1375155.625</param>
+			<param name="DosePlan:segmentationType">0</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Liver.mhd</param>
+			<param name="algorithm">MetaImage</param>
+			<param name="name">Liver Label Map</param>
+			<param name="transformation">1 -0 0 12.03259181976 -0 1 -0 33.82216644287 -0 -0 1 -23.912201955912 -0 0 -0 1 </param>
+		</property>
+		<property name="Data">
+			<param name="filename">Left lobe.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Left lobe</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">559170.5625</param>
+			<param name="DosePlan:segmentationType">1</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Right lobe.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Right lobe</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">815985.125</param>
+			<param name="DosePlan:segmentationType">2</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Lesion 1.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Lesion 1</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">35132.6640625</param>
+			<param name="DosePlan:segmentationType">3</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Lesion 1.mhd</param>
+			<param name="algorithm">MetaImage</param>
+			<param name="name">Lesion 1 Label Map</param>
+			<param name="transformation">1 -0 0 12.03259181976 -0 1 -0 33.82216644287 -0 -0 1 -23.912201955912 -0 0 -0 1 </param>
+		</property>
+	</property>
+</propertyfile>

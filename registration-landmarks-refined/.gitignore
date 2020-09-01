@@ -1,0 +1,6 @@
+*.dcm
+*.stl
+*.raw
+*.mhd
+database.rdvdb
+database.rdvdata

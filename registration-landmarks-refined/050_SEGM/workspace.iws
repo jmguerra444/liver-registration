@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<propertyfile version="1.1">
+	<param name="workspaceVersion">2</param>
+	<property name="Datasets">
+		<property name="Data">
+			<param name="filename">CT?1.3.12.2.1107.5.6.1.36538.31430119062507281843700003803</param>
+			<param name="algorithm">DICOM Folder</param>
+			<param name="topDown">1</param>
+			<param name="name">LungLeber Low Dose 5.0  B30sWT</param>
+			<param name="transformation">0.999752264383457 -0.00857536849704265 -0.0205395451578099 -12.6877608397481 0.00857625096749191 0.999963222265363 -4.5122213645811e-05 -14.319575368788 0.020539176699478 -0.000131041258765112 0.999789040272344 -179.495529313058 0 0 0 1 </param>
+			<param name="DosePlan:role">CT</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Functional?1.3.12.2.1107.5.6.1.36538.31430119062512214662500000109</param>
+			<param name="algorithm">DICOM Folder</param>
+			<param name="topDown">1</param>
+			<param name="name">Tomo Leber [ - Corrected Recon - AC ]</param>
+			<param name="transformation">0.999734221971921 -0.0122635606869683 -0.0195215393213544 0.564467948838873 0.0120084057096991 0.999841629879856 -0.0131344338097847 -16.1722926318833 0.019679522618942 0.0128965204016181 0.99972315975525 -181.303594861055 0 0 0 1 </param>
+			<param name="DosePlan:role">Functional</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Diagnostic?1.3.12.2.1107.5.2.41.169650.2019052415331512083555966.0.0.0</param>
+			<param name="algorithm">DICOM Folder</param>
+			<param name="topDown">1</param>
+			<param name="name">t1 vibe fs tra bh nativ</param>
+			<param name="transformation">1 -0 0 -7.69091415405001 -0 1 -0 -0.164499402050012 0 -0 1 -116.092642404139 -0 0 -0 1 </param>
+			<param name="DosePlan:role">Diagnostic</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Liver.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Liver</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">1525955.5</param>
+			<param name="DosePlan:segmentationType">0</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Liver.mhd</param>
+			<param name="algorithm">MetaImage</param>
+			<param name="name">Liver Label Map</param>
+			<param name="transformation">1 -0 0 -7.69091415405001 -0 1 -0 -0.164499402050012 0 -0 1 -116.092642404139 -0 0 -0 1 </param>
+		</property>
+		<property name="Data">
+			<param name="filename">Left lobe.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Left lobe</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">476266.1875</param>
+			<param name="DosePlan:segmentationType">1</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Right lobe.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Right lobe</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">1049689.25</param>
+			<param name="DosePlan:segmentationType">2</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Lesion 1.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Lesion 1</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">5013.6953125</param>
+			<param name="DosePlan:segmentationType">3</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Lesion 1.mhd</param>
+			<param name="algorithm">MetaImage</param>
+			<param name="name">Lesion 1 Label Map</param>
+			<param name="transformation">1 -0 0 -7.69091415405001 -0 1 -0 -0.164499402050012 0 -0 1 -116.092642404139 -0 0 -0 1 </param>
+		</property>
+		<property name="Data">
+			<param name="filename">Lesion 2.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Lesion 2</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">13387.41796875</param>
+			<param name="DosePlan:segmentationType">3</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Lesion 2.mhd</param>
+			<param name="algorithm">MetaImage</param>
+			<param name="name">Lesion 2 Label Map</param>
+			<param name="transformation">1 -0 0 -7.69091415405001 -0 1 -0 -0.164499402050012 0 -0 1 -116.092642404139 -0 0 -0 1 </param>
+		</property>
+		<property name="Data">
+			<param name="filename">Lesion 3.stl</param>
+			<param name="algorithm">Mesh File</param>
+			<param name="name">Lesion 3</param>
+			<param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </param>
+			<param name="DosePlan:volume">2899.10034179688</param>
+			<param name="DosePlan:segmentationType">3</param>
+			<param name="DosePlan:lobeAssignment">0</param>
+		</property>
+		<property name="Data">
+			<param name="filename">Lesion 3.mhd</param>
+			<param name="algorithm">MetaImage</param>
+			<param name="name">Lesion 3 Label Map</param>
+			<param name="transformation">1 -0 0 -7.69091415405001 -0 1 -0 -0.164499402050012 0 -0 1 -116.092642404139 -0 0 -0 1 </param>
+		</property>
+	</property>
+</propertyfile>
