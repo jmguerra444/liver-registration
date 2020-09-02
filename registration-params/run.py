@@ -11,13 +11,13 @@ selectedVolumes = []
 # selectedVolumes = [25,  41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
 
 # RUN ONE STUDY IN ONE WS
-# run_only = 10
+# run_only = 50
 # description = "Dummy study"
 # workspace = "0_basic.iws"
 # timer = 120
 
 # RUN ALL DATASETS FROM ARGUMENTS
-run_only = 0
+run_only = 50
 parser = argparse.ArgumentParser()
 parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
 parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
