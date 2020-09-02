@@ -39,3 +39,6 @@ build
 
 # Temp files
 ~*
+registration-params/wpoints.txt
+registration-params/tpoints.txt
+registration-params/corrtexts.txt
