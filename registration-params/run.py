@@ -7,33 +7,34 @@ import datetime
 import os
 import argparse
 
-# bestLandmarks = [25,  41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
-# bestLandmarks = [41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
-# bestLandmarks = [] # To perform the study in the whole set
+selectedVolumes = []
+# selectedVolumes = [25,  41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
 
+# RUN ONE STUDY IN ONE WS
+# run_only = 10
+# description = "Dummy study"
+# workspace = "0_basic.iws"
+# timer = 120
 
-# Change this to run only in one set
-bestLandmarks = []
-run_only = 6
-description = "Dummy study"
-workspace = "tl_affine_ssd.iws"
-timer = 120
+# RUN ALL DATASETS FROM ARGUMENTS
+run_only = 0
+parser = argparse.ArgumentParser()
+parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
+parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
+parser.add_argument("--timer", help = "Timer", type = int, default = 50)
+args = parser.parse_args()
+description = args.description
+workspace = args.workspace
+timer = args.timer
 
-# run_only = 0
-# parser = argparse.ArgumentParser()
-# parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
-# parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
-# parser.add_argument("--timer", help = "Timer", type = int, default = 50)
-# args = parser.parse_args()
-# description = args.description
-# workspace = args.workspace
-# timer = args.timer
-
+# RUN ALL DATASETS ONE WORKSPACE
 # workspace = "so_step_20.iws"
 # timer = 450
 
 # %% Setup
-landmarks = getData("landmarks.json")
+# landmarks = getData("landmarks.json")
+landmarks = getData("landmarks-fine.json") # For the fine landmarks study
+
 study_id = workspace[:-4] + "_" + now()
 study = {
     "id" : study_id,
@@ -46,7 +47,7 @@ study = {
 setup(study)
 
 # For only selected landmarks study
-landmarks = filterLandmarks(landmarks, bestLandmarks)
+landmarks = filterLandmarks(landmarks, selectedVolumes)
 
 # %% Session
 log("\n",study.get("descriptionFile"))
