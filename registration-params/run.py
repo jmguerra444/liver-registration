@@ -11,21 +11,21 @@ selectedVolumes = []
 # selectedVolumes = [25,  41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
 
 # RUN ONE STUDY IN ONE WS
-# run_only = 50
-# description = "Dummy study"
-# workspace = "0_basic.iws"
-# timer = 120
+run_only = 10
+description = "Dummy study"
+workspace = "td_ffd_ncc.iws"
+timer = 120
 
 # RUN ALL DATASETS FROM ARGUMENTS
-run_only = 0
-parser = argparse.ArgumentParser()
-parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
-parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
-parser.add_argument("--timer", help = "Timer", type = int, default = 50)
-args = parser.parse_args()
-description = args.description
-workspace = args.workspace
-timer = args.timer
+# run_only = 6
+# parser = argparse.ArgumentParser()
+# parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
+# parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
+# parser.add_argument("--timer", help = "Timer", type = int, default = 50)
+# args = parser.parse_args()
+# description = args.description
+# workspace = args.workspace
+# timer = args.timer
 
 # RUN ALL DATASETS ONE WORKSPACE
 # workspace = "so_step_20.iws"
@@ -33,7 +33,9 @@ timer = args.timer
 
 # %% Setup
 # landmarks = getData("landmarks.json")
-landmarks = getData("landmarks-fine.json") # For the fine landmarks study
+# landmarks = getData("landmarks-fine.json") # For the fine landmarks study
+# landmarks = getData("landmarks-msi.json")
+landmarks = getData("landmarks-msi-fine.json")
 
 study_id = workspace[:-4] + "_" + now()
 study = {
@@ -74,16 +76,18 @@ for p in landmarks :
         points1 = landmarks[p].get("points1")
         points2 = landmarks[p].get("points2")
         c = 'ImFusionSuite {} mr="{}" ct="{}" p1="{}" p2="{}"'.format(study["workspaceFile"], 
-                                                                      mriPath, 
-                                                                      ctPath, 
-                                                                      points1, 
-                                                                      points2)
+                                                                    mriPath, 
+                                                                    ctPath, 
+                                                                    points1, 
+                                                                    points2)
         
-        process = subprocess.Popen(c)
+        process = subprocess.Popen([c], shell = True)
         screenshotPath = "{}\\{}.png".format(study["screenshotFolder"], p)
         screenshot(screenshotPath, timer) # Not asynchronous
 
-        if run_only:
-            process.wait()
-        else:
-            process.terminate()
+        # if run_only:
+        #     process.wait()
+        # else:
+        #     process.terminate()
+
+# %%
