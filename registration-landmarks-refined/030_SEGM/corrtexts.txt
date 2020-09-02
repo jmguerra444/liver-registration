@@ -1,0 +1,3 @@
+Fiducial 1
+Fiducial 2
+Fiducial 3
