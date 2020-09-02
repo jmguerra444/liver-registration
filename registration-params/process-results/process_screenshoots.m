@@ -1,5 +1,5 @@
 results = [];
-root = 'C:\Master thesis\master\registration-params\studies\completed\v8\';
+root = 'C:\Master thesis\master\registration-params\studies\completed\v9\';
 folder_ids = getFolders(root);
 
 for i = 1 : length(folder_ids)
@@ -25,7 +25,7 @@ function result = process_folder(folder_id, root)
         path = absolute_path(image_filename, study_folder);
 
         image = rgb2gray(imread(path));
-        image = image(537:553, 1688:1770);
+        image = image(537:557, 1126:1231);
         image = imresize(image, 30);
         text = ocr(image);
         text = text.Text;
