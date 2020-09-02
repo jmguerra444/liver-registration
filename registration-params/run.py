@@ -17,7 +17,7 @@ selectedVolumes = []
 # timer = 120
 
 # RUN ALL DATASETS FROM ARGUMENTS
-run_only = 50
+run_only = 0
 parser = argparse.ArgumentParser()
 parser.add_argument("--workspace", help = "Workspace file inside /workspaces/", type = str, default = "n_rigid_mi.iws")
 parser.add_argument("--description", help = "Study description", type = str, default = "Description of the study")
