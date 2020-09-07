@@ -11,10 +11,10 @@ selectedVolumes = []
 # selectedVolumes = [25,  41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
 
 # RUN ONE STUDY IN ONE WS
-run_only = 10
+run_only = 30
 description = "Dummy study"
-workspace = "td_ffd_ncc.iws"
-timer = 120
+workspace = "0_basic_segment.iws"
+timer = 20
 
 # RUN ALL DATASETS FROM ARGUMENTS
 # run_only = 6
@@ -81,13 +81,15 @@ for p in landmarks :
                                                                     points1, 
                                                                     points2)
         
-        process = subprocess.Popen([c], shell = True)
+        process = subprocess.Popen(c, shell = True)
         screenshotPath = "{}\\{}.png".format(study["screenshotFolder"], p)
         screenshot(screenshotPath, timer) # Not asynchronous
 
-        # if run_only:
-        #     process.wait()
-        # else:
-        #     process.terminate()
+        if run_only:
+            pass
+            # process.wait()
+        else:
+            pass
+            # process.terminate()
 
 # %%
