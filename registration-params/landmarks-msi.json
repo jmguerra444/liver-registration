@@ -7,7 +7,7 @@
     "points2": "-122.908 53.3883 28 48.7985 -74.6269 28 -19.3598 7.07563 28 -85.7227 -62.2346 -31.42 -85.7227 -10.679 92.226 -141.533 -42.2461 -54.9665 55.9308 -42.2461 44.5268 -96.8626 -42.2461 78.0297"
   },
   "007": {
-    "annotated": false,
+    "annotated": true,
     "mri-data": "C:/Users/guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/007_SEGM/Diagnostic/",
     "ct-data": "C:/Users/guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/007_SEGM/CT/",
     "points2": "",
@@ -252,7 +252,7 @@
     "points1": "-82.2058 83.8337 -73.541 -9.76703 -12.2088 -73.541 10.581 -87.9033 -73.541 -71.5607 -91.9729 -117.204 -71.5607 82.2058 -87.9033 -149.218 -24.4151 -172.276 39.6113 -24.4151 -40.4212 -93.8714 -24.4151 -7.86442"
   },
   "080": {
-    "annotated": false,
+    "annotated": true,
     "mri-data": "C:/Users/guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/080_SEGM/Diagnostic/",
     "ct-data": "C:/Users/guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/080_SEGM/CT/",
     "points2": "-140.929 21.9946 1.8 10.59 -10.59 1.8 108.344 -55.3939 1.8 -9.02344 -93.6808 -66.7985 -9.02344 6.51693 -10.59 -136.041 -24.6641 -59.467 95.3101 -24.6641 51.3208 -90.4224 -24.6641 77.3885",
@@ -266,7 +266,7 @@
     "points1": "-75.765 59.5296 -36.1891 8.50423 -42.5212 -36.1891 85.0423 -57.9834 -36.1891 -33.7142 -81.1768 -107.463 -33.7142 25.5127 -28.6051 -105.916 -35.7315 -167.765 76.5381 -35.7315 -16.2354 -73.4456 -35.7315 13.916"
   },
   "082": {
-    "annotated": false,
+    "annotated": true,
     "mri-data": "C:/Users/guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/082_SEGM/Diagnostic/",
     "ct-data": "C:/Users/guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/082_SEGM/CT/",
     "points2": "-70.3557 77.4704 41.85 0.790514 -11.8577 41.85 92.4901 -27.668 41.85 -49.375 -49.0119 -44.2688 -49.375 75.8893 57.7075 -49.375 -19.7628 89.3281 -86.166 -26.875 -48.2213 93.2806 -26.875 46.6403",
@@ -322,7 +322,7 @@
     "points1": "-78.7687 54.2629 46.0169 -17.5042 -29.7571 46.0169 56.0133 -91.8969 46.0169 -38.3496 -96.2729 -7.00167 -108.526 -45.6406 -22.7554 47.2612 -45.6406 96.2729"
   },
   "094": {
-    "annotated": false,
+    "annotated": true,
     "mri-data": "C:/Users/guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/094_SEGM/Diagnostic/",
     "ct-data": "C:/Users/guerra/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/094_SEGM/CT/",
     "points2": "-34.2391 33.4783 -6 58.587 -60.1087 -6 -44.1304 -52.5 -42.6087 -99.6739 29.4766 -101.196",

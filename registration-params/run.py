@@ -11,9 +11,9 @@ selectedVolumes = []
 # selectedVolumes = [25,  41,  46,  55,  62,  70,  80,  80,  86,  93,  94,  96,  98,  103]
 
 # RUN ONE STUDY IN ONE WS
-run_only = 30
+run_only = 6
 description = "Dummy study"
-workspace = "0_basic_segment.iws"
+workspace = "n_rigid_ncc.iws"
 timer = 20
 
 # RUN ALL DATASETS FROM ARGUMENTS
@@ -34,8 +34,8 @@ timer = 20
 # %% Setup
 # landmarks = getData("landmarks.json")
 # landmarks = getData("landmarks-fine.json") # For the fine landmarks study
-# landmarks = getData("landmarks-msi.json")
-landmarks = getData("landmarks-msi-fine.json")
+landmarks = getData("landmarks-msi.json")
+# landmarks = getData("landmarks-msi-fine.json")
 
 study_id = workspace[:-4] + "_" + now()
 study = {
