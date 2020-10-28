@@ -1,6 +1,19 @@
 from utils import getData, log, screenshot, now, absolutePath
 from shutil import copy
 import os
+import itertools
+
+def generateGrid(d):
+    result = []
+    
+    for similarity in d["similarities"]:
+        p1 = 'similarity={} '.format(similarity)
+        
+        for step_size in d["step_sizes"]:
+            p2 = 'step_size={} '.format(step_size)
+            
+            result.append(p1 + p2)
+    return result
 
 def setup(study):
     # Make dirs

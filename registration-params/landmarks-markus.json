@@ -1,0 +1,387 @@
+{
+  "006": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/006_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/006_SEGM/CT/",
+    "points1": "61.011673151751 -114.396887159533 -47.5     -31.7769130998703 -84.526588845655 -62.5     -1.27107652399483 -76.9001297016861 -57.5     -138.547341115435 -52.1141374837873 -147.5     -71.8158236057069 -6.99092088197145 -52.5     -12.0752269779507 -47.6653696498054 -57.5 ",
+    "points2": "51.7509727626459 -35.9533073929961 48     -43.579766536965 -27.7821011673152 28     -12.5291828793774 -20.7003891050584 24     -155.79766536965 -4.35797665369648 -64     -87.1595330739299 49.5719844357977 56     -27.7821011673152 10.3501945525292 40"
+  },
+  "007": {
+    "annotated": false,
+    "mri-data": "",
+    "ct-data": "",
+    "points2": "",
+    "points1": ""
+  },
+  "008": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/008_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/008_SEGM/CT/",
+    "points1": "-61.5339233038348 -73.5103244837758 -141.955373770007     -57.2577639751553 16.6770186335404 -17.4000000000003     -121.742236024845 -37.2453416149068 -66.5999999999999     -103.953416149068 -51.6987577639751 -47.4000000000001     -65.0403726708075 -48.9192546583851 -95.4000000000001     -77.2701863354037 -7.22670807453414 10.1999999999998 ",
+    "points2": "-64.8377581120944 -42.9498525073746 -86.6249999999995     -62.3598820058997 30.9734513274336 55.1249999999997     -122.654867256637 -25.1917404129794 1.575     -100.353982300885 -35.5162241887906 20.4749999999999     -65.6637168141593 -23.5398230088496 -36.2249999999998     -66.4896755162242 22.7138643067847 64.5749999999996 "
+  },
+  "010": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/010_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/010_SEGM/CT/",
+    "points1": "-48.9099 -4.57102 72.5 -32.7022 -75.8939 32.5 -2.04101 -76.538 2.5 -119.627 81.9888 37.5",
+    "points2": "-67.6925 -7.82396 57.5 -23.4296 -71.6669 22.5 11.9009 -72.658 -7.5 -142.837 73.0359 32.5"
+  },
+  "011": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/011_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/011_SEGM/CT/",
+    "points2": "-53.5019455252918 -66.147859922179 11.375     -121.5953307393 16.0505836575876 -69.125     1.9455252918288 -7.78210116731519 21.875     -39.3968871595331 -13.1322957198444 21.875     53.988326848249 -64.2023346303502 35.875 ",
+    "points1": "-56.9066147859922 -66.6342412451363 -68.3125991821285     -119.320363164721 -6.02075226977951 -142.5     -4.378728923476 -16.9675745784695 -67.5     -47.0713359273671 -17.514915693904 -57.5     44.8819714656291 -61.8495460440986 -47.5 "
+  },
+  "013": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/013_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/013_SEGM/CT/",
+    "points1": "-104.623865110246 63.9105058365759 -77.5     -118.826199740597 -6.15434500648513 -102.5     -40.2399481193255 -10.4150453955902 -57.5     32.6653696498054 -80.4798962386511 -37.5     -58.7029831387808 5.20752269779504 -87.5 ",
+    "points2": "97.8038720523968 54.8621919584955 13.2645879602974     -111.918635331648 -21.2240596627756 -20.2217997965469     -40.2696714323308 -28.4322308690013 18.1748441510379     48.4851366873309 -77.2876134889754 36.1273955577633     -54.7822968366797 -2.40272373540855 -3.31814101398897"
+  },
+  "020": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/020_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/020_SEGM/CT/",
+    "points2": "-3.38843782737492 -21.3109701519445 16.8970267374645     -55.0443172475304 -83.8942223628756 6.59132568081566     -19.2012248198958 -80.6094371446315 -17.3908472551577     -112.325952261174 20.4727111550864 -70.9089299334065 ",
+    "points1": "-2.36705577172503 -11.3618677042804 -42.5     -71.7055771725033 -75.5123216601817 -37.5     -36.9260700389105 -76.6926070038911 -67.5     -102.256809338521 29.8249027237354 -122.5 "
+  },
+  "021": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/021_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/021_SEGM/CT/",
+    "points1": "-63.2762645914397 -62.3787289234761 17.5     -56.0959792477302 5.38521400778211 82.5     -15.7068741893645 -53.4033722438392 52.4999999999998     -105.909208819715 -24.2334630350194 -92.5     -57.4422827496757 -72.7003891050584 97.4999999999998 ",
+    "points2": "--61.5496817438685 -39.0923444194011 4.03837225831428     -39.457124355431 29.5903116934734 49.1674182510177     -12.555759814749 -34.4214159730312 18.6977450958451     -113.138282923639 7.64767624315107 -105.388117509751     -50.2045705953217 -24.5241123717792 81.5191418159961 "
+  },
+  "022": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/022_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/022_SEGM/CT/",
+    "points2": "-28.4322308690013 -39.2444876783398 22.4999999999999     -70.4798962386511 -57.264915693904 -16.5000000000001     -114.930285343709 8.80998702983139 -88.5000000000001     -100.113488975357 -12.0136186770428 64.4999999999999     -43.6494811932555 -25.6290531776913 -4.50000000000006 ",
+    "points1": "-27.6158982128849 0.445417713111084 17.5     -70.9987029831388 -23.8132295719844 -27.5     -122.153047989624 44.9805447470817 -82.5     -102.749675745785 26.9001297016862 52.5     -47.6264591439689 7.93774319066148 -22.5 "
+  },
+  "023": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/023_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/023_SEGM/CT/",
+    "points2": "1.68612191958496 -43.8391699092088 -4.5     81.7769130998703 -28.242542153048 40.5     -35.8300907911803 -10.538261997406 4.5     -91.89364461738 -12.2243839169909 -76.5     -50.1621271076524 -7.16601815823607 61.5 ",
+    "points1": "-16.325551232166 -35.4383916990921 -107.5     79.6368352788586 -24.6874189364462 -57.4999999999998     -48.1802853437095 2.78728923476007 -97.5     -101.536964980545 24.2892347600519 -152.5     -40.6147859922179 7.56549935149158 -17.5 "
+  },
+  "025": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/025_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/025_SEGM/CT/",
+    "points2": "-3.73540847125216 0.933852117813038 8     -100.389102664902 -48.5603101262781 3.99999999999997     -91.5175075456781 21.9455247686065 12     59.2996094811282 -55.0972749509694 16     -63.9688700701933 -10.73929935485 3.99999999999997 ",
+    "points1": "-8.62014280079614 20.6883427219107 -57.5000000000002     -106.252918287938 -26.8832684824903 -62.5     -99.4254215304799 45.2321660181582 -47.5     46.5123216601816 -47.792477302205 -62.5     -69.9818417639429 9.81452658884564 -57.5 "
+  },
+  "026": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/026_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/026_SEGM/CT/",
+    "points2": "-89.649803310052 -71.9066130716042 -4     -75.6420215428564 8.8715951192239 12     -102.256806900528 -56.0311270687825 32     -63.5019440112868 -24.7470811220456 60     51.8287925386238 -36.4202325947086 40 ",
+    "points1": "-74.5291828793774 -78.8015564202335 -102.6     -72.6303501945525 17.0894941634241 -102.6     -93.9922178988327 -49.8443579766537 -67.8     -59.8132295719844 -6.171206225681 -39.0000000000002     45.5719844357977 -18.5136186770429 -48.5999999999999 "
+  },
+  "028": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/028_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/028_SEGM/CT/",
+    "points1": "1.02983138780807 -82.3865110246434 -87.4999999999998     -36.5590142671855 -25.230869001297 -22.5     -54.5810635538262 -111.221789883269 -117.5     2.5745784695201 -40.6783398184177 -37.5     -102.983138780804 -14.9325551232166 -182.5",
+    "points2": "2.32218309605388 -42.5041606449743 -7.78894386314482     -35.7416035847896 0.0890057381503451 67.1818007910021     -51.0132481105906 -66.0263580376289 -52.0184700092015     1.706873694951 -18.3045591244978 48.3898354832357     -113.790532057807 16.7079745897078 -82.2975114398173 "
+},
+"030": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/030_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/030_SEGM/CT/",
+    "points1": "-59.3359 -32.2603 -72.5 -105.138 -2.26289 -132.5 13.6363 -19.0938 -47.5",
+    "points2": "-83.4939 -23.9114 -4.5 -123.612 -10.9837 -52.5 -8.28564 -13.9349 37.5"
+},
+  "034": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/034_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/034_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "036": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/036_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/036_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "037": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/037_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/037_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "040": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/040_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/040_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "041": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/041_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/041_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "042": {
+    "annotated": false,
+    "mri-data": "",
+    "ct-data": "",
+    "points2": "",
+    "points1": ""
+  },
+  "044": {
+    "annotated": false,
+    "mri-data": "",
+    "ct-data": "",
+    "points2": "",
+    "points1": ""
+  },
+  "046": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/046_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/046_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "049": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/049_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/049_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "050": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/050_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/050_SEGM/CT/",
+    "points2": "-11.0307 -33.1928 46.5 -105.499 44.4815 58.5 -73.0078 34.8947 37.5 -40.2849 -60.0062 13.5 -83.979 -17.933 -13.5",
+    "points1": "-18.3459 -49.0164 -12.5 -110.755 22.8912 -2.5 -77.8282 18.9963 -22.5 -44.611 -79.5836 -42.5 -80.8473 -31.7474 -72.5"
+  },
+  "055": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/055_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/055_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "056": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/056_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/056_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "062": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/062_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/062_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "066": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/066_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/066_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "067": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/067_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/067_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "069": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/069_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/069_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "070": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/070_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/070_SEGM/CT/",
+    "points1": "-63.1571 55.8673 12.5 -0.524851 -85.0331 -42.5 -33.8596 -51.9181 -72.5 -69.4045 -45.3799 -117.5 -121.189 24.2292 -42.5",
+    "points2": "-75.8947 65.1915 52.5 -16.3415 -70.2849 4.5 -42.3775 -30.2696 -28.5 -82.2619 -32.4493 -64.5 -140.013 32.6731 4.5"
+  },
+  "071": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/071_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/071_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "074": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/074_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/074_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "075": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/075_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/075_SEGM/CT/",
+    "points1": "-116.209 -44.4117 -107.5 15.6683 -55.1534 -87.5 9.37692 -63.902 -57.5 -37.5786 -22.4856 -22.5",
+    "points2": "-113.741 -22.1164 -55.5 28.8627 -38.4837 -31.5 25.8562 -49.3072 -10.5 -28.5798 -8.39039 28.5"
+  },
+  "078": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/078_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/078_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "079": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/079_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/079_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "080": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/080_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/080_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "081": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/081_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/081_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "082": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/082_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/082_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "083": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/083_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/083_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "086": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/086_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/086_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "088": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/088_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/088_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "090": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/090_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/090_SEGM/CT/",
+    "points1": "-141.468 -81.7273 -22.5 -71.9732 -145.459 -17.5 -31.5993 -75.4461 32.5 -126.414 -27.636 107.5",
+    "points2": "-114.587 -67.3112 -62 -38.1333 -124.031 -54 -14.8235 -61.9893 -6 -111.754 -17.3636 74"
+  },
+  "091": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/091_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/091_SEGM/CT/",
+    "points1": "-61.0642 -58.7599 -97.5 33.0511 -105.066 -132.5 -91.3306 47.2879 -47.5022",
+    "points2": "-63.1944 -50.5556 31.5 35.4157 -97.3932 -7.5 -102.774 55.1952 82.5"
+  },
+  "092": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/092_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/092_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "093": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/093_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/093_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "094": {
+    "annotated": true,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/094_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/094_SEGM/CT/",
+    "points1": "24.3659 -95.1507 -2.5 -18.4824 -1.43752 27.5 -4.84371 -29.875 -42.5 -64.6295 50.6453 -72.5",
+    "points2": "23.2312 -55.5332 46 -14.87 30.8173 74 -8.1781 4.40359 6 -60.4368 85.9944 -22"
+  },
+  "095": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/095_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/095_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "096": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/096_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/096_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "097": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/097_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/097_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "098": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/098_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/098_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "099": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/099_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/099_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  },
+  "100": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/100_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/100_SEGM/CT/",
+    "points1": "-97.1687 112.321 -7.5 17.9467 -32.7447 -7.5 -77.9105 -46.2387 -52.5 -55.1596 12.4659 -22.5",
+    "points2": "-79.5386 73.3785 13.5 27.8199 -68.353 16.5 -67.3386 -80.1614 -28.5 -40.7057 -30.7902 -1.5"
+  },
+  "102": {
+    "annotated": false,
+    "mri-data": "",
+    "ct-data": "",
+    "points2": "",
+    "points1": ""
+  },
+  "103": {
+    "annotated": false,
+    "mri-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/103_SEGM/Diagnostic/",
+    "ct-data": "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data/103_SEGM/CT/",
+    "points2": "",
+    "points1": ""
+  }
+}
