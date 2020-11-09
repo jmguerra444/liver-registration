@@ -1,28 +1,32 @@
 # %% Dependencies
-from utils import getData, log, screenshot, now, absolutePath
-from helper import setup, kind, filterLandmarks, generateGrid
 import time
 import subprocess
 import datetime
 import os
 import argparse
 
+from utils import getData, log, screenshot, now, absolutePath
+from helper import setup, kind, filterLandmarks, generateGrid, paramsToString
+
 selectedVolumes = []
 
 # RUN ALL DATASETS ONE WORKSPACE
 run_only = 0
 description = ""
-workspace = "td_ffd_generic.iws"
-timer = 100
+timer = 40
 
-# params = {"similarities" : ["NCC", "MI", "SSD"],
-#           "step_sizes" : [1, 5, 10, 15],
+# workspace = "gn_ffd.iws"
+# params = {"similarity" : ["NCC", "MI", "SSD"],
+#           "step_size" : [1, 5, 10, 15],
 #           "smoothness" : [0, 0.1, 0.01, 0.001, 0.0001]
 #          }
 
-params = {"similarities" : ["NCC"],
-          "step_sizes" : [5],
-          "smoothness" : [0.01]
+workspace = "gn_simple.iws"
+# params = {"similarity" : ["NCC", "MI", "SSD"],
+#           "affine" : [1, 0],
+#          }
+params = {"similarity" : ["NCC"],
+          "affine" : [0],
          }
 
 grid = generateGrid(params)
@@ -31,7 +35,7 @@ grid = generateGrid(params)
 for parameters in grid:
 
     landmarks = getData("landmarks-markus.json")
-    study_id = workspace[:-4] + "_" + now()
+    study_id = workspace[:-4]  + "_" + paramsToString(parameters) + now()
     study = {
         "id" : study_id,
         "workspaceFile" : "workspaces\\{}\\{}".format(kind(workspace), workspace),
@@ -65,13 +69,13 @@ for parameters in grid:
                                                                         points2,
                                                                         parameters)
             
-            process = subprocess.Popen(c, shell = True)
+            pr = subprocess.Popen(c)
             screenshotPath = "{}\\{}.png".format(study["screenshotFolder"], p)
             screenshot(screenshotPath, timer) # Not asynchronous
 
             if run_only:
-                process.wait()
+                pr.wait()
             else:
-                process.terminate()
+                pr.terminate()
 
 # %%

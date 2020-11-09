@@ -6,15 +6,34 @@ import itertools
 def generateGrid(d):
     result = []
     
-    for similarity in d["similarities"]:
-        p1 = 'similarity={} '.format(similarity)
-        
-        for step_size in d["step_sizes"]:
-            p2 = 'step_size={} '.format(step_size)
+    key = lambda x : list(d.keys())[x]
+    
+    p0 = p1 = p2 = p3 = p4 = ''
+    l = len(d)
 
-            for smoothnes in d['smoothness']:
-                p3 = 'smoothness={}'.format(smoothnes)
-                result.append(p1 + p2 + p3)
+    for a0 in d[key(0)]:
+        p0 = '{}={} '.format(key(0), a0)
+        if l == 1 : result.append(p0)
+        
+        if l > 1:
+            for a1 in d[key(1)]:
+                p1 = '{}={} '.format(key(1), a1)
+                if l == 2 : result.append(p0 + p1)
+
+                if l > 2:
+                    for a2 in d[key(2)]:
+                        p2 = '{}={} '.format(key(2), a2)
+                        if l == 3 : result.append(p0 + p1 + p2)
+
+                        if l > 3:
+                            for a3 in d[key(3)]:
+                                p3 = '{}={} '.format(key(3), a3)
+                                if l == 4 : result.append(p0 + p1 + p2 + p3)
+                            
+                                if l > 4:
+                                    for a4 in d[key(4)]:
+                                        p4 = '{}={} '.format(key(4), a4)
+                                        result.append(p0 + p1 + p2 + p3 + p4)                            
     return result
 
 def setup(study):
@@ -53,3 +72,8 @@ def filterLandmarks(landmarks, best):
             new_landmarks[p] = landmarks[p]       
     
     return new_landmarks
+
+def paramsToString(params):
+    params = params.replace(" ", "_")
+    params = params.replace("=", "_")
+    return params
