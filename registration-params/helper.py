@@ -37,7 +37,8 @@ def kind(workspace):
         "0_" : "misc",
         "n_" : "normal-linear",
         "su" : "sub-study",
-        "so" : "sub-study-optimizer"
+        "so" : "sub-study-optimizer",
+        "gn" : "generic-studies"
     }
     return kinds.get(workspace[:2], "")
 
