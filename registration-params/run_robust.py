@@ -15,13 +15,15 @@ description = ""
 workspace = "td_ffd_generic.iws"
 timer = 100
 
-params = {"similarities" : ["NCC", "MI", "SSD"],
-          "step_sizes" : [1, 5, 10, 15],
-         }
-
-# params = {"similarities" : ["NCC"],
-#           "step_sizes" : [5],
+# params = {"similarities" : ["NCC", "MI", "SSD"],
+#           "step_sizes" : [1, 5, 10, 15],
+#           "smoothness" : [0, 0.1, 0.01, 0.001, 0.0001]
 #          }
+
+params = {"similarities" : ["NCC"],
+          "step_sizes" : [5],
+          "smoothness" : [0.01]
+         }
 
 grid = generateGrid(params)
 

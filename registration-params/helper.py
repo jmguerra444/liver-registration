@@ -11,8 +11,10 @@ def generateGrid(d):
         
         for step_size in d["step_sizes"]:
             p2 = 'step_size={} '.format(step_size)
-            
-            result.append(p1 + p2)
+
+            for smoothnes in d['smoothness']:
+                p3 = 'smoothness={}'.format(smoothnes)
+                result.append(p1 + p2 + p3)
     return result
 
 def setup(study):

@@ -236,7 +236,7 @@
             <param name="inputUids">"data3" "data2" </param>
             <param name="outputUids"></param>
             <property name="FFD">
-                <param name="smoothness">0.001</param>
+                <param name="smoothness">%(smoothness)</param>
                 <param name="image1IsReference">1</param>
                 <param name="preApplyTransformation">0</param>
                 <param name="relWorld">0</param>
