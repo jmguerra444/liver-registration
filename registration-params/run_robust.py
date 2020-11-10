@@ -13,21 +13,21 @@ selectedVolumes = []
 # RUN ALL DATASETS ONE WORKSPACE
 run_only = 0
 description = ""
-timer = 40
+timer = 300
 
-# workspace = "gn_ffd.iws"
-# params = {"similarity" : ["NCC", "MI", "SSD"],
-#           "step_size" : [1, 5, 10, 15],
-#           "smoothness" : [0, 0.1, 0.01, 0.001, 0.0001]
-#          }
+workspace = "gn_ffd.iws"
+params = {"similarity" : ["NCC", "MI", "SSD"],
+          "step_size" : [1, 5, 10, 15],
+          "smoothness" : [0, 0.1, 0.01, 0.001, 0.0001]
+         }
 
-workspace = "gn_simple.iws"
+# workspace = "gn_simple.iws"
 # params = {"similarity" : ["NCC", "MI", "SSD"],
 #           "affine" : [1, 0],
 #          }
-params = {"similarity" : ["NCC"],
-          "affine" : [0],
-         }
+# params = {"similarity" : ["NCC"],
+#           "affine" : [0],
+#          }
 
 grid = generateGrid(params)
 
