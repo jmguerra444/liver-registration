@@ -1,8 +1,8 @@
 ## Additional configuration IF plugin solution
 
-Aditional solution configurations after generating using cmake.
+Additional solution configurations after generating using cmake.
 
-Add the additional dependencies in the linkes (*.lib) from IF, include files from necesary plugins
+Add the additional dependencies in the linkes (*.lib) from IF, include files from necessary plugins
 ~~~
 C:\Program Files\ImFusion\ImFusion Suite\lib\ImFusionML.lib
 C:\Program Files\ImFusion\ImFusion Suite\lib\ImFusionSeg.lib
