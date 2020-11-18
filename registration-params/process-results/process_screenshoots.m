@@ -1,13 +1,18 @@
 results = [];
-root = 'C:\Master thesis\master\registration-params\studies\completed\v9\';
+root = 'C:\Users\guerra\code\thesis\master-thesis\registration-params\studies\completed\';
+root = strcat(root , 'w1', '\'); 
 folder_ids = getFolders(root);
+
+b.name = 'Patients';
+b.data = get_patient_list(strcat(root, folder_ids{1}, '\screenshots\'));
+results = [results, b];
 
 for i = 1 : length(folder_ids)
     f = folder_ids{i};
     n.name = f(1 : end - 11);
     
     r = process_folder(f, root);
-    n.result = r;
+    n.data = r;
     
     results = [results, n];
 end
@@ -30,10 +35,8 @@ function result = process_folder(folder_id, root)
         text = ocr(image);
         text = text.Text;
         text = parse_text(text);
-
-        d.name = strrep(image_filename, '.png', '');
-        d.(folder_id) = str2double(text);
-
+        
+        d = str2double(text);
         result = [result, d];
     end
 end
@@ -57,5 +60,16 @@ function folder_ids = getFolders(root)
     
     for i = 1 : length(v)
         folder_ids{end + 1} = v(i).name;
+    end
+end
+
+function patients = get_patient_list(folder)
+    list = dir(strcat(folder, '\*.png'));
+    patients = [];
+    for i = 1 : length(list)
+         image_filename = list(i).name;
+         patient = strrep(image_filename, '.png', '');
+         patient = str2double(patient);
+         patients = [patients, patient];
     end
 end

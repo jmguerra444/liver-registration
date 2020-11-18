@@ -1,0 +1,209 @@
+<!--ImFusion Suite, 09.11.2020-->
+<propertyfile version="1.1">
+    <param name="workspaceVersion">10</param>
+    <property name="Datasets">
+        <property name="Data">
+            <param name="original">1</param>
+            <param name="topDown">1</param>
+            <param name="uid">data0</param>
+            <param name="name">LungLeber Low Dose 5.0  B30sWT</param>
+            <param name="transformation">1 -0 -0 -10 -0 1 0 175 -0 -0 1 -1284 -0 0 -0 1 </param>
+            <property name="Components">
+                <property name="DisplayOptions2d">
+                    <property name="TransferFunction">
+                        <param name="window">299</param>
+                        <param name="level">39.5</param>
+                    </property>
+                    <property name="WindowLevelPreset">
+                        <param name="name">WINDOW1</param>
+                        <param name="window">299</param>
+                        <param name="level">39.5</param>
+                    </property>
+                    <property name="WindowLevelPreset">
+                        <param name="name">WINDOW2</param>
+                        <param name="window">1499</param>
+                        <param name="level">299.5</param>
+                    </property>
+                </property>
+                <property name="DisplayOptions3d">
+                    <property name="TransferFunction">
+                        <param name="window">2774</param>
+                        <param name="level">363</param>
+                        <param name="presetName">CT Bone</param>
+                        <property name="Tissues">
+                            <property name="Tissue">
+                                <property name="KeyPoint">
+                                    <param name="position">0.4</param>
+                                    <param name="color">0.752941176470588 0.250980392156863 0.125490196078431 0 </param>
+                                </property>
+                                <property name="KeyPoint">
+                                    <param name="position">0.5</param>
+                                    <param name="color">0.975 0.9 0.82 0.6 </param>
+                                </property>
+                                <property name="KeyPoint">
+                                    <param name="position">0.6</param>
+                                    <param name="color">1 1 1 0.6 </param>
+                                </property>
+                                <property name="KeyPoint">
+                                    <param name="position">1</param>
+                                    <param name="color">0.9 0.9 0.9 0.6 </param>
+                                </property>
+                            </property>
+                        </property>
+                    </property>
+                </property>
+            </property>
+        </property>
+        <property name="Data">
+            <param name="original">1</param>
+            <param name="topDown">1</param>
+            <param name="uid">data1</param>
+            <param name="name">Abd_t1_vibe_dixon_tra_bh_delay_W</param>
+            <param name="transformation">1 -0 -0 -0.700973629949999 -0 1 0 11.09591388702 -0 -0 1 366.62476730347 -0 0 -0 1 </param>
+            <property name="Components">
+                <property name="DisplayOptions2d">
+                    <property name="TransferFunction">
+                        <param name="window">728</param>
+                        <param name="level">334.5</param>
+                    </property>
+                    <property name="WindowLevelPreset">
+                        <param name="name">WINDOW1</param>
+                        <param name="window">728</param>
+                        <param name="level">334.5</param>
+                    </property>
+                </property>
+                <property name="DisplayOptions3d">
+                    <property name="TransferFunction">
+                        <param name="window">1373.00004545599</param>
+                        <param name="level">686.500022727996</param>
+                        <param name="presetName">MRI Default</param>
+                        <property name="Tissues">
+                            <property name="Tissue">
+                                <property name="KeyPoint">
+                                    <param name="position">0.2</param>
+                                    <param name="color">0.15 0 0 0 </param>
+                                </property>
+                                <property name="KeyPoint">
+                                    <param name="position">0.25</param>
+                                    <param name="color">0.501960784313725 0.125490196078431 0.0627450980392157 0.05 </param>
+                                </property>
+                                <property name="KeyPoint">
+                                    <param name="position">0.4</param>
+                                    <param name="color">0.8 0.627450980392157 0.36078431372549 0.2 </param>
+                                </property>
+                                <property name="KeyPoint">
+                                    <param name="position">0.5</param>
+                                    <param name="color">0.941176470588235 0.901960784313726 0.862745098039216 0.3 </param>
+                                </property>
+                                <property name="KeyPoint">
+                                    <param name="position">1</param>
+                                    <param name="color">1 1 1 0.3 </param>
+                                </property>
+                            </property>
+                        </property>
+                    </property>
+                </property>
+            </property>
+        </property>
+    </property>
+    <property name="Algorithms">
+        <property name="Point Correspondences">
+            <param name="points1">-125.252918287938 54.2282749675746 -32.5000000000002 
+-96.9390402075227 62.8664072632944 -62.5000000000002 
+-22.0752269779507 -35.0324254215305 -47.5000000000002 
+-73.4241245136187 -30.7133592736706 -67.5 
+-133.891050583658 48.9494163424124 -102.5 
+</param>
+            <param name="points2">-122.243839169909 32.8793774319066 58.4999999999999 
+-90.2075226977951 44.6822308690013 37.5 
+-13.0674448767834 -50.5836575875487 37.5 
+-64.0726329442283 -43.8391699092088 10.4999999999999 
+-133.203631647211 29.0856031128405 -10.5000000000001 
+</param>
+            <param name="registrationMode">0</param>
+            <param name="exportAsPointClouds">0</param>
+            <param name="inputUids">"data0" "data1" </param>
+            <param name="outputUids"></param>
+        </property>
+        <property name="ImFusionFile">
+            <param name="location">046.iws.imf</param>
+            <param name="execute">1</param>
+            <param name="inputUids"></param>
+            <param name="outputUids">"data0" "data1" </param>
+        </property>
+        <property name="Move Data">
+            <param name="pos">0</param>
+            <param name="execute">1</param>
+            <param name="inputUids">"data0" </param>
+            <param name="outputUids"></param>
+        </property>
+        <property name="Move Data">
+            <param name="pos">1</param>
+            <param name="execute">1</param>
+            <param name="inputUids">"data1" </param>
+            <param name="outputUids"></param>
+        </property>
+    </property>
+    <property name="Display">
+        <param name="layoutMode">0</param>
+        <param name="maximisedView">1</param>
+        <param name="focusedView">1</param>
+        <property name="Views">
+            <property name="0">
+                <param name="showZoom">1</param>
+                <param name="showIn3D">17</param>
+            </property>
+            <property name="1">
+                <param name="flip">1</param>
+                <param name="showZoom">1</param>
+                <param name="showIn3D">17</param>
+                <param name="viewMatrix">1 0 0 0.700973629949999 0 1 0 -11.09591388702 0 0 1 -377.12476730347 0 0 0 1 </param>
+                <param name="sliceMatrix">1 0 0 0.700973629949999 0 1 0 -11.09591388702 0 0 1 -377.12476730347 0 0 0 1 </param>
+            </property>
+            <property name="2">
+                <param name="flip">1</param>
+                <param name="showZoom">1</param>
+                <param name="showIn3D">17</param>
+                <param name="viewMatrix">0 0 -1 0.0759736299499991 1 0 0 -11.09591388702 0 -1 0 -366.62476730347 0 0 0 1 </param>
+                <param name="sliceMatrix">0 0 -1 0.0759736299499991 1 0 0 -11.09591388702 0 -1 0 -366.62476730347 0 0 0 1 </param>
+            </property>
+            <property name="3">
+                <param name="flip">1</param>
+                <param name="showZoom">1</param>
+                <param name="showIn3D">17</param>
+                <param name="viewMatrix">1 0 0 0.700973629949999 0 0 1 -10.47091388702 0 -1 0 -366.62476730347 0 0 0 1 </param>
+                <param name="sliceMatrix">1 0 0 0.700973629949999 0 0 1 -10.47091388702 0 -1 0 -366.62476730347 0 0 0 1 </param>
+            </property>
+            <property name="4">
+                <param name="renderMode">4</param>
+                <param name="sceneCenter">0.700973629949999 -11.09591388702 -366.62476730347 </param>
+                <property name="Camera">
+                    <param name="poseMatrix">1 -0 0 -0.700973629949999 -0 0 1 366.62476730347 -0 -1 0 -778.770063967761 0 0 -0 1 </param>
+                    <param name="focalLength">1.37373870972731 1.37373870972731 </param>
+                </property>
+                <property name="VolumeRenderer">
+                    <param name="mode">4</param>
+                    <param name="showDeformations">0</param>
+                    <param name="ambientAttenuationDistance">0</param>
+                </property>
+            </property>
+        </property>
+        <property name="VisibleData">
+            <property name="0">
+                <param name="visible"></param>
+            </property>
+            <property name="1">
+                <param name="visible">"data1" </param>
+            </property>
+            <property name="2">
+                <param name="visible">"data1" </param>
+            </property>
+            <property name="3">
+                <param name="visible">"data1" </param>
+            </property>
+            <property name="4">
+                <param name="visible">"data1" </param>
+            </property>
+        </property>
+    </property>
+</propertyfile>
