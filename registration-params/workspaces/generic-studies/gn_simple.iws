@@ -123,6 +123,58 @@
                 </property>
             </property>
         </property>
+        <property name="Data">
+            <param name="topDown">1</param>
+            <param name="original">1</param>
+            <param name="name">Cropped CT</param>
+            <param name="uid">data2</param>
+            <param name="transformation"></param>
+            <property name="Components">
+                <property name="DisplayOptions2d">
+                    <property name="TransferFunction">
+                        <param name="window">299</param>
+                        <param name="level">39.5</param>
+                    </property>
+                    <property name="WindowLevelPreset">
+                        <param name="name">WINDOW1</param>
+                        <param name="window">299</param>
+                        <param name="level">39.5</param>
+                    </property>
+                    <property name="WindowLevelPreset">
+                        <param name="name">WINDOW2</param>
+                        <param name="window">1499</param>
+                        <param name="level">299.5</param>
+                    </property>
+                </property>
+                <property name="DisplayOptions3d">
+                    <property name="TransferFunction">
+                        <param name="window">2774</param>
+                        <param name="level">363</param>
+                        <param name="presetName">CT Bone</param>
+                        <property name="Tissues">
+                            <property name="Tissue">
+                                <property name="KeyPoint">
+                                    <param name="position">0.4</param>
+                                    <param name="color">0.752941176470588 0.250980392156863 0.125490196078431 0 </param>
+                                </property>
+                                <property name="KeyPoint">
+                                    <param name="position">0.5</param>
+                                    <param name="color">0.975 0.9 0.82 0.6 </param>
+                                </property>
+                                <property name="KeyPoint">
+                                    <param name="position">0.6</param>
+                                    <param name="color">1 1 1 0.6 </param>
+                                </property>
+                                <property name="KeyPoint">
+                                    <param name="position">1</param>
+                                    <param name="color">0.9 0.9 0.9 0.6 </param>
+                                </property>
+                            </property>
+                        </property>
+                    </property>
+                </property>
+            </property>
+        </property>
     </property>
     <property name="Algorithms">
         <property name="DICOM Folder">
@@ -139,10 +191,36 @@
             <param name="inputUids"></param>
             <param name="outputUids">"data1" </param>
         </property>
+        <property name="Basic Processing">
+            <param name="mode">6</param>
+            <param name="createNew">1</param>
+            <param name="cropLower">%(crop_lower)</param>
+            <param name="cropUpper">%(crop_upper)</param>
+            <param name="execute">1</param>
+            <param name="inputUids">"data0" </param>
+            <param name="outputUids">"data2" </param>
+        </property>
+        <property name="Point Correspondences">
+            <param name="points1">%(p1)</param>
+            <param name="points2">%(p2)</param>
+            <param name="registrationMode">0</param>
+            <param name="exportAsPointClouds">0</param>
+            <param name="inputUids">"data0" "data1" </param>
+            <param name="outputUids"></param>
+            <property name="Controller">
+                <param name="userCloseable">1</param>
+                <param name="expanded">1</param>
+                <param name="resizable">0</param>
+            </property>
+        </property>
+        <property name="Link Pose">
+            <param name="inputUids">"data0" "data2" </param>
+            <param name="outputUids"></param>
+        </property>
         <property name="Initialize Registration">
             <param name="mode">1</param>
             <param name="execute">1</param>
-            <param name="inputUids">"data0" "data1" </param>
+            <param name="inputUids">"data1" "data2" </param>
         </property>
         <property name="Image Registration">
             <param name="image2IsMoving">0</param>
@@ -189,20 +267,9 @@
                 <param name="resizable">0</param>
             </property>
         </property>
-        <property name="Point Correspondences">
-            <param name="points1">%(p1)</param>
-            <param name="points2">%(p2)</param>
-            <param name="registrationMode">0</param>
-            <param name="exportAsPointClouds">0</param>
-            <param name="inputUids">"data0" "data1" </param>
-            <param name="outputUids"></param>
-            <property name="Controller">
-                <param name="userCloseable">1</param>
-                <param name="expanded">1</param>
-                <param name="resizable">0</param>
-            </property>
-        </property>
     </property>
+
+
     <property name="Display">
         <param name="layoutMode">0</param>
         <param name="focusedView">1</param>
