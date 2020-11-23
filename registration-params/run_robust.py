@@ -6,7 +6,7 @@ import os
 import argparse
 
 from utils import getData, log, screenshot, now, absolutePath
-from helper import setup, kind, filterLandmarks, generateGrid, paramsToString, parseCrop, moveLandmarks
+from helper import setup, kind, filterLandmarks, generateGrid, paramsToString, crop, moveLandmarks
 
 selectedVolumes = []
 
@@ -16,8 +16,8 @@ description = ""
 timer = 60
 
 # for croping
-lower_limit = parseCrop(0)
-upper_limit = parseCrop(33)
+lower_limit = crop(0)
+upper_limit = crop(33)
 
 # workspace = "gn_ffd.iws"
 # params = {"similarity" : ["NCC", "MI", "SSD"],

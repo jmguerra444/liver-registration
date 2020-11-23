@@ -36,7 +36,7 @@ def generateGrid(d):
                                         result.append(p0 + p1 + p2 + p3 + p4)
     return result
 
-def parseCrop(limit):
+def crop(limit):
     # Cuts from lower to upper slice, the slices in the range will be removed
     return "0 0 {}".format(limit)
 
