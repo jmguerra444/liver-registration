@@ -8,16 +8,9 @@ import argparse
 from utils import getData, log, screenshot, now, absolutePath
 from helper import setup, kind, filterLandmarks, generateGrid, paramsToString, crop, moveLandmarks
 
-selectedVolumes = []
-
 # RUN ALL DATASETS ONE WORKSPACE
 run_only = 0
-description = ""
 timer = 60
-
-# for croping
-lower_limit = crop(0)
-upper_limit = crop(33)
 
 # workspace = "gn_ffd.iws"
 # params = {"similarity" : ["NCC", "MI", "SSD"],
@@ -27,11 +20,11 @@ upper_limit = crop(33)
 
 workspace = "gn_simple.iws"
 params = { \
-          "similarity" : ["NCC", "MI", "SSD"],
+          "similarity" : ["MI", "SSD", "NCC"],
           "affine" : [1, 0],
-        #   Crop some slices of the volume (in the range are removed)
-          "crop_lower" : [lower_limit],
-          "crop_upper" : [upper_limit]
+
+          "crop_upper" : [crop(0), crop(33)], # Remove slices from the top
+          "crop_lower" : [crop(0)]   # Remove slices from bottom
          }
 
 # params = {"similarity" : ["NCC"],
@@ -55,8 +48,6 @@ for parameters in grid:
         }
     setup(study)
 
-    # For only selected landmarks study
-    landmarks = filterLandmarks(landmarks, selectedVolumes)
     log("\n",study.get("descriptionFile"))
     log("STARTING PROCESS {}".format(now()), study.get("descriptionFile"))
     for p in landmarks:
@@ -74,9 +65,9 @@ for parameters in grid:
 
             # points1 = moveLandmarks(points1, upper_limit)   # for the CT
             c = 'ImFusionSuite {} mr="{}" ct="{}" p1="{}" p2="{}" {}'.format(study["workspaceFile"], 
-                                                                        mriPath, 
-                                                                        ctPath, 
-                                                                        points1, 
+                                                                        mriPath,
+                                                                        ctPath,
+                                                                        points1,
                                                                         points2,
                                                                         parameters)
             
