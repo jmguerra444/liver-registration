@@ -20,7 +20,7 @@ timer = 60
 
 workspace = "gn_simple.iws"
 params = { \
-          "similarity" : ["MI", "SSD", "NCC"],
+          "similarity" : ["MI", "SSD", "NCC", "LNCC"],
           "affine" : [1, 0],
 
           "crop_upper" : [crop(0), crop(33)], # Remove slices from the top
