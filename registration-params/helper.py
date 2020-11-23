@@ -12,29 +12,52 @@ def generateGrid(d):
     l = len(d)
 
     for a0 in d[key(0)]:
-        p0 = '{}={} '.format(key(0), a0)
+        p0 = '{}="{}" '.format(key(0), a0)
         if l == 1 : result.append(p0)
         
         if l > 1:
             for a1 in d[key(1)]:
-                p1 = '{}={} '.format(key(1), a1)
+                p1 = '{}="{}" '.format(key(1), a1)
                 if l == 2 : result.append(p0 + p1)
 
                 if l > 2:
                     for a2 in d[key(2)]:
-                        p2 = '{}={} '.format(key(2), a2)
+                        p2 = '{}="{}" '.format(key(2), a2)
                         if l == 3 : result.append(p0 + p1 + p2)
 
                         if l > 3:
                             for a3 in d[key(3)]:
-                                p3 = '{}={} '.format(key(3), a3)
+                                p3 = '{}="{}" '.format(key(3), a3)
                                 if l == 4 : result.append(p0 + p1 + p2 + p3)
                             
                                 if l > 4:
                                     for a4 in d[key(4)]:
-                                        p4 = '{}={} '.format(key(4), a4)
-                                        result.append(p0 + p1 + p2 + p3 + p4)                            
+                                        p4 = '{}="{}" '.format(key(4), a4)
+                                        result.append(p0 + p1 + p2 + p3 + p4)
     return result
+
+def parseCrop(limit):
+    # Cuts from lower to upper slice, the slices in the range will be removed
+    return "0 0 {}".format(limit)
+
+
+def moveLandmarks(landmarks, translation):
+    
+    # Later do substraction to move it down if required
+
+    points = [float(x) for x in landmarks.split()]
+    tz = [float(x) for x in translation.split()]
+
+    movedLandmarks = ""
+
+    # tz = [33, 0, 0]
+    for i in range(int(len(points) / 3)):
+        movedLandmarks = movedLandmarks  + "  " \
+                + str(tz[0] - points[i * 3 + 0]) + "    " \
+                + str(tz[1] - points[i * 3 + 1]) + "    " \
+                + str(tz[2] - points[i * 3 + 2])
+    
+    return movedLandmarks
 
 def setup(study):
     # Make dirs
@@ -76,4 +99,5 @@ def filterLandmarks(landmarks, best):
 def paramsToString(params):
     params = params.replace(" ", "_")
     params = params.replace("=", "_")
+    params = params.replace('"', "")
     return params
