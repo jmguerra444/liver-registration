@@ -7,33 +7,18 @@ import argparse
 
 from utils import getData, log, screenshot, now, absolutePath
 from helper import setup, kind, filterLandmarks, generateGrid, paramsToString, crop, moveLandmarks
+from robust_params import getParams, getWorkspace
+
 
 # RUN ALL DATASETS ONE WORKSPACE
-run_only = 0
+run_only = 6
 timer = 60
 
-# workspace = "gn_ffd.iws"
-# params = {"similarity" : ["NCC", "MI", "SSD"],
-#           "step_size" : [1, 5, 10, 15],
-#           "smoothness" : [0, 0.1, 0.01, 0.001, 0.0001]
-#          }
-
-workspace = "gn_simple.iws"
-params = { \
-          "similarity" : ["MI", "SSD", "NCC", "LNCC"],
-          "affine" : [1, 0],
-
-          "crop_upper" : [crop(0), crop(33)], # Remove slices from the top
-          "crop_lower" : [crop(0)]   # Remove slices from bottom
-         }
-
-# params = {"similarity" : ["NCC"],
-#           "affine" : [0],
-#          }
-
-grid = generateGrid(params)
+params = getParams()
+workspace = getWorkspace()
 
 # %% Setup
+grid = generateGrid(params)
 for parameters in grid:
 
     landmarks = getData("landmarks-markus.json")
