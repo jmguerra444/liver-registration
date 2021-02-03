@@ -11,7 +11,7 @@ from robust_params import getParams, getWorkspace
 
 
 # RUN ALL DATASETS ONE WORKSPACE
-run_only = 6
+run_only = 0
 timer = 60
 
 params = getParams()
