@@ -1,12 +1,15 @@
-results = [];
-root = 'C:\Users\guerra\code\thesis\master-thesis\registration-params\studies\completed\';
-root = strcat(root , 'w1', '\'); 
+
+study_name = 'gn-simple-v1';
+
+root = 'C:\Users\Jorgue Guerra\OneDrive - SurgicEye GmbH\thesis\experiments\registration-studies\';
+root = strcat(root , study_name, '\'); 
 folder_ids = getFolders(root);
 
+
+results = [];
 b.name = 'Patients';
 b.data = get_patient_list(strcat(root, folder_ids{1}, '\screenshots\'));
 results = [results, b];
-
 for i = 1 : length(folder_ids)
     f = folder_ids{i};
     n.name = f(1 : end - 11);
@@ -17,6 +20,10 @@ for i = 1 : length(folder_ids)
     results = [results, n];
 end
 
+data = postprocess_results(results);
+xlswrite("output.xls", data);
+
+%%
 function result = process_folder(folder_id, root)
     disp(folder_id)
     study_folder = strcat(root, folder_id, '\screenshots\');
@@ -30,7 +37,7 @@ function result = process_folder(folder_id, root)
         path = absolute_path(image_filename, study_folder);
 
         image = rgb2gray(imread(path));
-        image = image(537:557, 1126:1231);
+        image = image(537:557, 2335:2419);
         image = imresize(image, 30);
         text = ocr(image);
         text = text.Text;
@@ -40,6 +47,7 @@ function result = process_folder(folder_id, root)
         result = [result, d];
     end
 end
+
 
 function path = absolute_path(relative_path, parent)
     path = strcat(parent, relative_path);
@@ -72,4 +80,17 @@ function patients = get_patient_list(folder)
          patient = str2double(patient);
          patients = [patients, patient];
     end
+end
+
+function d = postprocess_results(results)
+    
+    l = length(results);
+    headers = {};
+    d = zeros(length(results(1).data), l);
+    
+    for i = 1 : l
+        headers{i} = results(i).name;
+        d(:, i) = results(i).data;
+    end
+  
 end
