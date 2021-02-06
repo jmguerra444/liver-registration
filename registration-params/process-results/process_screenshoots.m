@@ -1,5 +1,7 @@
 
-study_name = 'gn-simple-v1';
+% study_name = 'gn-simple-v1';
+% study_name = 'gn-linear-v1';
+study_name = 'gn-ffd-v1';
 
 root = 'C:\Users\Jorgue Guerra\OneDrive - SurgicEye GmbH\thesis\experiments\registration-studies\';
 root = strcat(root , study_name, '\'); 
@@ -20,8 +22,9 @@ for i = 1 : length(folder_ids)
     results = [results, n];
 end
 
-data = postprocess_results(results);
+[data, headers] = postprocess_results(results);
 xlswrite("output.xls", data);
+xlswrite("headers.xls", headers);
 
 %%
 function result = process_folder(folder_id, root)
@@ -82,7 +85,7 @@ function patients = get_patient_list(folder)
     end
 end
 
-function d = postprocess_results(results)
+function [d, headers] = postprocess_results(results)
     
     l = length(results);
     headers = {};
