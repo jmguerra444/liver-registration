@@ -12,11 +12,21 @@ from robust_params import getParams, getWorkspace
 
 # RUN ALL DATASETS ONE WORKSPACE
 run_only = 0
-timer = 180
-params = getParams()
-workspace = getWorkspace()
-grid = generateGrid(params)
+startFrom = 0
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--key", help = "Key", type = str, default = "FFD")
+parser.add_argument("--timer", help = "Timer", type = int, default = 50)
+args = parser.parse_args()
+timer = args.timer
+key = args.key
+
+params = getParams(key)
+workspace = getWorkspace(key)
 landmarks = getData("landmarks-markus.json")
+
+grid = generateGrid(params)
+grid = grid[startFrom:]
 
 # ESTIMATE COMPUTATION TIME
 c = 0
@@ -71,5 +81,3 @@ for parameters in grid:
                 pr.wait()
             else:
                 pr.terminate()
-
-# %%
