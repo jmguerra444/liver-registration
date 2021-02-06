@@ -243,7 +243,7 @@
                 <param name="affine">0</param>
                 <param name="useLinearTransform">0</param>
                 <property name="Deformation">
-                    <param name="gridSize">4 4 4 </param>
+                    <param name="gridSize">%(grid_size)</param>
                     <param name="spacing">133.333333333333 100 35.9998457142857 </param>
                     <param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</param>
                     <param name="displacement">0</param>

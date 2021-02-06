@@ -12,16 +12,33 @@ from robust_params import getParams, getWorkspace
 
 # RUN ALL DATASETS ONE WORKSPACE
 run_only = 0
-timer = 60
+startFrom = 0
 
-params = getParams()
-workspace = getWorkspace()
+parser = argparse.ArgumentParser()
+parser.add_argument("--key", help = "Key", type = str, default = "FFD")
+parser.add_argument("--timer", help = "Timer", type = int, default = 50)
+args = parser.parse_args()
+timer = args.timer
+key = args.key
+
+params = getParams(key)
+workspace = getWorkspace(key)
+landmarks = getData("landmarks-markus.json")
+
+grid = generateGrid(params)
+grid = grid[startFrom:]
+
+# ESTIMATE COMPUTATION TIME
+c = 0
+for p in landmarks:
+    if landmarks[p].get("annotated"):
+        c += 1
+
+print("ESTIMATED COMPUTATION TIME: {} hours".format(
+    len(grid) * timer * c / 3600))
 
 # %% Setup
-grid = generateGrid(params)
 for parameters in grid:
-
-    landmarks = getData("landmarks-markus.json")
     study_id = workspace[:-4]  + "_" + paramsToString(parameters) + now()
     study = {
         "id" : study_id,
@@ -64,5 +81,3 @@ for parameters in grid:
                 pr.wait()
             else:
                 pr.terminate()
-
-# %%
