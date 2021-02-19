@@ -19,11 +19,20 @@ def getParams(key):
                 }
 
     if (key == "FFD"):
+
+        ## FFD 1st study
+        # params = {\
+        #         "similarity" : ["MI", "SSD", "NCC", "LNCC"],
+        #         "step_size" : [1, 5, 10, 15],
+        #         "grid_size" : ["3 3 3", "4 4 4", "5 5 5"],
+        #         "smoothness" : [0, 0.1, 0.01, 0.001]
+        #         }
+
         params = {\
-                "similarity" : ["MI", "SSD", "NCC", "LNCC"],
+                "similarity" : ["MI", "SSD", "NCC"],
                 "step_size" : [1, 5, 10, 15],
-                "grid_size" : ["3 3 3", "4 4 4", "5 5 5"],
-                "smoothness" : [0, 0.1, 0.01, 0.001]
+                "grid_size" : ["6 6 6"],
+                "smoothness" : [0, 0.01, 0.001]
                 }
     return params
 
