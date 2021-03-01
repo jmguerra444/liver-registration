@@ -18,8 +18,6 @@ def getParams(key, version = 0):
                 }
 
     if (key == "FFD"):
-        params = {}
-
         if (version == -1):
             # Test params
             params = {\
