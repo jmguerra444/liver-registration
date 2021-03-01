@@ -1,9 +1,11 @@
 
 % study_name = 'gn-simple-v1';
 % study_name = 'gn-linear-v1';
-study_name = 'gn-ffd-v1';
+study_name = 'gn-ffd-v2';
 
-root = 'C:\Users\Jorgue Guerra\OneDrive - SurgicEye GmbH\thesis\experiments\registration-studies\';
+root = 'D:\jorge\OneDrive\OneDrive - SurgicEye GmbH\thesis\experiments\registration-studies\';
+% root = 'C:\Users\Jorgue Guerra\OneDrive - SurgicEye GmbH\thesis\experiments\registration-studies\';
+
 root = strcat(root , study_name, '\'); 
 folder_ids = getFolders(root);
 
@@ -23,8 +25,8 @@ for i = 1 : length(folder_ids)
 end
 
 [data, headers] = postprocess_results(results);
-xlswrite("output.xls", data);
-xlswrite("headers.xls", headers);
+xlswrite("output.xls", data');
+xlswrite("headers.xls", headers');
 
 %%
 function result = process_folder(folder_id, root)
