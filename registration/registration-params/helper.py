@@ -72,20 +72,6 @@ def setup(study):
     # Copy workspacefile
     copy(study.get("workspaceFile"), study.get("studyFolder"))
 
-
-def kind(workspace):
-    kinds = {
-        "td" : "thesis-deformable",
-        "tl" : "thesis-linear",
-        "tf" : "thesis-linear-deformable",
-        "0_" : "misc",
-        "n_" : "normal-linear",
-        "su" : "sub-study",
-        "so" : "sub-study-optimizer",
-        "gn" : "generic-studies"
-    }
-    return kinds.get(workspace[:2], "")
-
 def filterLandmarks(landmarks, best):
     
     if not best:

@@ -54,10 +54,10 @@ print("ESTIMATED COMPUTATION TIME: {} hours".format(
 
 # %% Setup
 for parameters in grid:
-    study_id = workspace[:-4]  + "_" + paramsToString(parameters) + now()
+    study_id = now() + workspace[:-4]  + "_" + paramsToString(parameters)
     study = {
         "id" : study_id,
-        "workspaceFile" : "workspaces\\{}\\{}".format(kind(workspace), workspace),
+        "workspaceFile" : "workspaces\\{}".format(workspace),
         "description" : parameters,
         "studyFolder" : absolutePath("studies\\in-progress\\{}".format(study_id)),
         "descriptionFile" : absolutePath("studies\\in-progress\\{}\\description".format(study_id)),

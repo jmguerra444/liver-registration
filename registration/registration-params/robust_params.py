@@ -29,12 +29,14 @@ def getParams(key, params = {}):
 
 def getWorkspace(key):
     workspace = ""
+    if (key == "LOAD"):
+        workspace = "load.iws"
     if (key == "SEGMENT"):
-        workspace = "0_basic.iws"
+        workspace = "segment.iws"
     if (key == "SIMPLE"):
-        workspace = "gn_simple.iws"
+        workspace = "register_simple.iws"
     if (key == "LINEAR"):
-        workspace = "gn_linear.iws"
+        workspace = "register_linear.iws"
     if (key == "FFD"):
-        workspace = "gn_ffd.iws"
+        workspace = "register_ffd.iws"
     return workspace

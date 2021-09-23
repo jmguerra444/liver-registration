@@ -1,5 +1,0 @@
-
-gn -> generic
-simple: linear method registration (without using the segmentation), allow crop
-linear : segmentations using linear methods
-ffd : segmentations using ffd
