@@ -55,7 +55,7 @@ print("ESTIMATED COMPUTATION TIME: {} hours".format(
 
 # %% Setup
 for parameters in grid:
-    study_id = now() + workspace[:-4]  + "_" + paramsToString(parameters)
+    study_id = now() + "_" + workspace[:-4]  + "_" + paramsToString(parameters)
     study = {
         "id" : study_id,
         "workspaceFile" : "workspaces\\{}".format(workspace),
