@@ -6,7 +6,7 @@ import os
 import argparse
 
 from utils import getData, log, screenshot, now, absolutePath
-from helper import setup, kind, filterLandmarks, generateGrid, paramsToString, crop, moveLandmarks
+from helper import setup, filterLandmarks, generateGrid, paramsToString, crop, moveLandmarks
 from robust_params import getParams, getWorkspace
 
 # RUN ALL DATASETS ONE WORKSPACE
@@ -15,7 +15,7 @@ run_only = 6    # 0 if you want to run the study in all the patients
 startFrom = 0   # Change this in case you want to start the whole study from some patient (expects an index)
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--key", help = "Key", type = str, default = "SEGMENT")
+parser.add_argument("--key", help = "Key", type = str, default = "LOAD")
 parser.add_argument("--timer", help = "Timer", type = int, default = 200)
 parser.add_argument("--location", help= "Where the data is located", type = str, default = "D:/jorge/OneDrive/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data")
 args = parser.parse_args()
@@ -24,6 +24,7 @@ location = args.location    # Where the data is stored in my case D:\jorge\OneDr
 timer = args.timer          # How much time (seconds) should wait before stating the next registration
 key = args.key              # What kind of study should be run
                             # Available options are:
+                            # "LOAD"            Just loads the data with the landmarks
                             # "SEGMENT"         Load the data and segment
                             # "SIMPLE"          Load, segment and perform rigid registration using image data
                             # "LINEAR"          Load, segment and perform linear registration using masks
@@ -89,10 +90,9 @@ for parameters in grid:
                                                                         parameters)
 
             pr = subprocess.Popen(c)
-            screenshotPath = "{}\\{}.png".format(study["screenshotFolder"], p)
-            screenshot(screenshotPath, timer) # Not asynchronous
-
             if run_only:
                 pr.wait()
             else:
+                screenshotPath = "{}\\{}.png".format(study["screenshotFolder"], p)
+                screenshot(screenshotPath, timer) # Not asynchronous
                 pr.terminate()
