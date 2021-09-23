@@ -4,8 +4,10 @@ import os
 import itertools
 
 def generateGrid(d):
+    if (d == {}):
+            return [""]
+
     result = []
-    
     key = lambda x : list(d.keys())[x]
     
     p0 = p1 = p2 = p3 = p4 = ''
