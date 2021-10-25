@@ -8,8 +8,8 @@
     },
     "007": {
         "annotated": false,
-        "mri-data": "",
-        "ct-data": "",
+        "mri-data": "/007_SEGM/Diagnostic/",
+        "ct-data": "/007_SEGM/CT/",
         "points2": "",
         "points1": ""
     },
@@ -134,15 +134,15 @@
     },
     "042": {
         "annotated": false,
-        "mri-data": "",
-        "ct-data": "",
+        "mri-data": "/042_SEGM/Diagnostic/",
+        "ct-data": "/042_SEGM/CT/",
         "points2": "",
         "points1": ""
     },
     "044": {
         "annotated": false,
-        "mri-data": "",
-        "ct-data": "",
+        "mri-data": "/044_SEGM/Diagnostic/",
+        "ct-data": "/044_SEGM/CT/",
         "points2": "",
         "points1": ""
     },
@@ -381,6 +381,69 @@
         "annotated": false,
         "mri-data": "/103_SEGM/Diagnostic/",
         "ct-data": "/103_SEGM/CT/",
+        "points2": "",
+        "points1": ""
+    },
+    "104": {
+        "annotated": false,
+        "mri-data": "/104_SEGM/Diagnostic/",
+        "ct-data": "/104_SEGM/CT/",
+        "points2": "",
+        "points1": ""
+    },
+    "105": {
+        "annotated": false,
+        "mri-data": "/105_SEGM/Diagnostic/",
+        "ct-data": "/105_SEGM/CT/",
+        "points2": "",
+        "points1": ""
+    },
+    "106": {
+        "annotated": false,
+        "mri-data": "/106_SEGM/Diagnostic/",
+        "ct-data": "/106_SEGM/CT/",
+        "points2": "",
+        "points1": ""
+    },
+    "107": {
+        "annotated": false,
+        "mri-data": "/107_SEGM/Diagnostic/",
+        "ct-data": "/107_SEGM/CT/",
+        "points2": "",
+        "points1": ""
+    },
+    "108": {
+        "annotated": false,
+        "mri-data": "/108_SEGM/Diagnostic/",
+        "ct-data": "/108_SEGM/CT/",
+        "points2": "",
+        "points1": ""
+    },
+    "109": {
+        "annotated": false,
+        "mri-data": "/109_SEGM/Diagnostic/",
+        "ct-data": "/109_SEGM/CT/",
+        "points2": "",
+        "points1": ""
+    },
+    "110": {
+        "annotated": false,
+        "mri-data": "/110_SEGM/Diagnostic/",
+        "ct-data": "/110_SEGM/CT/",
+        "points2": "",
+        "points1": ""
+    },
+    "111": {
+        "annotated": false,
+        "mri-data": "/111_SEGM/Diagnostic/",
+        "ct-data": "/111_SEGM/CT/",
+        "points2": "",
+        "points1": ""
+    },
+    "112": {
+        "annotated": false,
+        "mri-data": "/112_SEGM/Diagnostic/",
+        "ct-data": "/112_SEGM/CT/",
         "points2": "",
         "points1": ""
     }
