@@ -25,6 +25,14 @@ def getParams(key, params = {}):
                 "smoothness" : [0, 0.1, 0.01, 0.001]
                 }
 
+    if (key == "FFD_ADV_SIMPLE"):
+        params = {
+                "similarity" : ["MI", "SSD", "NCC", "LNCC"],
+                "step_size" : [5, 10, 15],
+                "grid_size" : ["5 5 5", "6 6 6", "7 7 5"],
+                "smoothness" : [0, 0.001, 0.01]
+                }
+
     if (key == "DEA_ADV"):
         params = {"parameter" : [""]}
 
@@ -40,6 +48,8 @@ def getWorkspace(key):
         workspace = "register_simple.iws"
     if (key == "LINEAR"):
         workspace = "register_linear.iws"
+    if (key == "FFD_ADV_SIMPLE"):
+        workspace = "register_ffd_adv_simple.iws"
     if (key == "FFD"):
         workspace = "register_ffd.iws"
     if (key == "FFD_ADV"):

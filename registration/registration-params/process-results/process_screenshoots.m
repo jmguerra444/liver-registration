@@ -1,14 +1,15 @@
 
 % study_name = 'gn-simple-v1';
 % study_name = 'gn-linear-v1';
-study_name = 'gn-ffd-v2';
+% study_name = 'gn-ffd-v2';
+study_name = 'v4';
 
-root = 'D:\jorge\OneDrive\OneDrive - SurgicEye GmbH\thesis\experiments\registration-studies\';
+% root = 'D:\jorge\OneDrive\OneDrive - SurgicEye GmbH\thesis\experiments\registration-studies\';
 % root = 'C:\Users\Jorgue Guerra\OneDrive - SurgicEye GmbH\thesis\experiments\registration-studies\';
+root = 'C:\Users\jmgue\OneDrive - SurgicEye GmbH\thesis\experiments\registration-studies\';
 
 root = strcat(root , study_name, '\'); 
 folder_ids = getFolders(root);
-
 
 results = [];
 b.name = 'Patients';
@@ -42,11 +43,13 @@ function result = process_folder(folder_id, root)
         path = absolute_path(image_filename, study_folder);
 
         image = rgb2gray(imread(path));
-        image = image(537:557, 2335:2419);
+        image = image(653:666, 1607:1637);
         image = imresize(image, 30);
         text = ocr(image);
         text = text.Text;
-        text = parse_text(text);
+        text = parse_tre(text);
+        
+        disp(text);
         
         d = str2double(text);
         result = [result, d];
@@ -58,11 +61,12 @@ function path = absolute_path(relative_path, parent)
     path = strcat(parent, relative_path);
 end
 
-function text = parse_text(old_text)
+function text = parse_tre(old_text)
     text = old_text;
     text = strrep(text, 'mm', '');
     text = strrep(text, 'S', '5');
     text = strrep(text, ' ', '');
+    text = strrep(text, '%', '');
 end
 
 function folder_ids = getFolders(root)
