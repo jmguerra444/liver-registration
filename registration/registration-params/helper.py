@@ -95,12 +95,12 @@ def getSpecificGrid(key):
 
     if (key == "FFD_ADV"):
         grid = [
-            # 'similarity="NCC" step_size="15" grid_size="5 5 5" smoothness="0" ',
-            # 'similarity="NCC" step_size="10" grid_size="7 7 5" smoothness="0.001" ',
-            # 'similarity="NCC" step_size="15" grid_size="7 7 5" smoothness="0" ',
-            # 'similarity="SSD" step_size="15" grid_size="7 7 5" smoothness="0" ',
-            # 'similarity="SSD" step_size="5" grid_size="5 5 5" smoothness="0" ',
-            # 'similarity="LNCC" stepsize="10" grid_size="3 3 3" smoothness="0.001"',
+            'similarity="NCC" step_size="15" grid_size="5 5 5" smoothness="0" ',
+            'similarity="NCC" step_size="10" grid_size="7 7 5" smoothness="0.001" ',
+            'similarity="NCC" step_size="15" grid_size="7 7 5" smoothness="0" ',
+            'similarity="SSD" step_size="15" grid_size="7 7 5" smoothness="0" ',
+            'similarity="SSD" step_size="5" grid_size="5 5 5" smoothness="0" ',
+            'similarity="LNCC" stepsize="10" grid_size="3 3 3" smoothness="0.001"',
             'similarity="MI" stepsize="5" grid_size="5 5 5" smoothness="0"'
         ]
     
@@ -111,7 +111,7 @@ def getSpecificGrid(key):
 
 def getSpecificPatients(landmarks):
     lmks = landmarks.copy()
-    selectedPatients =  ["008", "010", "021", "028", "030", "030", "050", "066", "067", "071", "075", "090", "091", "094"]
+    selectedPatients =  ["008", "022", "036", "037", "040", "041", "046", "050", "056", "062", "067", "070", "075", "078", "079", "091", "094"]
     for l in landmarks:
         if not(l in selectedPatients):
             del(lmks[l])
