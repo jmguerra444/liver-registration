@@ -9,11 +9,11 @@ from helper import fieldInversability, generateGrid, getSpecificPatients, setup,
 from robust_params import getParams, getWorkspace
 
 # RUN ALL DATASETS ONE WORKSPACE
-run_only = 0    # 0 if you want to run the study in all the patients
+run_only = 8    # 0 if you want to run the study in all the patients
                 # <patient id> (E.G 55)
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--key", help="Key", type=str, default="FFD_ADV")
+parser.add_argument("--key", help="Key", type=str, default="FFD_ADV_SIMPLE")
 parser.add_argument("--timer", help="Timer", type=int, default=300)
 parser.add_argument("--location", help="Where the data is located", type = str, default = "C:/Users/jmgue/OneDrive - SurgicEye GmbH/thesis/data/Selected MR-CT data")
 args = parser.parse_args()
@@ -42,12 +42,12 @@ params = getParams(key)             # Use this function to get all the parameter
 ## ---------   CUSTOMIZATIONS FOR THE EXPERIMENT ----------
 grid = generateGrid(params)       # Generates all the combinations for the parameters to run the studies
 # grid = grid[0:]                   # Change in case you want start study from some other number
-grid = getSpecificGrid(key)         # Or define some list of desired combinations
+# grid = getSpecificGrid(key)         # Or define some list of desired combinations
 landmarks = getSpecificPatients(landmarks)      # Filter to get only specific patients
 
 # Randomly delete some in the grid
 # grid = random.sample(grid, int(len(grid) * 0.2))
-# grid = random.sample(grid, 20)
+grid = random.sample(grid, 20)
 
 # ESTIMATE COMPUTATION TIME
 # This is a rough approximation, it does not consider cases where only one study is run

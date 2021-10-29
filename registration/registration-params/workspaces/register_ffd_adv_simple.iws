@@ -7,7 +7,8 @@
             <param name="topDown">1</param>
             <param name="uid">data0</param>
             <param name="name">LungLeber Low Dose 2.5  B30sWT</param>
-            <param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</param>            <property name="Components">
+            <param name="transformation">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</param>           
+            <property name="Components">
                 <property name="DisplayOptions2d">
                     <param name="gamma">1</param>
                     <param name="invert">0</param>
@@ -418,9 +419,9 @@
                 <param name="resizable">0</param>
             </property>
         </property>
-        <!-- <property name="Extract Displacement Field">
+        <property name="Extract Displacement Field">
             <param name="execute">1</param>
-            <param name="inputUids">"data2" </param>
+            <param name="inputUids">"data0" </param>
             <param name="outputUids">"data4" </param>
         </property>
         <property name="HDF5 File">
@@ -429,7 +430,7 @@
             <param name="execute">1</param>
             <param name="inputUids">"data4" </param>
             <param name="outputUids"></param>
-        </property> -->
+        </property>
         <property name="Label Overlap">
             <param name="inputUids">"data3" "data2" </param>
             <param name="outputUids"></param>
